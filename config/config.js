@@ -1,9 +1,13 @@
 /*
  * Configuraciones Públicas Globales
  */
+///////////////////
+// Servidor Host
+process.env.HOST = process.env.HOST || 'http://127.0.0.1'
+process.env.HOST = process.env.HOST || 'http://127.0.0.1'
 
 // puerto default del servidor
-process.env.PORT = process.env.PORT || 80;
+process.env.PORT = process.env.PORT || 3000;
 
 //////////
 // Entorno de ejecución
@@ -15,6 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
     process.env.URLDB = process.env.MONGO_URI;
 }
+
 
 // seed
 process.env.SEED = process.env.SEED || "este-es-el-seed-de-desarrollo";
@@ -28,3 +33,7 @@ process.env.CLIENT_ID = process.env.CLIENT_ID || '403607364933-cndqin88pdjlrpcuh
 
 // Diferencia de la zona horaria central de México: UTC-6 
 process.env.UTCmx = process.env.UTCmx || (1000 * 60 * 60 * 6);
+
+/////////////////////////
+//// Agrega las variables de sesion
+require('./sesionApp');

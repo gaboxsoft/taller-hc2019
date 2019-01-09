@@ -12,100 +12,118 @@ const situacionValida = require('../models/situacionValida');
 // Schema de  paciente
 
 let pacienteSchema = new Schema({
-    // Nombre de persona
+  // Nombre de persona
 
-    nombres: {
-        type: String,
-        default: '',
-        minlength: 5,
-        required: [true, 'El NOMBRE es necesario.']
-    },
-    paterno: {
-        type: String,
-        default: '',
-        minlength: 5,
-        required: [true, 'El PATERNO es necesario.']
-    },
-    materno: {
-        type: String,
-        minlength: 5,
-        //: [true, 'El MATERNO del paciente es necesario.']
+  nombres: {
+    type: String,
+    default: '',
+    minlength: 5,
+    required: [true, 'El NOMBRE es necesario.']
+  },
+  paterno: {
+    type: String,
+    default: '',
+    minlength: 5,
+    required: [true, 'El PATERNO es necesario.']
+  },
+  materno: {
+    type: String,
+    minlength: 5,
+    //: [true, 'El MATERNO del paciente es necesario.']
 
-    },
-    genero: {
-        type: String,
-        enum: generoValido,
-        maxlength: 1,
-        required: [true, 'Se requiere especificar el género del paciente.']
-    },
-    fechaNacimiento: {
-        type: Date,
-        required: [true, 'La feha de nacimiento del paciente es necesaria.']
-    },
-    //Domicilio
-    calle: {
-        type: String,
-        //required: [true, 'El nombre de la calle es necesiaria.']
-    },
-    numExterior: {
-        type: String,
-        //required: [true, 'El número exterior es necesario.']
-    },
-    numInterior: {
-        type: String,
-        //required: [false, 'El número interior es opcional.']
-    },
-    colonia: {
-        type: String,
-        //required: [true, 'El nombre de la colonia es necesaria.']
-    },
-    municipio: {
-        type: String,
-        //required: [true, 'El nombre del municipio es necesario.']
-    },
-    entidad: {
-        type: String,
-        //required: [true, 'El nombre de la entidad es necesaria.']
-    },
-    pais: {
-        type: String,
-        //required: [true, 'El nombre del país es necesario.']
-    },
-    CP: {
-        type: String,
-        maxlength: 5,
-        //required: [false, 'El nCódigo Postal es opcional.']
-    },
-    telefonos: {
-        type: String,
-        //required: [true, 'Almenos un teléfono es necesiario.']
-    },
+  },
+  genero: {
+    type: String,
+    enum: generoValido,
+    maxlength: 1,
+    required: [true, 'Se requiere especificar el género del paciente.']
+  },
+  fechaNacimiento: {
+    type: Date,
+    required: [true, 'La feha de nacimiento del paciente es necesaria.']
+  },
+  //Domicilio
+  calle: {
+    type: String,
+    //required: [true, 'El nombre de la calle es necesiaria.']
+  },
+  numExterior: {
+    type: String,
+    //required: [true, 'El número exterior es necesario.']
+  },
+  numInterior: {
+    type: String,
+    //required: [false, 'El número interior es opcional.']
+  },
+  colonia: {
+    type: String,
+    //required: [true, 'El nombre de la colonia es necesaria.']
+  },
+  municipio: {
+    type: String,
+    //required: [true, 'El nombre del municipio es necesario.']
+  },
+  entidad: {
+    type: String,
+    //required: [true, 'El nombre de la entidad es necesaria.']
+  },
+  pais: {
+    type: String,
+    //required: [true, 'El nombre del país es necesario.']
+  },
+  CP: {
+    type: String,
+    maxlength: 5,
+    //required: [false, 'El nCódigo Postal es opcional.']
+  },
+  telefonos: {
+    type: String,
+    //required: [true, 'Almenos un teléfono es necesiario.']
+  },
+
+  // Referentes al la forma msi-00-contrato
+  importeAnticipo: {
+    type: Number,
+    default: 0,
+    required: [true, 'importe de $0.00 al menos es necesario.']
+  },
+  importePagare: {
+    type: Number,
+    default: 0,
+    required: [true, 'importe de $0.00 al menos es necesario.']
+  },
+  nombreResponsableCuenta: {
+    type: String,
+    default: '', // Debe ser el mismo nombre del paciente.
+    minlength: 5,
+    required: [true, 'El NOMBRE es necesario.']
+  },
 
 
-    // Sello de creación y borrado 
+  // Sello de creación y borrado 
 
-    fechaCreacion: {
-        type: Date,
-        required: [true, 'La fecha de creación es necesaria.']
-            // ,
-            // default: new Date().toLocaleString()
-    },
-    fechaModificacion: {
-        type: Date
-    },
-    situacion: {
-        type: Number,
-        required: [true, 'La situación deldocumento es necesaria.'],
-        enum: situacionValida,
-        default: 1 // 0-borrado, 1-activo, 2-inactivo, 3-ocupado
-    },
-    fechaBorrado: {
-        type: Date
-    },
-    usuario: {
-        type: Schema.Types.ObjectId,
-        ref: 'Usuario'
-    }
+  fechaCreacion: {
+    type: Date,
+    required: [true, 'La fecha de creación es necesaria.']
+    // ,
+    // default: new Date().toLocaleString()
+  },
+  fechaModificacion: {
+    type: Date
+  },
+  situacion: {
+    type: Number,
+    required: [true, 'La situación deldocumento es necesaria.'],
+    enum: situacionValida,
+    default: 1 // 0-borrado, 1-activo, 2-inactivo, 3-ocupado
+  },
+  fechaBorrado: {
+    type: Date
+  },
+  usuario: {
+    type: Schema.Types.ObjectId,
+    ref: 'Usuario'
+  }
 
 
 });

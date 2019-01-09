@@ -2,8 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\routes"
+    "\\components",
+    "\\config",
+    "\\layouts",
+    "\\node_modules\\bootstrap-vue",
+    "\\node_modules\\bootstrap-vue\\nuxt",
+    "\\node_modules\\bson",
+    "\\node_modules\\bson\\browser_build",
+    "\\pages"
   ],
-  "SelectedNode": "\\routes\\imagen.js",
+  "SelectedNode": "\\layouts\\default.vue",
   "PreviewInSolutionExplorer": false
 }

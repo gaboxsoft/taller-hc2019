@@ -2,7 +2,8 @@
 const express = require('express')
 const app = express();
 const axios = require('axios');
-console.log('directorio rsaiz...............: ', __dirname);
+
+
   app.get('/names', (req, res) => {
 
       //res.send('API root-- working.........')
@@ -11,16 +12,14 @@ console.log('directorio rsaiz...............: ', __dirname);
       /////////////////
       let userLogin = '';
       let usersGet = '';
-      let urlUsers = '/usuarios?limite=5&desde=0';
-      let urlLogin = '/login';
+    let urlUsers = process.env.HOSTPORT+'/usuarios?limite=5&desde=0';
+    let urlLogin = process.env.HOSTPORT+'/login';
       axios.post(urlLogin, {
               email: 'gabox@msn.com',
               password: '12345'
           })
           .then(response => {
               userLogin = response.data;
-              //console.log('composición POST LOGIN======>>> ', post);
-              console.log('composición RES LOGIN=======>>> ', userLogin);
               axios.get(urlUsers, {
                   headers: {
                       'token': userLogin.token
