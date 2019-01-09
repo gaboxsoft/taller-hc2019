@@ -2,7 +2,7 @@ require('../config/config.js');
 
 
 /////////////
-console.log('/////////////////////////////////////////////');
+console.log('/////////////////////////////////////////////',Date.now());
 console.log('>> process.env.HOST=', process.env.HOST);  
 console.log('>> process.env.PORT=', process.env.PORT);
 console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
