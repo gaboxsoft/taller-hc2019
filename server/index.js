@@ -1,5 +1,21 @@
 require('../config/config.js');
 
+
+/////////////
+console.log('/////////////////////////////////////////////');
+console.log('>> process.env.HOST=', process.env.HOST);  
+console.log('>> process.env.PORT=', process.env.PORT);
+console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
+console.log('>> process.env.MONGO_URI = ', process.env.MONGO_URI);
+console.log('>> process.env.URLDB = ', process.env.URLDB);
+console.log('/////////////////////////////////////////////');
+
+
+// seed
+process.env.SEED = process.env.SEED || "este-es-el-seed-de-desarrollo";
+
+/////////////
+
 const express = require('express')
 const app = express()
 
