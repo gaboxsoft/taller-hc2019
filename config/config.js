@@ -4,7 +4,6 @@
 ///////////////////
 // Servidor Host
 process.env.HOST = process.env.HOST || 'http://127.0.0.1'
-process.env.HOST = process.env.HOST || 'http://127.0.0.1'
 
 // puerto default del servidor
 process.env.PORT = process.env.PORT || 3000;
@@ -14,6 +13,8 @@ process.env.PORT = process.env.PORT || 3000;
 //////////
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+/// DEtermina la base de datos de prueba o producción
 if (process.env.NODE_ENV === 'development') {
     process.env.URLDB = 'mongodb://localhost:27017/cafe';
 } else {

@@ -39,6 +39,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;
+Console.log('hostPort=', process.env.HOSTPORT);
 
  app.set('port', process.env.PORT)
 
@@ -58,7 +59,7 @@ setupNuxt();
 
 // Arranca el servidor Express
 app.listen(process.env.PORT, () => {
-    console.log(`Nodejs ${process.env.NODE_ENV} Atendiendo peticiones  en el puerto ${process. env.PORT}`);
+    console.log(`Nodejs ${process.env.NODE_ENV} Atendiendo peticiones  en el puerto ${process.env.PORT}`);
 })
 
 // Arranca elservidor MongoDB
