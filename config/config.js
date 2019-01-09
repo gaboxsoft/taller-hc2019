@@ -3,14 +3,8 @@
  */
 ///////////////////
 // Servidor Host
-if (process.env.HOST) {
-  console.log('----->existe HOST producción y es=', process.env.HOST);
-}
-else {
-  console.log('----->NOOOOO existe HOST producción y es=', process.env.HOST);
-}
+
 process.env.HOST = process.env.HOST || 'http://127.0.0.1'
-console.log('-----> HOST y que do su valor =', process.env.HOST);
 
 // puerto default del servidor
 process.env.PORT = process.env.PORT || 3000;
@@ -24,7 +18,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 /// DEtermina la base de datos de prueba o producción
 if (process.env.NODE_ENV === 'development') {
     process.env.URLDB = 'mongodb://localhost:27017/cafe';
+  process.env.HOST = 'http://127.0.0.1';
 } else {
+  process.env.HOST = 'https://hc2019.herokuapp.com';
     process.env.URLDB = process.env.MONGO_URI;
 }
 
