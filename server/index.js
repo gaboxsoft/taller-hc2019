@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;
-Console.log('hostPort=', process.env.HOSTPORT);
+console.log('-----> hostPort=', process.env.HOSTPORT);
 
  app.set('port', process.env.PORT)
 

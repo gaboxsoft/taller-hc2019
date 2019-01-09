@@ -3,7 +3,14 @@
  */
 ///////////////////
 // Servidor Host
+if (process.env.HOST) {
+  console.log('----->existe HOST producción y es=', process.env.HOST);
+}
+else {
+  console.log('----->NOOOOO existe HOST producción y es=', process.env.HOST);
+}
 process.env.HOST = process.env.HOST || 'http://127.0.0.1'
+console.log('-----> HOST y que do su valor =', process.env.HOST);
 
 // puerto default del servidor
 process.env.PORT = process.env.PORT || 3000;
