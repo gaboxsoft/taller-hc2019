@@ -21,8 +21,9 @@ if (process.env.NODE_ENV === 'development') {
   process.env.HOST = 'http://127.0.0.1';
 } else {
   process.env.HOST = 'https://hc2019.herokuapp.com';
-    process.env.URLDB = process.env.MONGO_URI;
-}
+  process.env.URLDB = process.env.MONGO_URI;
+  process.env.URLDB = 'mongodb://gabox:Gabox123@ds054288.mlab.com:54288/cafe';
+}                       
 
 
 // seed
