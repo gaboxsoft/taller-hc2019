@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
+    "\\.nuxt\\views",
     "\\components",
     "\\config",
     "\\layouts",
-    "\\node_modules\\bootstrap-vue",
-    "\\node_modules\\bootstrap-vue\\nuxt",
-    "\\node_modules\\bson",
-    "\\node_modules\\bson\\browser_build",
-    "\\pages"
+    "\\node_modules\\@babel",
+    "\\node_modules\\@babel\\code-frame",
+    "\\pages",
+    "\\server"
   ],
-  "SelectedNode": "\\layouts\\default.vue",
   "PreviewInSolutionExplorer": false
 }

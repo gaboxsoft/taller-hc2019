@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "e01ca7de-3cef-403f-aaa2-f65902696895",
+		"name": "ArchivoClinico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD - Paciente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "juvenal martinez",
+							"type": "text"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "1984/03/14",
+							"type": "text"
+						},
+						{
+							"key": "telefonos",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "calle",
+							"value": "AVE. DIAZ ORDAZ",
+							"type": "text"
+						},
+						{
+							"key": "numInterior",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "numExterior",
+							"value": "67",
+							"type": "text"
+						},
+						{
+							"key": "colonia",
+							"value": "tetitla",
+							"type": "text"
+						},
+						{
+							"key": "municipio",
+							"value": "otzo",
+							"type": "text"
+						},
+						{
+							"key": "entidad",
+							"value": "edomexico",
+							"type": "text"
+						},
+						{
+							"key": "pais",
+							"value": "méxico",
+							"type": "text"
+						},
+						{
+							"key": "cp",
+							"value": "52180",
+							"type": "text"
+						},
+						{
+							"key": "genero",
+							"value": "M",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/paciente",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"paciente"
+					]
+				},
+				"description": "Agrega un paciente con sus datos generales."
+			},
+			"response": []
+		},
+		{
+			"name": "ADD - Usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombres",
+							"value": "test4",
+							"type": "text"
+						},
+						{
+							"key": "paterno",
+							"value": "xxxxx",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test4@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "cedula",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "institucion",
+							"value": "uaem",
+							"type": "text"
+						},
+						{
+							"key": "especialidad",
+							"value": "nefrologo",
+							"type": "text"
+						},
+						{
+							"key": "rol",
+							"value": "ENFERMERIA_ROL",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/usuario",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "Agrega un Usuario \nRequiere:\nnombreUsuario\nemail\npassword\nnombrePersona\nrol\nnumeroCedulaProfesional\nnombreInstitucionExpideTitulo\nespecialidadProfesional\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/usuarios?limite=5&desde=0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios"
+					],
+					"query": [
+						{
+							"key": "limite",
+							"value": "5"
+						},
+						{
+							"key": "desde",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Obtiene la lista de todos los Usuarios con estado no borrado, de manera paginada"
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE - Usuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombreUsuario",
+							"value": "usu002",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "usu01@msn.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "rol",
+							"value": "ADMIN_ROL",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "especialidadProfesional",
+							"value": "administrador",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "numeroCedulaProfesional",
+							"value": "00",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nombreInstitucionExpideTitulo",
+							"value": "uaemex",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nombrePersona",
+							"value": "gabox",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/usuario/5c29a25017f7f724d4f00dfc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario",
+						"5c29a25017f7f724d4f00dfc"
+					]
+				},
+				"description": "Actualizar Usuario\nRequiere:\n\tnombreUsuario\n\temail\n\tpassword\n\tnombrePersona\n\trol\n\tnumeroCedulaProfesional\n\tnombreInstitucionExpideTitulo\n\tespecialidadProfesional\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/usuario/5c2bd92bd2a09a38205e9c91",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario",
+						"5c2bd92bd2a09a38205e9c91"
+					]
+				},
+				"description": "Borrado lógico de un Usuario.\nColoca en CERO la bandera de situación"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64f57839-868c-4480-8aa8-65c70d0ad444",
+						"exec": [
+							"",
+							"let resp = pm.response.json();",
+							"let currentToken = pm.environment.get(\"token\");",
+							"//console.log(`token:[${currentToken.slice(currentToken.length-10)}]`);",
+							"if(resp.ok===true){",
+							"    ",
+							"pm.environment.set(\"token\", resp.token);",
+							"console.log('token actualizado.')",
+							"}",
+							"else{",
+							"    console.log('NO se actualizó el token.')",
+							"}",
+							"let newToken = pm.environment.get(\"token\");",
+							"console.log(`new token?? ==>[${currentToken.slice(currentToken.length-10)}] >> [${newToken.slice(newToken.length-10)}]`);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "gabox@msn.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Autenticación del usuario para acceso sl sistema mediante TOKEN con vigencia de tiempo."
+			},
+			"response": []
+		},
+		{
+			"name": "LIST Pacientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "gabriel",
+							"type": "text"
+						},
+						{
+							"key": "edad",
+							"value": "53",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "gabox@msn.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/pacientes?limite=17&desde=0",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pacientes"
+					],
+					"query": [
+						{
+							"key": "limite",
+							"value": "17"
+						},
+						{
+							"key": "desde",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Obtiene lalista de los pacientes"
+			},
+			"response": []
+		},
+		{
+			"name": "MODIFY Paciente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "EUGENIA MONROY SANCHEZ",
+							"type": "text"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "2005/11/25",
+							"type": "text"
+						},
+						{
+							"key": "telefonos",
+							"value": "75463",
+							"type": "text"
+						},
+						{
+							"key": "calle",
+							"value": "INDEPENDENCIA",
+							"type": "text"
+						},
+						{
+							"key": "numInterior",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "numExterior",
+							"value": "34",
+							"type": "text"
+						},
+						{
+							"key": "colonia",
+							"value": "tetitla",
+							"type": "text"
+						},
+						{
+							"key": "municipio",
+							"value": "otzo",
+							"type": "text"
+						},
+						{
+							"key": "entidad",
+							"value": "edomexico",
+							"type": "text"
+						},
+						{
+							"key": "pais",
+							"value": "méxico",
+							"type": "text"
+						},
+						{
+							"key": "cp",
+							"value": "52180",
+							"type": "text"
+						},
+						{
+							"key": "genero",
+							"value": "F",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/paciente/5c29cb0a86070f19644150a3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"paciente",
+						"5c29cb0a86070f19644150a3"
+					]
+				},
+				"description": "Modificva el paciente"
+			},
+			"response": []
+		},
+		{
+			"name": "DEL Paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/paciente/5c2a44636d6bd241003f4c54",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"paciente",
+						"5c2a44636d6bd241003f4c54"
+					]
+				},
+				"description": "Borra lógicamente el Paciente"
+			},
+			"response": []
+		},
+		{
+			"name": "GET contrato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64f57839-868c-4480-8aa8-65c70d0ad444",
+						"exec": [
+							"",
+							"let resp = pm.response.json();",
+							"let currentToken = pm.environment.get(\"token\");",
+							"//console.log(`token:[${currentToken.slice(currentToken.length-10)}]`);",
+							"if(resp.ok===true){",
+							"    ",
+							"pm.environment.set(\"token\", resp.token);",
+							"console.log('token actualizado.')",
+							"}",
+							"else{",
+							"    console.log('NO se actualizó el token.')",
+							"}",
+							"let newToken = pm.environment.get(\"token\");",
+							"console.log(`new token?? ==>[${currentToken.slice(currentToken.length-10)}] >> [${newToken.slice(newToken.length-10)}]`);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "gabox@msn.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/contrato",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"contrato"
+					]
+				},
+				"description": "Genera el contrato CMSI-00"
+			},
+			"response": []
+		}
+	]
+}

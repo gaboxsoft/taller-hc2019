@@ -1,20 +1,29 @@
 <template>
   <section class="container">
     <div>
-      <logo/>
-      <h1 class="title">
-        nuxt-node
+
+      <a class="navbar-brand" href="#">
+        <img src="~/assets/logoMSI-262x702.png" style="width: 500px; ">
+      </a>
+      <br />
+      <br />
+      <h1 class=" text-primary">
+        Archivo Clínico de Pacientes
       </h1>
-      <h2 class="subtitle">
-        Nodejs and Vue with Express in parallel
+      <h2 class=" text-info">
+        Su uso se restringe sólo al personal autorizado por Médica San Isidro.
       </h2>
       <div class="links">
+        <a class="btn btn-success btn-lg" href="/login" role="button">
+          Abre Sesión
+        </a>
+<!--        <input type="button" class="btn btn-success" data-target="/login" value= />-->
         <!--//target="_blank" class="button--green"-->
-        <a href="http://localhost:3000/login"
-           class="btn-primary ">Inicia sesión</a>
-        <a href="https://github.com/nuxt/nuxt.js"
-           target="_blank"
-           class="button--grey">GitHub</a>
+        <!--<a href="http://localhost:3000/login"
+     class="b-button ">Inicia sesión</a>
+  <a href="https://github.com/nuxt/nuxt.js"
+     target="_blank"
+     class="button--grey">GitHub</a>-->
       </div>
     </div>
 

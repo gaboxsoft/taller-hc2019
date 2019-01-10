@@ -1,18 +1,19 @@
 <template>
   <div>
-    <menuApp />
-    <!--<nuxt />-->
-    <!--<a href="/login">Abrir</a>
-    <a href="#">Cerrar</a-->>
+    <headerApp />
+    <nuxt />
+    <footerApp />
 
   </div>
 </template>
 <script>
   
-  import menuApp from '~/components/menuApp'
+  import headerApp from '~/components/headerApp'
+  import footerApp from '~/components/footerApp'
   export default {
     components: {
-      menuApp
+      headerApp,
+      footerApp
     }
   }
 </script>

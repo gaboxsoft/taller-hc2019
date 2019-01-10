@@ -11,8 +11,7 @@ console.log('>> process.env.URLDB = ', process.env.URLDB);
 console.log('/////////////////////////////////////////////');
 
 
-// seed
-process.env.SEED = process.env.SEED || "este-es-el-seed-de-desarrollo";
+
 
 /////////////
 
