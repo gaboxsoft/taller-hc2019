@@ -14,8 +14,7 @@ app.get('/pacientes', verificaToken, function(req, res) {
     let limite = Number(req.query.limite || 0);
     let desde = Number(req.query.desde || 0);
 
-    situacion > 0
-    Paciente.find({ situacion: { $gt: 0 } })
+  Paciente.find({ situacion: { $gt: 0 } })
         .limit(limite)
         .skip(desde)
         .exec((err, pacientes) => {

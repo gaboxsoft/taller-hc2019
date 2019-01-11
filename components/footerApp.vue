@@ -1,7 +1,7 @@
 <template>
   <div class="container ">
-    <div class="fixed-bottom button--grey">
-      <h5 class="bg-info"> Powered by gaboSoft(2019)</h5>
+    <div class="fixed-bottom  bg-grey">
+      <h5 class="bg-info">versión 1.0.2 (2019)</h5>
     </div>
   </div>
 </template>

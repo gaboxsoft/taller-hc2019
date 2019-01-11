@@ -8,11 +8,11 @@
         <br />
         <br />
         <label for="email">...........e-mail:</label>
-        <input type="email" v-model="userLogin.email" placeholder="Escribe tu email">
+        <input type="email" v-model="usuarioLogin.email" placeholder="Escribe tu email">
         <br />
         <br />
         <label for="contrasenia">Contraseña:</label>
-        <input type="password" v-model="userLogin.password" placeholder="Escribe tu contraseña">
+        <input type="password" v-model="usuarioLogin.password" placeholder="Escribe tu contraseña">
 
         <!--<input type="password" id="password" class="form-control" />-->
         <br><br>
@@ -27,7 +27,7 @@
     </div>
     <div>
       <br />
-      <h5 v-model="userLogin">Usuario: {{userLogin.email}}({{userLogin.nombres+' '+userLogin.paterno+' '+(userLogin.materno||'')}}): {{userLogin.rol}}</h5>
+      <h5 v-model="usuarioLogin">Usuario: {{usuarioLogin.email}}({{usuarioLogin.nombres+' '+usuarioLogin.paterno+' '+(usuarioLogin.materno||'')}}): {{usuarioLogin.rol}}</h5>
       <h5 v-model="token">  Token: {{token}}</h5>
       <br />
       <h5 class="text-warning bg-info">{{err}}</h5>
@@ -37,59 +37,69 @@
 </template>
 
 <script>
+  
   import axios from 'axios';
   var urlLogin = '/login';
-  let userVacio= {nombres: '', paterno: '', materno: '', email: '', password: '' };
+
   export default {
     data() {
       return {
-        userLogin: userVacio,
-        token: '',
+        usuarioLogin: {email:'', password:''},
+        token:'',
         err: ''
       }
     },
+    computed: {
+      getToken() {
+        return this.$store.state.token;
+      },
+      getUsuarioLogin() {
+        return this.$store.state.usuarioLogin;
+      },
+      getUsuarioVacio() {
+        return this.$store.state.usuarioVacio;
+      }
+    },
+    created() {
 
+    },
     methods: {
-      
       loginAdmin() {
-        this.userLogin.email = "gabox@msn.com";
-        this.userLogin.password = "12345";
-
+        this.usuarioLogin = { email: '', password: '' }
+        this.usuarioLogin.email = "gabox@msn.com";
+        this.usuarioLogin.password = "12345";
         this.login();
       },
 
       login() {
-
-        this.err = '';
-        if (this.userLogin.email === '' || this.userLogin.password === '') {
-          alert('Escribe completos el email y contraseña para continuar.');
+        if (this.usuarioLogin.email === '' || this.usuarioLogin.password === '') {
+          this.$store.commit('setToken', '');
           this.token = '';
-          sessionStorage.setItem('token', '');
-          sessionStorage.setItem('usuario', userVacio);
           return;
         }
         axios.post(urlLogin, {
-          email: this.userLogin.email,
-          password: this.userLogin.password
+          email: this.usuarioLogin.email,
+          password: this.usuarioLogin.password
         })
           .then((response) => {
+            
+            this.$store.commit('setToken', response.data.token);
+            this.$store.commit('setUsuarioLogin', response.data.usuario);
 
-          this.userLogin = response.data.usuario;
-          this.token = response.data.token;
-          sessionStorage.setItem('token', this.token);
-          sessionStorage.setItem('usuario', this.userLogin);
-          }
-          , (error) => {
-            sessionStorage.setItem('token', '');
-            sessionStorage.setItem('usuario', userVacio);      
+          console.log('pase....')        
+            this.usuarioLogin = response.data.usuario;
+            this.token = response.data.token;
+            console.log('pase....')
+          },
+          (error) => {
             this.err = error.response.data.error;
-          });       
+          });
       },
-      logout() {        
+      logout() {
+        this.$store.commit('setToken', '');
+        this.$store.commit('setUsuarioLogin', this.$store.state.usuarioVacio);
         this.token = '';
-        this.userLogin = userVacio;
-        sessionStorage.setItem('token', '');
-        sessionStorage.setItem('usuario', userVacio);
+        this.usuarioLogin = this.$store.state.usuarioVacio;
         alert('Sesión cerrrada!');
       }
     }

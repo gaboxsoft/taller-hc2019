@@ -3,27 +3,22 @@
     <div>
 
       <a class="navbar-brand" href="#">
-        <img src="~/assets/logoMSI-262x702.png" style="width: 500px; ">
+        <img src="~/assets/logoMSI-262x702.png" style="width: 500px;">
       </a>
+
       <br />
       <br />
       <h1 class=" text-primary">
         Archivo Clínico de Pacientes
       </h1>
-      <h2 class=" text-info">
+      <h3 class=" text-info">
         Su uso se restringe sólo al personal autorizado por Médica San Isidro.
-      </h2>
+      </h3>
       <div class="links">
         <a class="btn btn-success btn-lg" href="/login" role="button">
           Abre Sesión
         </a>
-<!--        <input type="button" class="btn btn-success" data-target="/login" value= />-->
-        <!--//target="_blank" class="button--green"-->
-        <!--<a href="http://localhost:3000/login"
-     class="b-button ">Inicia sesión</a>
-  <a href="https://github.com/nuxt/nuxt.js"
-     target="_blank"
-     class="button--grey">GitHub</a>-->
+
       </div>
     </div>
 
@@ -37,6 +32,7 @@
 </template>
 
 <script>
+
   import Logo from '~/components/Logo.vue'
 
   export default {

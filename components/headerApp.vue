@@ -1,11 +1,11 @@
 <template>
 
-  <div class="contanier fixed-top">
+  <div class="contanier fixed-top margin-bottom:200px">
     <b-navbar class="ml-auto " toggleable="md" type="dark" variant="info">
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="~/assets/logoMSI-262x702.png" style="width: 100px; ">
       </a>
 
@@ -13,7 +13,7 @@
 
         <b-navbar-nav>
           <b-nav-item-dropdown text="RECEPCIÓN" right>
-            <b-dropdown-item href="#">Registro Paciente</b-dropdown-item>
+            <b-dropdown-item href="/RegistroPaciente">Registro Paciente</b-dropdown-item>
             <b-dropdown-item href="#">Contrato Prestación Servicios</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="VALORACIÓN" left>

@@ -24,7 +24,8 @@ if (process.env.NODE_ENV === 'development') {
   process.env.URLDB = process.env.MONGO_URI;
   process.env.URLDB = 'mongodb://gabox:Gabox123@ds054288.mlab.com:54288/cafe';
 }                       
-
+// Determina el HostPort
+process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;
 
 // seed
 process.env.SEED = process.env.SEED || "este-es-el-seed-de-desarrollo";

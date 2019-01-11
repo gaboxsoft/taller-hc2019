@@ -3,7 +3,7 @@
 <template lang="html">
   <div id="main" class="container">
 
-    <h1>Formato MSI-00--> Contrato</h1>
+    <h1>Generando el formato MSI-00--> Contrato</h1>
   </div>
 
 

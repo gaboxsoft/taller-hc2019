@@ -8,6 +8,7 @@ console.log('>> process.env.PORT=', process.env.PORT);
 console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
 console.log('>> process.env.MONGO_URI = ', process.env.MONGO_URI);
 console.log('>> process.env.URLDB = ', process.env.URLDB);
+console.log('>> process.env.HOSTPORT = ', process.env.HOSTPORT);
 console.log('/////////////////////////////////////////////');
 
 
@@ -37,7 +38,6 @@ app.use(bodyParser.json());
 //Habilitar la carpeta public
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;
 console.log('-----> hostPort=', process.env.HOSTPORT);
 
  app.set('port', process.env.PORT)

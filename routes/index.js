@@ -9,7 +9,7 @@ app.use(require('./usuario'));
 //app.use(require('./producto'));
 //app.use(require('./upload'));
 //app.use(require('./imagen'));
-//app.use(require('./paciente'));
+app.use(require('./paciente'));
 app.use(require('./reportes'));
 
 module.exports = app;

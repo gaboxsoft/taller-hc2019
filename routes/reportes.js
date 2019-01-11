@@ -91,6 +91,16 @@ function contratoPdf() {
       height: 2,
       ellipsis: true
     });
+  // Teléfono
+  doc.moveDown()
+    .fillColor('black')
+    .fontSize(12)
+    .text(paciente.domiclio, pdfTools.cmToPt(5.0), pdfTools.cmToPt(6.425), {
+      align: 'left',
+      indent: 2,
+      height: 2,
+      ellipsis: true
+    });
 
   //doc.moveDown()
   //  .fillColor('black')

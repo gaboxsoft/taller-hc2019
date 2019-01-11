@@ -28,7 +28,8 @@
         "pdf2svg": "^0.1.2",
         "pdfkit": "^0.8.3",
         "svg-to-pdfkit": "^0.1.7",
-        "underscore": "^1.9.1"
+        "underscore": "^1.9.1",
+        "vuex": "^3.0.1"
     },
     "devDependencies": {
         "nodemon": "^1.11.0",
