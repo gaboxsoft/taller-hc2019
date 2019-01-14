@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.nuxt\\views",
-    "\\components",
-    "\\config",
-    "\\layouts",
+    "\\node_modules",
     "\\node_modules\\@babel",
-    "\\node_modules\\@babel\\code-frame",
-    "\\pages",
-    "\\server"
+    "\\node_modules\\vue-style-loader",
+    "\\node_modules\\vue-style-loader\\lib",
+    "\\node_modules\\webpack",
+    "\\node_modules\\webpack\\hot",
+    "\\node_modules\\ws",
+    "\\node_modules\\ws\\lib",
+    "\\plugins"
   ],
+  "SelectedNode": "\\routes",
   "PreviewInSolutionExplorer": false
 }

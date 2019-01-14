@@ -1,23 +1,25 @@
 <template>
   <div>
-    <headerApp />
+    <headerCmp />
     <nuxt />
-    <footerApp />
-
+    <footerCmp />
   </div>
 </template>
 <script>
-  
-  import headerApp from '~/components/headerApp'
-  import footerApp from '~/components/footerApp'
+
+  import headerCmp from '~/components/headerCmp'
+  import footerCmp from '~/components/footerCmp'
   export default {
     components: {
-      headerApp,
-      footerApp
+      headerCmp,
+      footerCmp
     }
   }
 </script>
-<style>
+
+
+<!--<style>
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -65,4 +67,4 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-</style>
+</style>-->

@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="main-container">
     <div>
 
       <a class="navbar-brand" href="#">
@@ -14,7 +14,7 @@
       <h3 class=" text-info">
         Su uso se restringe sólo al personal autorizado por Médica San Isidro.
       </h3>
-      <div class="links">
+      <div class="links">  
         <a class="btn btn-success btn-lg" href="/login" role="button">
           Abre Sesión
         </a>
@@ -22,54 +22,25 @@
       </div>
     </div>
 
-    <!--<div class="container" >
-      <h1>Nombres:{{listNames.data}}</h1>
-      <ul>
-          <li v-for='(key,value) in listNames.data'>{{key}}: {{value}}</li>
-      </ul>
-    </div>-->
+    
   </section>
 </template>
 
 <script>
 
-  import Logo from '~/components/Logo.vue'
+  //import Logo from '~/components/Logo.vue'
 
   export default {
     
-  components: {
-    Logo
-    }
-//    ,
-  
-//  data(){
-//            return{
-//                listNames:''
-//            }
-//        },
-//  created(){
-
-//  this.getNames();
-//  },
-//  methods:{
-//    getNames: function (){
-//    axios.get('/api/names').then(res=>{
-//this.listNames=res.data;
-//    });
-//    }
-  //}
+  //components: {
+  //  Logo
+  //  }
 }
 </script>
 
 <style>
 
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
@@ -80,7 +51,14 @@
   color: #35495e;
   letter-spacing: 1px;
 }
-
+  .main-container {
+    /*min-height: 100vh;*/
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 55px;
+  }
 .subtitle {
   font-weight: 300;
   font-size: 42px;

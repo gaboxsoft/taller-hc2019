@@ -60,7 +60,14 @@ function contratoPdf() {
   const centroMedico = 'Médica San Isidro';
   const paciente = {
     nombre: 'JUANA DIAZ VELARDE',
-    domicilio: 'LAGUNA DE SAN PABLO #24, COLONIA CIPRES, MUNICIPIO DE SAN JERÓNIMO ESTADO DE PUEBLA, MÉXICO',
+    domicilio: {
+      calle: 'LAGUNA DE SAN PABLO',
+      numeroInterior: '#24',
+      colonia: 'CIPRES',
+      municipio: 'SAN JERÓNIMO',
+      entidad: 'PUEBLA',
+      pais:'MÉXICO'
+      },
     telefono: '7834571113',
     fechaNacimiento: Date.now()
   };
@@ -75,7 +82,7 @@ function contratoPdf() {
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(paciente.nombre, pdfTools.cmToPt(4.2), pdfTools.cmToPt(5.95), {
+    .text(paciente.nombre, pdfTools.cmToPt(3.2), pdfTools.cmToPt(5.1), {
       align: 'left',
       indent: 2,
       height: 2,
@@ -91,16 +98,50 @@ function contratoPdf() {
       height: 2,
       ellipsis: true
     });
-  // Teléfono
+  // Calle y número
+  const domicilio = paciente.domicilio;
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(paciente.domiclio, pdfTools.cmToPt(5.0), pdfTools.cmToPt(6.425), {
+    .text(domicilio.calle + ' ' + domicilio.numeroInterior, pdfTools.cmToPt(4.5), pdfTools.cmToPt(6), {
       align: 'left',
       indent: 2,
       height: 2,
       ellipsis: true
     });
+  // Colonia
+  doc.moveDown()
+    .fillColor('black')
+    .fontSize(12)
+    .text(domicilio.colonia, pdfTools.cmToPt(6.5), pdfTools.cmToPt(6.05), {
+      align: 'left',
+      indent: 2,
+      height: 2,
+      ellipsis: true
+    });
+  // Municipio
+  doc.moveDown()
+    .fillColor('black')
+    .fontSize(12)
+    .text(domicilio.municipio, pdfTools.cmToPt(8.5), pdfTools.cmToPt(6.05), {
+      align: 'left',
+      indent: 2,
+      height: 2,
+      ellipsis: true
+    });
+  //// Teléfono
+  //doc.moveDown()
+  //  .fillColor('black')
+  //  .fontSize(12)
+  //  .text(paciente.domiclio, pdfTools.cmToPt(3.5), pdfTools.cmToPt(12), {
+  //    align: 'left',
+  //    indent: 2,
+  //    height: 2,
+  //    ellipsis: true
+  //  });
+
+
+ 
 
   //doc.moveDown()
   //  .fillColor('black')

@@ -14,24 +14,24 @@ const situacionValida = require('../models/situacionValida');
 let pacienteSchema = new Schema({
   // Nombre de persona
 
-  nombres: {
+  nombre: {
     type: String,
     default: '',
     minlength: 5,
     required: [true, 'El NOMBRE es necesario.']
   },
-  paterno: {
-    type: String,
-    default: '',
-    minlength: 5,
-    required: [true, 'El PATERNO es necesario.']
-  },
-  materno: {
-    type: String,
-    minlength: 5,
-    //: [true, 'El MATERNO del paciente es necesario.']
+  //paterno: {
+  //  type: String,
+  //  default: '',
+  //  minlength: 5,
+  //  required: [true, 'El PATERNO es necesario.']
+  //},
+  //materno: {
+  //  type: String,
+  //  minlength: 5,
+  //  //: [true, 'El MATERNO del paciente es necesario.']
 
-  },
+  //},
   genero: {
     type: String,
     enum: generoValido,
@@ -115,7 +115,7 @@ let pacienteSchema = new Schema({
     type: Number,
     required: [true, 'La situación deldocumento es necesaria.'],
     enum: situacionValida,
-    default: 1 // 0-borrado, 1-activo, 2-inactivo, 3-ocupado
+    default: 1 // 0-borrado, 1-activo, 2-archivado
   },
   fechaBorrado: {
     type: Date
