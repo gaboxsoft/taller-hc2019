@@ -1,7 +1,6 @@
 
 <template>
     <div class="container">
-      <loginCheckCmp/>
       <pacientesCmp/>
     </div>
 </template>
@@ -18,10 +17,10 @@
       loginCheckCmp
     },
     created() {
-      //// No hay sesion abierta, redirige a login
-      //if (this.$store.state.token === 'NONE') {
-      //  this.$router.push({ name: 'login' })
-      //};
+      // No hay sesion abierta, redirige a login
+      if (this.$store.state.token === 'NONE') {
+        this.$router.push({ name: 'login' })
+      };
 
     }
   };

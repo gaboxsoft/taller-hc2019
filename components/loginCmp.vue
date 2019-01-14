@@ -4,32 +4,34 @@
     <h1>REGISTRATE PARA INICIAR SESIÓN</h1>
     <div class=" bg-info">
     <form action="registro">
-      <table>
-        <tr>
-          <td>
-            <label for="email">e-mail:</label>
-          </td>
-          <td>
-            <input type="email" v-model="usuarioLogin.email" placeholder="Escribe tu email">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label for="contrasenia">Contraseña:</label>
-          </td>
-          <td>
-            <input type="password" suggested="current-password" v-model="usuarioLogin.password" placeholder="Escribe tu contraseña">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <b-btn class="bg-success" v-on:click="login">ABRIR SESIÓN</b-btn>
-          </td>
-          <td>
-            <b-btn class="bg-success" v-on:click="loginAdmin">ABRIR SESIÓN DE PRUEBA</b-btn>
-          </td>
-        </tr>
-      </table>
+      <no-ssr>
+        <table>
+          <tr>
+            <td>
+              <label for="email">e-mail:</label>
+            </td>
+            <td>
+              <input type="email" v-model="usuarioLogin.email" placeholder="Escribe tu email">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="contrasenia">Contraseña:</label>
+            </td>
+            <td>
+              <input type="password" suggested="current-password" v-model="usuarioLogin.password" placeholder="Escribe tu contraseña">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b-btn class="bg-success" v-on:click="login">ABRIR SESIÓN</b-btn>
+            </td>
+            <td>
+              <b-btn class="bg-success" v-on:click="loginAdmin">ABRIR SESIÓN DE PRUEBA</b-btn>
+            </td>
+          </tr>
+        </table>
+      </no-ssr>
     </form>
   </div>
   <div>

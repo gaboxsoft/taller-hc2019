@@ -1,7 +1,7 @@
 
 <template>
-  <div class="container">
-  </div>
+  <!--<div class="container">
+  </div>-->
 </template>
 
 <script>
@@ -9,9 +9,7 @@
 
   export default {
     name: 'loginCheckCmp',
-    components: {
-      pacientesCmp
-    },
+   
     created() {
       // No hay sesion abierta, redirige a login
       if (this.$store.state.token === 'NONE') {
