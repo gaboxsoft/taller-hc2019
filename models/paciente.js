@@ -114,6 +114,53 @@ let pacienteSchema = new Schema({
   },
 
 /////////////////////////
+// Historia Clínica
+/////////////////////////
+  lugarOrigen: { type: String },
+  antHeredoFam: { type: String },
+  pPato: { type: String },
+  pNoPato: { type: String },
+  ago: { type: String },
+  tensionMens: { type: String },
+  ritmo: { type: String },
+  inicioVidaSexual: { type: String },
+  gestados: { type: String },
+  partos: { type: String },
+  abortos: { type: String },
+  cesareas: { type: String },
+  fechaUltimpoParto: { type: String },
+  fechaUltimoAborto: { type: String },
+  pesoProductos: { type: String },
+  fechaUltimaRegla: { type: String },
+  fechaUltimaCitoCervix: { type: String },
+  circuncision: { type: String },
+  protecciónMenstrual: { type: String },
+  otros: { type: String },
+  padecimientoActual: { type: String },
+  peso: { type: String },
+  talla: { type: String },
+  temperatura: { type: String },
+  tensionArterial: { type: String },
+  craneo: { type: String },
+  cara: { type: String },
+  fondoOcular: { type: String },
+  cuello: { type: String },
+  cardioPulmunar: { type: String },
+  abdomen: { type: String },
+  mamas: { type: String },
+  tactoVaginal: { type: String },
+  tactoRectal: { type: String },
+  miembros: { type: String },
+  ID: { type: String },
+  TX: { type: String },
+  LAB: { type: String },
+  USG: { type: String },
+  RX: { type: String },
+/////////////////////////
+
+
+
+/////////////////////////
   notasUrgencias: [{
     type: Schema.Types.ObjectId,
     ref: 'NotaUrgencia'

@@ -9,6 +9,7 @@ require('moment/locale/es');  // without this line it didn't work
 moment.locale('es')
 
 const msiFormato = {};
+
 msiFormato.hojaInicialExpedientePdf = (paciente) => {
   const hojaCartaPort = [612, 792];
   const hojaCartaLan = [792, 612];
@@ -175,21 +176,28 @@ msiFormato.hojaInicialExpedientePdf = (paciente) => {
   //      align: 'justify'
   //    });
   //};
-  doc.moveDown();
-  doc.moveDown()
-    .fillColor('black')
-    .fontSize(12)
-    .text('HelloäöüßÄÖÜ©µ®', {
-      align: 'justify',
-      indent: 2,
-      height: 2,
-      ellipsis: true
-    });
+  //doc.moveDown();
+  //doc.moveDown()
+  //  .fillColor('black')
+  //  .fontSize(12)
+  //  .text('HelloäöüßÄÖÜ©µ®', {
+  //    align: 'justify',
+  //    indent: 2,
+  //    height: 2,
+  //    ellipsis: true
+  //  });
   
   // Stream contents to a file
-  doc.pipe(fs.createWriteStream('msi-10-Hoja Inicial Expediente'+Date.now()+ '.pdf')).on('finish', function () {
+  const fileName = 'MSI10-' + Date.now() + '.pdf';
+  const filePath = path.join(__dirname, '../../downloads/pdfs/' + fileName);
+  console.log('filePath: ',filePath);
+  
+
+  doc.pipe(fs.createWriteStream(filePath)).on('finish', function () {
     console.log('Archivo creado satisfactoriamente ....');
   });
+
+
 
   doc.end();
   return;
