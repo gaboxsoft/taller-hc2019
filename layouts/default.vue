@@ -1,6 +1,7 @@
 <template>
   <div>
     <headerCmp />
+
     <nuxt />
     <footerCmp />
   </div>
@@ -17,10 +18,18 @@
   }
 </script>
 
+<style>
+    .main-container {
+    /*min-height: 100vh;*/
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 90px;
+  }
+    </style>
 
-<!--<style>
-
-html {
+  <!--html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -68,3 +77,5 @@ html {
   background-color: #35495e;
 }
 </style>-->
+
+

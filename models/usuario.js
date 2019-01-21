@@ -16,44 +16,41 @@ const situacionValida = require('./situacionValida');
 let usuarioSchema = new Schema({
     // Nombre de persona
 
-    nombres: {
+    nombre: {
         type: String,
         default: '',
         minlength: 5,
         required: [true, 'El NOMBRE es necesario.']
     },
-    paterno: {
-        type: String,
-        default: '',
-        minlength: 5,
-        required: [true, 'El PATERNO es necesario.']
-    },
-    materno: {
-        type: String,
-        minlength: 5,
-        //: [true, 'El MATERNO del paciente es necesario.']
-
-    },
-
 
     // Profesión 
 
-    cedula: {
+  titulo: {
+    type: String,
+    default: '',
+    //required: [true, 'El número de cédula profesional es necesario.']
+  },
+  tituloAbr: {
+    type: String,
+    default: '',
+    //required: [true, 'El número de cédula profesional es necesario.']
+  },
+  cedula: {
         type: String,
         default: '',
         unique: true,
-        required: [true, 'El número de cédula profesional es necesario.']
+        //required: [true, 'El número de cédula profesional es necesario.']
     },
     institucion: {
         type: String,
         default: '',
-        required: [true, 'El nombre de la Institución que expide el Título es necesario.']
+        //required: [true, 'El nombre de la Institución que expide el Título es necesario.']
     },
 
     especialidad: {
         type: String,
         default: '',
-        required: [true, 'La especialidad es necesaria.']
+        //required: [true, 'La especialidad es necesaria.']
     },
 
 
@@ -89,7 +86,7 @@ let usuarioSchema = new Schema({
         type: Number,
         required: [true, 'La situación deldocumento es necesaria.'],
         enum: situacionValida,
-        default: 1 // 0-borrado, 1-activo, 2-inactivo, 3-ocupado
+        default: 1 // 0-borrado, 1-activo
     },
     fechaBorrado: {
         type: Date
@@ -105,10 +102,10 @@ usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
     delete userObject.password;
-    delete userObject.situacion;
-    delete userObject.fechaBorrado;
-    delete userObject.fechaCreacion;
-    delete userObject.fechaModificacion;
+    //delete userObject.situacion;
+    //delete userObject.fechaBorrado;
+    //delete userObject.fechaCreacion;
+    //delete userObject.fechaModificacion;
     return userObject;
 };
 

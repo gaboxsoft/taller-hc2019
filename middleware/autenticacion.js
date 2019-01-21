@@ -11,18 +11,21 @@ const bcrypt = require('bcryptjs');
 
 
 let verificaToken = (req, res, next) => {
+    //let request = req;
+  let token = req.get('token');
+  console.log('0> En VerificaToken, req -->', req);
+  console.log('1> En VerificaToken, token -->', token);
+  console.log('1.1> En VerificaToken, req -->', req.get('token'));
 
-    let token = req.get('token');
-
-  jwt.verify(token, process.env.SEED, (err, decode) => {
-        //console.log('decode-->', decode.iat);
+    jwt.verify(token, process.env.SEED, (err, decode) => {
+        console.log('2> En VerificaToken, token -->', token);
         const hoy = new Date(Date.now());
         if (err) {
             return res.status(401).json({
                 ok: false,
-                error: { mensaje: 'Token no válido.1', err, ahora: hoy, lapso: process.env.CADUCIDAD }
+                error: { mensaje: '>>>>>>Token no válido.1', err, ahora: hoy, lapso: process.env.CADUCIDAD }
             });
-        }
+        } 
 
         req.usuario = decode.usuario;
         let id = req.usuario._id;
@@ -96,6 +99,7 @@ let verificaDoctorRol = (req, res, next) => {
 
     next();
 };
+
 let verificaEnfermeriaRol = (req, res, next) => {
 
 
@@ -116,21 +120,45 @@ let verificaEnfermeriaRol = (req, res, next) => {
 
 let verificaPrimerUsuarioAdmin = (req, res, next) => {
 
-  
-    Usuario.countDocuments({ situacion: { $gt: 0 } }, (err, conteo) => {
+  console.log('en primer usuario...')
+  Usuario.countDocuments({ situacion: { $gt: 0 } }, (err, conteo) => {
 
-        if (conteo == 0) {
-            let usu = new Usuario();
-            usu.email = 'gabox@msn.com';
-            usu.password = '12345';
-            usu.rol = 'ADMIN_ROL';
-            usu.nombres = 'ADMIN';
-            usu.paterno = 'ADMIN';
-            usu.cedula = '00000';
-            usu.institucion = 'ningun';
-            usu.especialidad = 'ningun';
-            usu.password = bcrypt.hashSync(usu.password, 10);
-            //////////////////
+    if (conteo == 0) {
+      let usu = new Usuario();
+      usu.email = 'gabox@msn.com';
+      usu.password = '12345';
+      usu.rol = 'ADMIN_ROL';
+      usu.nombre = 'ADMIN';
+      usu.titulo = '';
+      usu.tituloAbr = '';
+      usu.cedula = '00000';
+      usu.institucion = '';
+      usu.especialidad = '';
+      usu.password = bcrypt.hashSync(usu.password, 10);
+      console.log('antes de guardar primerusuario');
+      usu.save((err, usuarioBD) => {
+        if (err) {
+          console.log('error al guardar primer usuario', err);
+          return res.status(400).json({ ok: false, error: 'No pude crear el primer usuario ADMIN: ' + err });
+        };
+        console.log('se guardo OK el primer usuario', usuarioBD);
+
+        /// aquì genera un error al tratar de respunder status(200)!!??? sin resolver pero no es crìtico 
+        return res.status(200).json({ ok: true, usuario: usuarioBD, mensaje:'Se creo el usuario ADMIN' });
+      });
+    };
+  });
+  next();
+};
+
+module.exports = {
+  verificaToken, verificaAdminRol,
+  verificaOperadorRol, verificaDoctorRol,
+  verificaEnfermeriaRol, verificaPrimerUsuarioAdmin
+}
+
+
+           //////////////////
             ///// Como llamar un api desde aquí.
             //////////////////
             //// Requiere: const http = require('http');
@@ -151,16 +179,3 @@ let verificaPrimerUsuarioAdmin = (req, res, next) => {
             //         console.log('BODY: ' + chunk);
             //     });
             // }).end();
-
-            usu.save((err, usuarioBD) => {
-                if (err) {
-                    return res.status(400).json({ ok: false, error: 'No pude crear el primer usuario ADMIN: ' + err });
-                };
-            });
-        };
-    });
-
-    next();
-};
-
-module.exports = { verificaToken, verificaAdminRol, verificaOperadorRol, verificaDoctorRol, verificaEnfermeriaRol, verificaPrimerUsuarioAdmin };

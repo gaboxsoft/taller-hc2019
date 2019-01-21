@@ -8,7 +8,7 @@ const _ = require('underscore');
 
 
 
-let { verificaToken, verificaAdminRol } = require('../middleware/autenticacion');
+let { verificaToken, verificaAdminRol, verificaPrimerUsuarioAdmin } = require('../middleware/autenticacion');
 
 app.get('/usuarios', verificaToken, function(req, res) {
 
@@ -33,8 +33,10 @@ app.get('/usuarios', verificaToken, function(req, res) {
         });
 });
 
-app.post('/usuario', [verificaToken, verificaAdminRol], function(req, res) {
-
+app.post('/usuario',
+  [verificaToken, verificaAdminRol],
+  function (req, res) {
+   
 
     let body = req.body;
 
@@ -42,19 +44,21 @@ app.post('/usuario', [verificaToken, verificaAdminRol], function(req, res) {
     usuario.email = body.email;
     usuario.password = body.password;
     usuario.rol = body.rol;
-    usuario.nombres = body.nombres;
-    usuario.paterno = body.paterno;
-    usuario.materno = body.materno;
+    usuario.nombre = body.nombre;
     usuario.cedula = body.cedula;
-    usuario.institucion = body.institucion;
-    usuario.especialidad = body.especialidad;
+  usuario.titulo = body.titulo;
+  usuario.titutloAbr = body.titutloAbr;
+  usuario.institucion = body.institucion;
+  usuario.especialidad = body.especialidad;
     usuario.password = bcrypt.hashSync(body.password, 10);
-    usuario.usuario = req.usuario._id;
+  usuario.usuario = req.usuario._id;
+  //console.log('ADD Usuario:body ', body);
+  //console.log('ADD Usuario:usuario ', usuario);
     usuario.save((err, usuarioBD) => {
         if (err) {
             res.status(400).json({ ok: false, error: err });
         } else {
-            res.json({ usuarioBD: usuarioBD });
+          res.status(200).json({ok:true, usuarioBD: usuarioBD });
         }
     });
 
@@ -64,7 +68,8 @@ app.put('/usuario/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
     let body = _.pick(req.body, [
         'email', 'rol', 'nombres', 'paterno', 'materno',
-        'cedula', 'institucion', 'especialidad'
+      'cedula', 'institucion', 'especialidad',
+      'titulo','utitutloAbr'
     ]);
     let id = req.params.id;
     body.fechaModificacion = Date.now();

@@ -1,26 +1,35 @@
 
 export const state = () => ({
-  token: '--NONE--',
-  host: process.env.HOSTPORT
+  token: 'NONE',
+  host: process.env.HOSTPORT,
+  pacienteId: 'NONE',
+  currentPaciente: {}
 });
 
 
 export const getters = () => ({
   getToken(state) {
-    console.log('aquì en getter de token... ', state.token)
     return state.token;
   },
   getHost(state) {
+    return state.host;
+  },
+  getPaciente(state) {
     return state.host;
   }
 });
 
 export const mutations = {
   setToken(state, payload) {
-    console.log('aquì en mutations.setToken token vale... ', state.token,' y payload es: ',payload);
     state.token = payload;
-    console.log('aquì en mutations.setToken ahora token vale... ', state.token);
-
+  },
+  setPacienteId(state, payload) {
+    state.pacienteId = payload;
+  },
+  setCurrentPaciente(state, payload) {
+    //console.log('aquí en this.setCurrentPaciente payload=',payload )
+    state.currentPaciente = payload;
+    //console.log('aquí en this.setCurrentPaciente ahora currentPaciente=', state.currentPaciente)
   }
 };
 

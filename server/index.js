@@ -2,8 +2,8 @@ require('../config/config.js');
 
 
 /////////////
-console.log('/////////////////////////////////////////////',Date.now());
-console.log('>> process.env.HOST=', process.env.HOST);  
+console.log('/////////////////////////////////////////////', Date.now());
+console.log('>> process.env.HOST=', process.env.HOST);
 console.log('>> process.env.PORT=', process.env.PORT);
 console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
 console.log('>> process.env.MONGO_URI = ', process.env.MONGO_URI);
@@ -40,7 +40,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 console.log('-----> hostPort=', process.env.HOSTPORT);
 
- app.set('port', process.env.PORT)
+app.set('port', process.env.PORT)
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -50,7 +50,7 @@ config.dev = !(process.env.NODE_ENV === 'production')
 
 
 
-// Carga las rutas
+// Carga las rutas api
 app.use(require('../routes/index'));
 
 // Configura Nuxt

@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 55px;
+    padding: 90px;
   }
 .subtitle {
   font-weight: 300;

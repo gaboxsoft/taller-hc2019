@@ -5,8 +5,6 @@ const app = express();
 
 const _ = require('underscore');
 
-const moment = require('moment');
-
 let { verificaToken, verificaAdminRol } = require('../middleware/autenticacion');
 
 app.get('/pacientes', verificaToken, function(req, res) {
@@ -14,7 +12,7 @@ app.get('/pacientes', verificaToken, function(req, res) {
     let limite = Number(req.query.limite || 0);
     let desde = Number(req.query.desde || 0);
 
-  Paciente.find({ situacion: { $gt: 0 } })
+    Paciente.find({ 'situacionSe': { $eq: 1 } })
         .limit(limite)
         .skip(desde)
         .exec((err, pacientes) => {
@@ -22,7 +20,7 @@ app.get('/pacientes', verificaToken, function(req, res) {
                 return res.status(400).
                 json({ ok: false, error: err });
             };
-            Paciente.countDocuments({ situacion: { $gt: 0 } }, (err, conteo) => {
+            Paciente.countDocuments({ 'situacionSe': { $eq: 1 } }, (err, conteo) => {
                 if (err) {
                     return res.status(400).
                     json({ ok: false, error: err });
@@ -32,30 +30,57 @@ app.get('/pacientes', verificaToken, function(req, res) {
         });
 });
 
-app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
-    let body = req.body;
-    let paciente = new Paciente({
-
-        nombres: body.nombres,
-        paterno: body.paterno,
-        materno: body.materno,
-        genero: body.genero,
-        fechaNacimiento: body.fechaNacimiento,
-        telefonos: body.telefonos || '',
-        calle: body.calle || '',
-        numInterior: body.numInterior || '',
-        numExterior: body.numExterior || '',
-        colonia: body.colonia || '',
-        municipio: body.municipio || '',
-        entidad: body.entidad || '',
-        pais: body.pais || 'México',
-        cp: body.cp || '',
-        usuario: req.usuario._id,
-        fechaCreacion: Date.now()
+//app.get('/paciente/:id', verificaToken, function (req, res) {
+  app.get('/paciente/:id',  function (req, res) {
+    const id = req.params.id;
+    let token = req.get('token');
+    //console.log('En /paciente/', id, ' con token:', token);
+    Paciente.findById(id, (err, pacienteBD) => {
+        if (err) {
+            return res.status(400).
+            json({ ok: false, error: err, msg: 'Y esta esta chingadera....s' });
+        };
+        return res.json({ ok: true, paciente: pacienteBD });
     });
+});
+
+app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
+
+    let body = req.body;
+  let paciente = new Paciente({
+    nombre: body.nombre,
+    genero: body.genero,
+    fechaNacimiento: new Date(body.fechaNacimiento),
+    calle: body.calle,
+    numeroInterior: body.numeroInterior,
+    numeroExterior: body.numeroExterior,
+    colonia: body.colonia,
+    municipio: body.municipio,
+    entidad: body.entidad,
+    pais: body.pais,
+    cp: body.cp,
+    telefonos: body.telefonos,
+
+    fechaIngreso: new Date().toLocaleDateString(),
+    alergias: '',
+    diagnosticoIngreso: '',
+    otrosDiagnosticos: '',
+    tituloMT: '',
+    tituloAbrMT: '',
+    nombreMT: '',
+    cedulaMT: '',
+    institucionMT: '',
+    especialidadMT: '',
+    fechaCreacionSe: new Date(),
+    fechaModificacionSe: new Date(),
+    situacionSe: 1, //1-activo
+    //fechaBorrado: default nada
+    usuarioSe: req.usuario._id
+  });
+
     paciente.save((err, pacienteBD) => {
         if (err) {
-            res.status(400).json({ ok: false, error: err });
+            res.status(400).json({ ok: false, error: err, body: paciente });
         } else {
             res.json({ pacienteBD: pacienteBD });
         }
@@ -64,17 +89,24 @@ app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
 
 app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
-    let body = _.pick(req.body, ['nombres', 'paterno', 'materno', 'fechaNacimiento',
-        'genero', 'telefonos',
-        'calle', 'numInterior', 'numExterior', 'colonia', 'colonia',
-        'entidad', 'cp', 'pais'
+  let body = _.pick(req.body, [
+    'nombre','fechaNacimiento', 'genero',
+    'calle', 'numInterior', 'numExterior', 'municipio',
+    'entidad', 'pais', 'cp', 'telefonos'
     ]);
 
+    //console.log('body: ', body);
+    //console.log('paciente._id: ', req.params.id);
+
     let id = req.params.id;
-    body.usuario = req.usuario._id
+    body.usuario = req.usuario._id;
     body.fechaModificacion = Date.now();
-    console.log('body par amodificar---> ', body);
-    Paciente.findOneAndUpdate({ _id: id, situacion: { $gt: 0 } }, body, { new: true, runValidators: true, context: 'query' }, (err, pacienteBD) => {
+  //fechaNacimiento: new Date(body.fechaNacimiento),
+  
+    //console.log('body para modificar:', body);
+
+
+    Paciente.findOneAndUpdate({ _id: id, 'situacionSe': { $eq: 1 } }, body, { new: true, runValidators: true, context: 'query' }, (err, pacienteBD) => {
         if (err) {
             return res.status(400).
             json({ ok: false, error: { mensaje: err } });
@@ -92,17 +124,17 @@ app.delete('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res
 
     let id = req.params.id;
 
-    let modificarEstado = { situacion: 0, fechaBorrado: Date.now() };
+    let modificarEstado = { 'situacionSe': 0 /* borrado*/ , 'fechaBorradoSe': new Date().toLocaleString() };
 
-    Paciente.findByIdAndUpdate(id, modificarEstado, { new: true }, (err, pacienteBorrado) => {
+    Paciente.findByIdAndUpdate(id, modificarEstado, { new: true }, (err, personaBorrado) => {
         if (err) {
             return res.status(400).json({ ok: false, error: { mensaje: err } });
         };
-        if (!pacienteBorrado) {
+        if (!personaBorrado) {
             return res.status(401).
             json({ ok: false, error: { mensaje: 'No existe paciente.' } });
         };
-        res.json({ ok: true, pacienteBorrado });
+        res.json({ ok: true, personaBorrado });
     });
 
 });

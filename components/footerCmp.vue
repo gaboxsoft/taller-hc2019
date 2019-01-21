@@ -2,13 +2,20 @@
   <div class="container ">
     <div class="fixed-bottom  bg-grey">
       <no-ssr>
-      <table>
-        <tr>
-          <td><p class="bg-info">versión 1.0.2 (2019)</p></td>
-          <td><p class="bg-info"> --   </p></td>
-          <td><p class="bg-info">{{hoy}}</p></td>
-        </tr>
-      </table>
+        <table>
+          <tr>
+            <td>
+              <p class="bg-info">versión 1.0.2 (2019)</p>
+            </td>
+            <td>
+              <p class="bg-info"> -- </p>
+            </td>
+            <td>
+              <p class="bg-info">{{hoy}}</p>
+            </td>
+
+          </tr>
+        </table>
       </no-ssr>
     </div>
   </div>
@@ -17,77 +24,77 @@
 
 <script>
 
-  let date = require('date-and-time');
-  date.locale('es'); 
+let date = require('date-and-time');
+date.locale('es');
+export default
+  {
+    name: 'footerCmp'
+    ,
 
-  export default
-    {
-      name: 'footerCmp'
-      ,
-      computed: {
-        hoy: ()=> {
-            return date.format(new Date(), 'YYYY/MM/DD HH:mm:ss');
-          }
-      },
-      created() {
-        console.log('HOY: ', this.hoy)
+    computed: {
+      hoy: () => {
+        return date.format(new Date(), 'YYYY/MM/DD HH:mm:ss');
       }
+    },
+    created() {
+      console.log('Footer ---> HOY: ', this.hoy)
     }
+  }
 </script>
 
 <style scoped>
- 
-  html {
-    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-  }
-  .container {
-    /*min-height: 100vh;
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+.container {
+  /*min-height: 100vh;
   display: flex;*/
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 5px,5px,5px,0px
-  }
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-    margin: 0;
-  }
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px, 5px, 5px, 0px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
-  .button--green {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #3b8070;
-    color: #3b8070;
-    text-decoration: none;
-    padding: 10px 30px;
-  }
+.button--green {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
+}
 
-    .button--green:hover {
-      color: #fff;
-      background-color: #3b8070;
-    }
+.button--green:hover {
+  color: #fff;
+  background-color: #3b8070;
+}
 
-  .button--grey {
-    display: inline-block;
-    border-radius: 4px;
-    border: 1px solid #35495e;
-    color: #35495e;
-    text-decoration: none;
-    padding: 10px 30px;
-    margin-left: 15px;
-  }
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
 
-    .button--grey:hover {
-      color: #fff;
-      background-color: #35495e;
-    }
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
+}
 </style>

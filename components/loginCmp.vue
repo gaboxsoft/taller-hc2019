@@ -77,12 +77,9 @@
       }
     },
     created() {
-      console.log('1 aquí en created... token vale: ', this.$store.state.token);
     },
     methods: {
       loginAdmin() {
-
-        console.log('aquí en loginAdmin')
 
         this.usuarioLogin = { email: '', password: '' }
         this.usuarioLogin.email = "gabox@msn.com";
@@ -91,28 +88,20 @@
       },
 
       login() {
-
-        
-
         if (this.usuarioLogin.email === '' || this.usuarioLogin.password === '') {
-
-          this.$store.commit('setToken', '>>--NONE--');
-          //this.Token.set('');
-          this.token = '';
+          this.$store.commit('setToken', 'NONE');
+          this.token = 'NONE';
           return;
         }
+
         axios.post(urlLogin, {
           email: this.usuarioLogin.email,
           password: this.usuarioLogin.password
         })
           .then((response) => {
-            //this.Token.set('response.data.token');
             this.$store.commit('setToken', response.data.token);
             this.usuarioLogin = response.data.usuario;
             this.token = response.data.token;
-            //console.log('pase....', this.Token.get)
-            console.log('aquí en login... despues de guardar token, token vale: ', this.$store.state.token);
-
           },
           (error) => {
             this.err = error.response.data.error;
@@ -120,7 +109,7 @@
       },
       logout() {
         this.$store.commit('setToken', 'NONE');
-        //this.Token.set('');
+        this.$store.commit('setPacienteId', 'NONE');
         this.token = 'NONE';
         this.usuarioLogin = usuarioVacio;
         alert('Sesión cerrrada!');
@@ -149,7 +138,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 55px;
+    padding: 90px;
   }
 
   *,

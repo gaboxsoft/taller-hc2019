@@ -17,12 +17,13 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 /// DEtermina la base de datos de prueba o producción
 if (process.env.NODE_ENV === 'development') {
-    process.env.URLDB = 'mongodb://localhost:27017/cafe';
+    process.env.URLDB = 'mongodb://localhost:27017/medica';
   process.env.HOST = 'http://127.0.0.1';
 } else {
   process.env.HOST = 'https://hc2019.herokuapp.com';
   process.env.URLDB = process.env.MONGO_URI;
   process.env.URLDB = 'mongodb://gabox:Gabox123@ds054288.mlab.com:54288/cafe';
+  process.env.URLDB = 'mongodb://<dbuser>:<dbpassword>@ds030829.mlab.com:30829/medica';
 }                       
 // Determina el HostPort
 process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;

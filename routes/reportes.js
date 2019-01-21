@@ -1,4 +1,4 @@
-//const Usuario = require('../models/usuario');
+const Paciente = require('../models/paciente');
 
 const express = require('express');
 const app = express();
@@ -7,12 +7,14 @@ let { verificaToken, verificaAdminRol } = require('../middleware/autenticacion')
 
 const fs = require('fs');
 const path = require('path');
-const encoding = require('encoding');
 const pdf = require('pdfkit');
 const pdfTools = require('../library/pdfkit/gxPdf');
+const msiFormato = require('../library/msiReportes/hojaInicialExpediente');
+
+const axios = require('axios');
 
 //app.get('/contrato', verificaToken, function(req, res) {
-app.get('/contrato', function (req, res) {
+app.get('/msi00/:id', function (req, res) {
 
   console.log('generando contrato..................');
   contratoPdf();
@@ -21,6 +23,29 @@ app.get('/contrato', function (req, res) {
 
 
   return res.status(200).json({ ok: true, data: 'todo bien....' });
+});
+
+app.get('/msi10/:id', function (req, res) {
+
+  console.log('generando hoja inicial..................');
+  // Obtener el paciente
+    const id = req.params.id;
+    let token = req.get('token');
+    Paciente.findById(id, (err, pacienteBD) => {
+      if (err) {
+        return res.status(400).
+          json({ ok: false, error: 'Error al generar reporte MSI-10 '+err, });
+      };
+      msiFormato.hojaInicialExpedientePdf(pacienteBD);
+      //msiFormato.ejemploPdf();
+      
+      return res.json({ ok: true, paciente: pacienteBD, menssaje:'Se genero el formato MSI-10' });
+    });
+
+  ////rpt.save('CMSI-00-contrato.pdf');
+
+
+  //return res.status(200).json({ ok: true, data: 'todo bien....' });
 });
 
 module.exports = app;
@@ -58,20 +83,20 @@ function contratoPdf() {
   const maxAlto = altoHoja - margenInf - margenSup;
   const sizePaperLetter = '210.02x297.01';
   const centroMedico = 'Médica San Isidro';
-  const paciente = {
-    nombre: 'JUANA DIAZ VELARDE',
-    domicilio: {
-      calle: 'LAGUNA DE SAN PABLO',
-      numeroInterior: '#24',
-      colonia: 'CIPRES',
-      municipio: 'SAN JERÓNIMO',
-      entidad: 'PUEBLA',
-      pais:'MÉXICO'
-      },
-    telefono: '7834571113',
-    fechaNacimiento: Date.now()
-  };
-  const imgFormato = path.join(__dirname, '../msiFormatos/msi-00.jpg');
+  //const paciente = {
+  //  nombre: 'JUANA DIAZ VELARDE',
+  //  domicilio: {
+  //    calle: 'LAGUNA DE SAN PABLO',
+  //    numeroInterior: '#24',
+  //    colonia: 'CIPRES',
+  //    municipio: 'SAN JERÓNIMO',
+  //    entidad: 'PUEBLA',
+  //    pais:'MÉXICO'
+  //    },
+  //  telefono: '7834571113',
+  //  fechaNacimiento: Date.now()
+  //};
+  const imgFormato = path.join(__dirname, '../msiFormatos/msi10.jpg');
   console.log('imagen------------>>>> ', imgFormato);
 
   doc.image(imgFormato, {
@@ -92,18 +117,18 @@ function contratoPdf() {
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(paciente.telefono, pdfTools.cmToPt(3.5), pdfTools.cmToPt(6.425), {
+    .text(paciente.telefonos, pdfTools.cmToPt(3.5), pdfTools.cmToPt(6.425), {
       align: 'left',
       indent: 2,
       height: 2,
       ellipsis: true
     });
   // Calle y número
-  const domicilio = paciente.domicilio;
+  const domicilio = paciente.calle + ' ' + paciente.numeroInterior ;
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(domicilio.calle + ' ' + domicilio.numeroInterior, pdfTools.cmToPt(4.5), pdfTools.cmToPt(6), {
+    .text(domicilio, pdfTools.cmToPt(4.5), pdfTools.cmToPt(6), {
       align: 'left',
       indent: 2,
       height: 2,
@@ -113,7 +138,7 @@ function contratoPdf() {
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(domicilio.colonia, pdfTools.cmToPt(6.5), pdfTools.cmToPt(6.05), {
+    .text(paciente.colonia, pdfTools.cmToPt(6.5), pdfTools.cmToPt(6.05), {
       align: 'left',
       indent: 2,
       height: 2,
@@ -123,7 +148,7 @@ function contratoPdf() {
   doc.moveDown()
     .fillColor('black')
     .fontSize(12)
-    .text(domicilio.municipio, pdfTools.cmToPt(8.5), pdfTools.cmToPt(6.05), {
+    .text(paciente.municipio, pdfTools.cmToPt(8.5), pdfTools.cmToPt(6.05), {
       align: 'left',
       indent: 2,
       height: 2,

@@ -1,16 +1,9 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\node_modules",
-    "\\node_modules\\@babel",
-    "\\node_modules\\vue-style-loader",
-    "\\node_modules\\vue-style-loader\\lib",
-    "\\node_modules\\webpack",
-    "\\node_modules\\webpack\\hot",
-    "\\node_modules\\ws",
-    "\\node_modules\\ws\\lib",
-    "\\plugins"
+    "\\components",
+    "\\middleware",
+    "\\routes"
   ],
-  "SelectedNode": "\\routes",
+  "SelectedNode": "\\middleware\\autenticacion.js",
   "PreviewInSolutionExplorer": false
 }

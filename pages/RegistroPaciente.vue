@@ -7,14 +7,12 @@
 
 <script>
   import pacientesCmp from '../components/pacientesCmp';
-  import loginCheckCmp from '../components/pacientesCmp';
   import axios from 'axios';
   
   export default {
     name: 'RegistroPaciente',
     components: {
-      pacientesCmp,
-      loginCheckCmp
+      pacientesCmp
     },
     created() {
       // No hay sesion abierta, redirige a login

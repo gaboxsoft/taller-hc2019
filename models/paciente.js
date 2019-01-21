@@ -4,34 +4,26 @@ const uniqueValidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
 
 const generoValido = require('../models/generoValido');
-const situacionValida = require('../models/situacionValida');
-// const Nombre = require('../models/nombrePersona');
+//const situacionValida = require('../models/situacionValida');
 // const Domicilio = require('../models/domicilio');
-// const Sello = require('../models/sello');
+//const Sello = require('../models/sello');
+//const HojaInicialExpediente = require('../models/hojaInicialExpediente');
+const NotaUrgencia = require('../models/notaUrgencia');
 
-// Schema de  paciente
+const situacionValida = require('./situacionValida');
+
+
+
+// Schema de paciente
 
 let pacienteSchema = new Schema({
-  // Nombre de persona
+  // Nombre de paciente
 
   nombre: {
     type: String,
-    default: '',
-    minlength: 5,
+    minlength: 2,
     required: [true, 'El NOMBRE es necesario.']
   },
-  //paterno: {
-  //  type: String,
-  //  default: '',
-  //  minlength: 5,
-  //  required: [true, 'El PATERNO es necesario.']
-  //},
-  //materno: {
-  //  type: String,
-  //  minlength: 5,
-  //  //: [true, 'El MATERNO del paciente es necesario.']
-
-  //},
   genero: {
     type: String,
     enum: generoValido,
@@ -42,99 +34,134 @@ let pacienteSchema = new Schema({
     type: Date,
     required: [true, 'La feha de nacimiento del paciente es necesaria.']
   },
-  //Domicilio
+  //////////////////////////
+  //// Domicilio
   calle: {
-    type: String,
+    type: String
     //required: [true, 'El nombre de la calle es necesiaria.']
   },
   numExterior: {
-    type: String,
+    type: String
     //required: [true, 'El número exterior es necesario.']
   },
   numInterior: {
-    type: String,
+    type: String
     //required: [false, 'El número interior es opcional.']
   },
   colonia: {
-    type: String,
+    type: String
     //required: [true, 'El nombre de la colonia es necesaria.']
   },
   municipio: {
-    type: String,
+    type: String
     //required: [true, 'El nombre del municipio es necesario.']
   },
   entidad: {
-    type: String,
+    type: String
     //required: [true, 'El nombre de la entidad es necesaria.']
   },
   pais: {
-    type: String,
-    //required: [true, 'El nombre del país es necesario.']
+    type: String
   },
   CP: {
     type: String,
-    maxlength: 5,
+    maxlength: 5
     //required: [false, 'El nCódigo Postal es opcional.']
   },
   telefonos: {
-    type: String,
+    type: String
     //required: [true, 'Almenos un teléfono es necesiario.']
   },
+  /////////////////////////
 
-  // Referentes al la forma msi-00-contrato
-  importeAnticipo: {
-    type: Number,
-    default: 0,
-    required: [true, 'importe de $0.00 al menos es necesario.']
+  /////////////////////////
+  // Médico tratante
+
+  ////medicoTratante: {
+  ////  type: Schema.Types.ObjectId,
+  ////  ref: 'Usuario'
+  ////},
+
+  tituloMT: { type: String },
+  tituloAbrMT: { type: String },
+  nombreMT: { type: String },
+  cedulaMT: { type: String },
+  institucionMT: { type: String },
+  especialidadMT: { type: String },
+
+  //////////////////////////
+
+  //////////////////////////
+  //// HojaInicialExpediente
+
+  fechaIngreso: {
+    type: Date,
+    //required: [true, 'La fecha de ingreso es necesaria.'],
+    default: () => { new Date().toLocaleString() }
   },
-  importePagare: {
-    type: Number,
-    default: 0,
-    required: [true, 'importe de $0.00 al menos es necesario.']
+
+  alergias: {
+    type: String
+    //required: [true, 'El número exterior es necesario.']
   },
-  nombreResponsableCuenta: {
-    type: String,
-    default: '', // Debe ser el mismo nombre del paciente.
-    minlength: 5,
-    required: [true, 'El NOMBRE es necesario.']
+  diagnosticoIngreso: {
+    type: String
+    //required: [false, 'El número interior es opcional.']
+  },
+  otrosDiagnosticos: {
+    type: String
+    //required: [true, 'El nombre de la colonia es necesaria.']
   },
 
-
-  // Sello de creación y borrado 
-
-  fechaCreacion: {
+/////////////////////////
+  notasUrgencias: [{
+    type: Schema.Types.ObjectId,
+    ref: 'NotaUrgencia'
+  }],
+/////////////////////////
+// Sello
+  fechaCreacionSe: {
     type: Date,
     required: [true, 'La fecha de creación es necesaria.']
-    // ,
-    // default: new Date().toLocaleString()
+    ,
+    default: () => { new Date().toLocaleString() }
   },
-  fechaModificacion: {
+  fechaModificacionSe: {
     type: Date
   },
-  situacion: {
+  situacionSe: {
     type: Number,
     required: [true, 'La situación deldocumento es necesaria.'],
     enum: situacionValida,
-    default: 1 // 0-borrado, 1-activo, 2-archivado
+    default: 1 // 0-borrardo,  1-activo
   },
-  fechaBorrado: {
+  fechaBorradoSe: {
     type: Date
   },
-  usuario: {
+  usuarioSe: {
     type: Schema.Types.ObjectId,
     ref: 'Usuario'
   }
-
-
+/////////////////////////
 });
 
 pacienteSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único. ' })
+
+
+
+
 
 module.exports = mongoose.model('Paciente', pacienteSchema);
 
 
 
-// // Nombre de persona
+
+
+
+
+
+
+// // Nombre de paciente
 // nombres:
 // paterno:
 // materno: 

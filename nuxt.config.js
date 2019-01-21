@@ -30,10 +30,10 @@ module.exports = {
     /*
      ** Plugins to load before mounting the App
      */
-    
-  // Para usar vuex-persistedstate 
-  plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
-    
+
+    // Para usar vuex-persistedstate 
+    plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
+
 
     /*
      ** Nuxt.js modules
@@ -64,7 +64,7 @@ module.exports = {
     },
 
     /*
-     ** Middleware for API use andbe able to use in parallel with Vue
+     ** Middleware for API use and be able to use in parallel with Vue
      */
     serverMiddleware: ['~/api/index.js']
 

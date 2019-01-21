@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
-const Nombre = require('../models/nombrePersona');
 let { verificaPrimerUsuarioAdmin } = require('../middleware/autenticacion');
 
 const express = require('express');
@@ -14,7 +13,7 @@ const app = express();
 app.post('/login', verificaPrimerUsuarioAdmin, function(req, res) {
 
     let body = req.body;
-
+  //console.log('en login->', body);
 
     Usuario.findOne({ email: body.email }, (err, usuarioBD) => {
         if (err) {
