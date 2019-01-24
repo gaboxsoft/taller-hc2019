@@ -82,3 +82,8 @@ dist
 
 # PDF's
 .pdf
+
+# Directorios
+uploads
+downloads
+
