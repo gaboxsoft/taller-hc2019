@@ -32,7 +32,7 @@ let pacienteSchema = new Schema({
   },
   fechaNacimiento: {
     type: Date,
-    required: [true, 'La feha de nacimiento del paciente es necesaria.']
+    required: [true, 'La fecha de nacimiento del paciente es necesaria.']
   },
   //////////////////////////
   //// Domicilio
@@ -116,10 +116,11 @@ let pacienteSchema = new Schema({
 /////////////////////////
 // Historia Clínica
 /////////////////////////
+  edoCivil: { type: String },
   lugarOrigen: { type: String },
   antHeredoFam: { type: String },
-  pPato: { type: String },
-  pNoPato: { type: String },
+  personalesPato: { type: String },
+  personalesNoPato: { type: String },
   ago: { type: String },
   tensionMens: { type: String },
   ritmo: { type: String },
@@ -134,8 +135,8 @@ let pacienteSchema = new Schema({
   fechaUltimaRegla: { type: String },
   fechaUltimaCitoCervix: { type: String },
   circuncision: { type: String },
-  protecciónMenstrual: { type: String },
-  otros: { type: String },
+  proteccionMenstrual: { type: String },
+  otrosHistoriaClinica: { type: String },
   padecimientoActual: { type: String },
   peso: { type: String },
   talla: { type: String },

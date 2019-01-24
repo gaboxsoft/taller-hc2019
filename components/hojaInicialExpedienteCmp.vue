@@ -6,42 +6,43 @@
 
     <b-btn class="bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
     <b-btn class="bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
+    
 
     <br />
     <br />
     <form action="#">
       <!--<span>
-        <label for="paciente.fechaIngreso">Fecha Ingreso:</label>
-        <input type="date" :value="paciente.fechaIngreso.toISOString().split('.')[0]"
-               @input="paciente.fechaIngreso = $event.target.valueAsDate">
-        <input-date v-model="paciente.fechaIngreso"></input-date>
-      </span>-->
-      <span>  
+      <label for="paciente.fechaIngreso">Fecha Ingreso:</label>
+      <input type="date" :value="paciente.fechaIngreso.toISOString().split('.')[0]"
+             @input="paciente.fechaIngreso = $event.target.valueAsDate">
+      <input-date v-model="paciente.fechaIngreso"></input-date>
+    </span>-->
+      <span>
         <label for="paciente.fechaIngreso">Fecha ingreso:</label>
-        <input  type="text" v-model="paciente.fechaIngreso"/>
+        <input type="text" v-model="paciente.fechaIngreso" />
       </span>
       <span>
         <b-btn class="bg-info" v-on:click="getFechaAhora">AHORA</b-btn>
       </span>
 
       <!--<p>
-        <label for="paciente.nombre">nombre</label><br>
-        <input type="text" v-model="paciente.nombre" name="nombre" />
+      <label for="paciente.nombre">nombre</label><br>
+      <input type="text" v-model="paciente.nombre" name="nombre" />
 
-      </p>-->
+    </p>-->
       <p>
         <label for="paciente.alergias">Alergias</label><br>
-        <textarea v-model="paciente.alergias" name="alergias" rows="10" cols="100">
+        <textarea v-model="paciente.alergias" name="alergias" rows="3" cols="80">
                 </textarea>
       </p>
       <p>
         <label for="paciente.diagnosticoIngreso">Diagnóstico de ingreso:</label><br>
-        <textarea v-model="paciente.diagnosticoIngreso" name="diagnosticoIngreso" rows="10" cols="100">
+        <textarea v-model="paciente.diagnosticoIngreso" name="diagnosticoIngreso" rows="5" cols="80">
                 </textarea>
       </p>
       <p>
         <label for="paciente.otrosDiagnosticos">Otros diagnósticos:</label><br>
-        <textarea v-model="paciente.otrosDiagnosticos" name="otrosDiagnosticos" rows="10" cols="100">
+        <textarea v-model="paciente.otrosDiagnosticos" name="otrosDiagnosticos" rows="5" cols="80">
                 </textarea>
       </p>
     </form>
@@ -76,7 +77,8 @@ const MAX_SIZE_NOMBRE = 50;
           alergias: '',
           diagnosticoIngreso: '',
           otrosDiagnosticos: '',
-        }
+        },
+        reportePdf: ''
       }
     },
 
@@ -175,10 +177,31 @@ const MAX_SIZE_NOMBRE = 50;
         console.log('aquí en imprimir HIE...', this.urlHojaInicialExpedientePdf);
         
         axios.get(this.urlHojaInicialExpedientePdf, {
-          token: this.getToken
+          headers: {
+            token: this.getToken,             
+            Accept: 'application/pdf',
+            responseType: 'blob'
+          }
         })
           .then((response) => {
-            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data);
+            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response);
+            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.status);
+            //this.reportePdf = response.data.filePdf;
+            //if (response.data.status === 200) {
+              //let blob = new Blob([this.response], { type: "application/pdf" })
+              //let link = document.createElement('a')
+              //link.href = window.URL.createObjectURL(blob)
+              //link.download = 'Results.pdf'
+              //link.click()
+            //}
+
+            ////const url = window.URL.createObjectURL(new Blob([response.data]));
+            ////const link = document.createElement('a');
+            ////link.href = url;
+            ////link.setAttribute('download', 'file.pdf');
+            ////document.body.appendChild(link);
+            ////link.click();
+
           },
             (error) => {
               this.err = error.response.data.error;
@@ -217,6 +240,8 @@ const MAX_SIZE_NOMBRE = 50;
           this.totalPacientes = this.pacientes.length
           //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
 
+
+         
         })
           .catch(err => {
             //console.log('---->>> error en Leer la lista de Pacientes:' + err);

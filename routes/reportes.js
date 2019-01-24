@@ -9,7 +9,8 @@ const fs = require('fs');
 const path = require('path');
 const pdf = require('pdfkit');
 const pdfTools = require('../library/pdfkit/gxPdf');
-const msiFormato = require('../library/msiReportes/hojaInicialExpediente');
+const hojaInicialExpedientePdf = require('../library/msiReportes/hojaInicialExpedientePdf');
+const historiaClinicaPdf = require('../library/msiReportes/historiaClinicaPdf');
 
 const axios = require('axios');
 
@@ -27,25 +28,51 @@ app.get('/msi00/:id', function (req, res) {
 
 app.get('/msi10/:id', function (req, res) {
 
-  console.log('generando hoja inicial..................');
+  //console.log('generando hoja inicial..................');
+  //console.log('TOKEN..................', req.get('token'));
+  //console.log('TOKEN..................', req.params.id);
+  // fs.writeFile('~/req.txt',)
   // Obtener el paciente
-    const id = req.params.id;
-    let token = req.get('token');
-    Paciente.findById(id, (err, pacienteBD) => {
-      if (err) {
-        return res.status(400).
-          json({ ok: false, error: 'Error al generar reporte MSI-10 '+err, });
-      };
-      msiFormato.hojaInicialExpedientePdf(pacienteBD);
-      //msiFormato.ejemploPdf();
-      
-      return res.json({ ok: true, paciente: pacienteBD, menssaje:'Se genero el formato MSI-10' });
-    });
+  const id = req.params.id;
+  let token = req.get('token');
+  Paciente.findById(id, (err, pacienteBD) => {
+    if (err) {
+      return res.status(400).
+        json({ ok: false, error: 'Error al generar reporte MSI-10 ' + err });
+    };
+    console.log(`0.-voy a ir a crear hoja inicial exp: `);
+    let filePath = hojaInicialExpedientePdf(pacienteBD);
 
-  ////rpt.save('CMSI-00-contrato.pdf');
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-10', pdfFile: filePath });
+
+  });
 
 
-  //return res.status(200).json({ ok: true, data: 'todo bien....' });
+  //return res.status(200).json({ ok: false, mensaje: 'Falló al buscar el Paciente.' });
+});
+
+app.get('/msi11/:id', function (req, res) {
+
+  console.log('generando historia clinica');
+  console.log('TOKEN..................', req.get('token'));
+  console.log('ID PACIENTE..................', req.params.id);
+
+  // Obtener el paciente
+  const id = req.params.id;
+  let token = req.get('token');
+  Paciente.findById(id, (err, pacienteBD) => {
+    if (err) {
+      return res.status(400).
+        json({ ok: false, error: 'Error al generar reporte MSI-11 ' + err });
+    };
+    //console.log(`0.-voy a ir a crear hoja exp: `);
+    let filePath = historiaClinicaPdf(pacienteBD);
+
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: filePath });
+
+  });
+
+  //return res.status(200).json({ ok: false, mensaje: 'Falló al buscar el Paciente.' });
 });
 
 module.exports = app;

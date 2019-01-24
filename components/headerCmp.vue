@@ -27,7 +27,7 @@
                                left>
             <b-dropdown-item href="#">Consentimiento Informado</b-dropdown-item>
             <b-dropdown-item href="/hojaInicialExpediente">Hoja Inicial Expediente</b-dropdown-item>
-            <b-dropdown-item href="#">História Clínica</b-dropdown-item>
+            <b-dropdown-item href="/HistoriaClinica">História Clínica</b-dropdown-item>
             <b-dropdown-item href="#">Nota de Urgencias</b-dropdown-item>
           </b-nav-item-dropdown>
 

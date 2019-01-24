@@ -12,6 +12,7 @@ app.use(require('./usuario'));
 app.use(require('./paciente'));
 app.use(require('./reportes'));
 app.use(require('./hojaInicialExpediente'));
+app.use(require('./historiaClinica'));
 app.use(require('./notaUrgencia'));
 
 module.exports = app;

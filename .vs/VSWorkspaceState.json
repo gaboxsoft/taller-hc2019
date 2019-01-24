@@ -1,9 +1,16 @@
 {
   "ExpandedNodes": [
+    "",
+    "\\api",
     "\\components",
-    "\\middleware",
+    "\\downloads",
+    "\\library",
+    "\\library\\msiReportes",
+    "\\models",
+    "\\msiformatos",
+    "\\pages",
     "\\routes"
   ],
-  "SelectedNode": "\\middleware\\autenticacion.js",
+  "SelectedNode": "\\library\\msiReportes\\historiaClinicaPdf.js",
   "PreviewInSolutionExplorer": false
 }
