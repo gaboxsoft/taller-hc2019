@@ -81,9 +81,9 @@ dist
 .idea
 
 # PDF's
-.pdf
+*.pdf
 
 # Directorios
-uploads
-downloads
+./uploads
+./downloads
 
