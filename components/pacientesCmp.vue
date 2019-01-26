@@ -9,9 +9,10 @@
       <no-ssr>
         <table class="table table-striped table-bordered table-hover table-info ">
           <tr>
-            <td>ID</td>
+            <td>FOLIO</td>
             <td>NOMBRE</td>
             <td>GENERO</td>
+            <td>DIAGNOSTICO</td>
             <td>TELÉFONOS</td>
             <td></td>
             <td></td>
@@ -20,28 +21,34 @@
           </tr>
           <tr v-model="pacientes"
               v-for="paciente in pacientes">
-            <td>{{paciente._id}}</td>
+            <td>{{paciente.folioCuenta}}</td>
             <td style="width:200px;">{{paciente.nombre}}</td>
             <td>{{paciente.genero}}</td>
+            <td>{{paciente.diagnosticoIngreso}}</td>
             <td>{{paciente.telefonos}}</td>
-            <td>
+            <td style="width:25px;">
               <b-btn btn-xs
-                     v-on:click="seleccionar(paciente._id)">S</b-btn>
-            </td>
+                     v-on:click="seleccionar(paciente._id)">
+                <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
+              </b-btn>
+            </td >
             <td>
               <b-btn btn-xs
                      v-on:click="eliminar">
-                <img src="../assets/iconos/boton-eliminar.png"
-                     style="width: 25px;">
+                <img src="../assets/iconos/boton-eliminar.png" style="width: 25px;">
               </b-btn>
             </td>
             <td>
               <b-btn btn-xs
-                     v-on:click="modificar">M</b-btn>
+                     v-on:click="modificar(paciente._id)">
+                <img src="../assets/iconos/boton-modificar.png" style="width: 25px;">
+              </b-btn>
             </td>
             <td>
               <b-btn btn-xs
-                     v-on:click="archiva">A</b-btn>
+                     v-on:click="archiva">
+              <img src="../assets/iconos/boton-archivar.png" style="width: 25px;">
+              </b-btn>
             </td>
           </tr>
         </table>
@@ -88,8 +95,9 @@ export default {
       return true;
 
     },
-    modificar: () => {
-      return true;
+    modificar: (pacienteId) => {
+      this.$store.commit('setPacienteId', pacienteId)
+
 
     },
     seleccionar: function (pacienteId) {

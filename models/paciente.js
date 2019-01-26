@@ -19,6 +19,11 @@ const situacionValida = require('./situacionValida');
 let pacienteSchema = new Schema({
   // Nombre de paciente
 
+  folioCuenta: {
+    type: Number,
+    default: 0,
+    unique:true
+  },
   nombre: {
     type: String,
     minlength: 2,

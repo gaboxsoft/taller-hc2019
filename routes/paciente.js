@@ -48,6 +48,7 @@ app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
 
     let body = req.body;
   let paciente = new Paciente({
+    folioCuenta: body.folioCuenta,
     nombre: body.nombre,
     genero: body.genero,
     fechaNacimiento: new Date(body.fechaNacimiento),
@@ -137,7 +138,7 @@ app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
   let body = _.pick(req.body, [
     'nombre','fechaNacimiento', 'genero',
     'calle', 'numInterior', 'numExterior', 'municipio',
-    'entidad', 'pais', 'cp', 'telefonos'
+    'entidad', 'pais', 'cp', 'telefonos', 'CP', 'pais'
     ]);
 
     //console.log('body: ', body);

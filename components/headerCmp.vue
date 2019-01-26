@@ -91,9 +91,9 @@
       </b-collapse>
     </b-navbar>
 
-    <pacienteTagCmp />
-  </div>
 
+    <pacienteTagCmp />
+</div>
 </template>
 
 <script>

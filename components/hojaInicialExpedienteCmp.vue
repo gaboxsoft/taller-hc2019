@@ -1,11 +1,9 @@
 
 <template>
-  <div class="main-container ">
+  <div id="main" class="main-container ">
     <h1 class=" text-primary">{{tituloPagina}}</h1>
-
-    <!--<pacienteTagCmp />-->
-    <div id="notificacion" class="alert alert-success" role="alert">
-    </div>
+    <notifyCmp ref="notify"/>
+    
     <b-btn class="bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
     <b-btn class="bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
 
@@ -59,11 +57,13 @@ const urlGetPacientes = 'http://localhost:3000/Pacientes?limite=5&desde=0';
 const MAX_SIZE_NOMBRE = 50;
   import axios from 'axios';
   import pacienteTagCmp from '~/components/pacienteTagCmp';
+  import notifyCmp from '~/components/notifyCmp';
   
   export default {
     name: 'hojaInicialExpedienteCmp',
     components: {
-      pacienteTagCmp
+      pacienteTagCmp,
+      notifyCmp
     },
     data() {
       return {
@@ -111,8 +111,10 @@ const MAX_SIZE_NOMBRE = 50;
       }
     },
     created() {
+
       this.getCurrentPaciente(this.getToken);
       console.log('EN hojaIniExp.Created, currentPaciente= ', this.Paciente);
+      
     },
     //ready() {
     //  alert('ready');
@@ -136,14 +138,15 @@ const MAX_SIZE_NOMBRE = 50;
             console.log('aaquí en getCurrentPaciente axios y regresó: ', response.data.paciente);
             this.paciente = response.data.paciente;
             //this.paciente.fechaIngreso = (new this.paciente.fechaIngreso.toISOString()).split('.')[0]
-            this.$store.commit('setCurrentPaciente', response.data.paciente);
+            //this.$store.commit('setCurrentPaciente', response.data.paciente);
           },
             (error) => {
               this.err = error.response.data.error;
-              this.$store.commit('setCurrentPaciente', undefined);
+             // this.$store.commit('setCurrentPaciente', undefined);
             });
       },
       guardarHojaInicialExpediente: function () {
+
         console.log('1 En guardar hie-- url---->>>  ', this.urlHojaInicialExpediente);
         this.token = this.getToken;
         console.log('2 En guardar hie-- token---->>>  ', this.token);
@@ -168,18 +171,12 @@ const MAX_SIZE_NOMBRE = 50;
         axios(req)
           .then((response) => {
             console.log('En guardar hie-- success---->>> pasé ', response.data);
-
-            var myDiv = document.getElementById('notificacion');
-            var myElement = document.createElement('h5');
-            myElement.textContent ="DOCUMENTO GUARDADO";
-
-            myDiv.appendChild(myElement);
-
-            setTimeout(() => { myDiv.removeChild(myElement) }, 5000);
+            this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2.5);
 
           })
           .catch(err => {
             console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
+            this.$refs.notify.showNotify("ERROR AL GUARDAR: "+err.response, 2.5);
           });
       },
       imprimirHojaInicialExpediente: function () {
@@ -195,24 +192,12 @@ const MAX_SIZE_NOMBRE = 50;
         })
           .then((response) => {
             console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
-
-
-            var myDiv = document.getElementById('notificacion');
-            var myLink = document.createElement('a');
-            myLink.href = response.data.pdfFile;
-            myLink.innerText = "Ver formato";
-            myLink.target = "_blank";
-
-            myDiv.appendChild(myLink);
-
-            //console.log(myDiv);
-
-            setTimeout(() => { myDiv.removeChild(myLink) }, 5000);
-
+            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4,response.data.pdfFile, true);
           },
             (error) => {
               this.err = error.response.data.error;
               console.log('Error en imprimirHojaInicialExpediente: ', this.err);
+              this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO: "+error, 5);
             });
       },     
       seleccionar: function (pacienteId) {
@@ -227,7 +212,6 @@ const MAX_SIZE_NOMBRE = 50;
       },
 
       getPacientes: function () {
-        //console.log(new Date(), '-->en pacientesCmp--> getPacientes--> this.$store.state.token:', this.$store.state.token);
         this.token = this.$store.state.token;
         axios.get(urlGetPacientes, {
           headers: {
@@ -236,14 +220,11 @@ const MAX_SIZE_NOMBRE = 50;
         }).then((response) => {
           this.pacientes = response.data.pacientes;
           this.totalPacientes = this.pacientes.length
-          //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
           
         })
           .catch(err => {
-            //console.log('---->>> error en Leer la lista de Pacientes:' + err);
             this.totalPacientes = this.pacientes.length
             this.pacientes = {};
-            //console.log('En pacientesCmp-- fail---->>> pasé ', new Date(), '--', this.pacientes.length);
           });
       }
     }
