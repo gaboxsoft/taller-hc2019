@@ -1,6 +1,9 @@
 
 <template>
   <div class="main-container ">
+    <div id="notificacion" class="alert alert-success" role="alert">
+    </div>
+
     <h1 class=" text-primary">{{tituloPagina}}</h1>
 
     <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
@@ -10,6 +13,7 @@
     <br />
     <form action="#">
       <!--<label for="paciente.lugarOrigen">Lugar de Origen:</label><br>-->
+
 
       <p>Estado civíl:<input type="text" v-model="paciente.edoCivil" name="edoCivil"></p>
       <p>Lugar de Origen:<input type="text" v-model="paciente.lugarOrigen" name="lugarOrigen"></p>
@@ -301,6 +305,7 @@
         axios(req)
           .then((response) => {
             console.log('En guardar HC-- success---->>> pasé ', response.data);
+            //this.notifica("DOCUMENTO GUARDADO", 2);
 
           })
           .catch(err => {
@@ -310,7 +315,7 @@
       imprimir: function () {
 
         console.log('aquí en imprimir HC...', this.urlHistoriaClinicaPdf);
-
+        this.guardar();
         axios.get(this.urlHistoriaClinicaPdf, {
           headers: {
             token: this.getToken,
@@ -320,29 +325,58 @@
         })
           .then((response) => {
             console.log('aaquí en imprimir HC axios y regresó: ', response);
-            console.log('aaquí en imprimir HC axios y regresó: ', response.status);
-            //this.reportePdf = response.data.filePdf;
-            //if (response.data.status === 200) {
-            //let blob = new Blob([this.response], { type: "application/pdf" })
-            //let link = document.createElement('a')
-            //link.href = window.URL.createObjectURL(blob)
-            //link.download = 'Results.pdf'
-            //link.click()
-            //}
+            console.log('aaquí en imprimir HC axios y regresó: ', response.data.pdfFile);
 
-            ////const url = window.URL.createObjectURL(new Blob([response.data]));
-            ////const link = document.createElement('a');
-            ////link.href = url;
-            ////link.setAttribute('download', 'file.pdf');
-            ////document.body.appendChild(link);
-            ////link.click();
+            //this.notifica("VER FORMATO", 4, response.data.pdfFile, "_blank");
 
+            var myDiv = document.getElementById('notificacion');
+            var myLink = document.createElement('a');
+            myLink.href = response.data.pdfFile;
+            myLink.innerText = "Ver formato";
+            myLink.target = "_blank";
+            
+            myDiv.appendChild(myLink);
+            
+            //console.log(myDiv);
+
+            setTimeout(() => { myDiv.removeChild(myLink) },5000);
+
+           // myLink.click()
+            
           },
             (error) => {
               this.err = error.response.data.error;
               console.log('Error en imprimirHojaInicialExpediente: ', this.err);
             });
-      }
+      },
+      //notifica: function (mensaje, seconds, link, targetBlank) {
+      //  var myHeader = document.getElementById('headerCmp');
+      //  var myDiv = document.createElement('div');
+      //  myDiv.className = "alert alert-success";
+      //  myDiv.role = "alert";
+      //  mydiv.id = "notificacion";
+      //  //<div id="notificacion" class="alert alert-success fix-bottom" role="alert">
+      //  //</div>
+      //  myHeader.appendChild(myDiv);
+      //  console.log(myDiv);
+      //  //var myDiv = document.getElementById('notificacion');
+      //  if (link) {
+      //    var myLink = document.createElement('a');
+      //    myLink.href = link;
+      //    myLink.innerText = mensaje;
+      //    myLink.target = targetBlank;
+      //    console.log(myLink);
+      //    myDiv.appendChild(myLink);
+      //    setTimeout(() => { myDiv.removeChild(myLink) }, seconds * 1000);
+      //  }
+      //  else {
+      //    var myP = document.createElement('p');
+      //    myP.innerText = mensaje;
+      //    console.log(myP);
+      //    myDiv.appendChild(myP);
+      //    setTimeout(() => { myDiv.removeChild(myP) }, seconds * 1000);
+      //  }
+      //}
 
     }
   };

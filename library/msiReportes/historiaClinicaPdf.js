@@ -81,12 +81,12 @@ const historiaClinicaPdf = (paciente) => {
   
   // Stream contents to a file
   const fileName = 'MSI11-' + Date.now() + '.pdf';
-  const filePath = path.join(__dirname, '../../downloads/pdfs/' + fileName);
+  const filePath = path.join(__dirname, '../../public/pdfs/' + fileName);
  
 
   doc.pipe(fs.createWriteStream(filePath)).on('finish', function () {
     console.log('Archivo creado satisfactoriamente ....');
-    return filePath;
+    //return filePath;
   });
 
 

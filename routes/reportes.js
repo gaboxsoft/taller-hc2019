@@ -43,7 +43,7 @@ app.get('/msi10/:id', function (req, res) {
     console.log(`0.-voy a ir a crear hoja inicial exp: `);
     let filePath = hojaInicialExpedientePdf(pacienteBD);
 
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-10', pdfFile: filePath });
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-10', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
 
   });
 
@@ -67,8 +67,10 @@ app.get('/msi11/:id', function (req, res) {
     };
     //console.log(`0.-voy a ir a crear hoja exp: `);
     let filePath = historiaClinicaPdf(pacienteBD);
-
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: filePath });
+    //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
+    //return res.download(path.dirname(filePath), path.basename(filePath));
+    
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT+'/pdfs/'+path.basename(filePath) });
 
   });
 

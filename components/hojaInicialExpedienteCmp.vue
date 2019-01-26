@@ -2,11 +2,13 @@
 <template>
   <div class="main-container ">
     <h1 class=" text-primary">{{tituloPagina}}</h1>
-    <pacienteTagCmp />
 
+    <!--<pacienteTagCmp />-->
+    <div id="notificacion" class="alert alert-success" role="alert">
+    </div>
     <b-btn class="bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
     <b-btn class="bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
-    
+
 
     <br />
     <br />
@@ -167,6 +169,14 @@ const MAX_SIZE_NOMBRE = 50;
           .then((response) => {
             console.log('En guardar hie-- success---->>> pasé ', response.data);
 
+            var myDiv = document.getElementById('notificacion');
+            var myElement = document.createElement('h5');
+            myElement.textContent ="DOCUMENTO GUARDADO";
+
+            myDiv.appendChild(myElement);
+
+            setTimeout(() => { myDiv.removeChild(myElement) }, 5000);
+
           })
           .catch(err => {
             console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
@@ -184,39 +194,27 @@ const MAX_SIZE_NOMBRE = 50;
           }
         })
           .then((response) => {
-            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response);
-            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.status);
-            //this.reportePdf = response.data.filePdf;
-            //if (response.data.status === 200) {
-              //let blob = new Blob([this.response], { type: "application/pdf" })
-              //let link = document.createElement('a')
-              //link.href = window.URL.createObjectURL(blob)
-              //link.download = 'Results.pdf'
-              //link.click()
-            //}
+            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
 
-            ////const url = window.URL.createObjectURL(new Blob([response.data]));
-            ////const link = document.createElement('a');
-            ////link.href = url;
-            ////link.setAttribute('download', 'file.pdf');
-            ////document.body.appendChild(link);
-            ////link.click();
+
+            var myDiv = document.getElementById('notificacion');
+            var myLink = document.createElement('a');
+            myLink.href = response.data.pdfFile;
+            myLink.innerText = "Ver formato";
+            myLink.target = "_blank";
+
+            myDiv.appendChild(myLink);
+
+            //console.log(myDiv);
+
+            setTimeout(() => { myDiv.removeChild(myLink) }, 5000);
 
           },
             (error) => {
               this.err = error.response.data.error;
               console.log('Error en imprimirHojaInicialExpediente: ', this.err);
             });
-      }
-      ,
-      archiva: () => {
-        return true;
-
-      },
-      modificar: () => {
-        return true;
-
-      },
+      },     
       seleccionar: function (pacienteId) {
         console.log('aquí en seleccionar paciente, id: ', pacienteId);
         this.$store.commit('setPacienteId', pacienteId)
@@ -239,9 +237,7 @@ const MAX_SIZE_NOMBRE = 50;
           this.pacientes = response.data.pacientes;
           this.totalPacientes = this.pacientes.length
           //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
-
-
-         
+          
         })
           .catch(err => {
             //console.log('---->>> error en Leer la lista de Pacientes:' + err);

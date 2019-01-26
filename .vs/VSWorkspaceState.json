@@ -3,14 +3,14 @@
     "",
     "\\api",
     "\\components",
-    "\\downloads",
+    "\\config",
     "\\library",
     "\\library\\msiReportes",
     "\\models",
     "\\msiformatos",
     "\\pages",
-    "\\routes"
+    "\\public"
   ],
-  "SelectedNode": "\\library\\msiReportes\\historiaClinicaPdf.js",
+  "SelectedNode": "\\pages\\hojaInicialExpediente.vue",
   "PreviewInSolutionExplorer": false
 }

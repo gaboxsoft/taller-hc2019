@@ -188,7 +188,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   
   // Stream contents to a file
   const fileName = 'MSI10-' + Date.now() + '.pdf';
-  const filePath = path.join(__dirname, '../../downloads/pdfs/' + fileName);
+  const filePath = path.join(__dirname, '../../public/pdfs/' + fileName);
   console.log('filePath: ',filePath);
   
 

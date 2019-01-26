@@ -1,6 +1,6 @@
 <template>
 
-  <div class="contanier fixed-top margin-bottom:200px">
+  <div id="headerCmp" class="contanier fixed-top margin-bottom:200px">
     <b-navbar class="ml-auto "
               toggleable="md"
               type="dark"
