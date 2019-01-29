@@ -104,7 +104,6 @@ let pacienteSchema = new Schema({
     //required: [true, 'La fecha de ingreso es necesaria.'],
     default: () => { new Date().toLocaleString() }
   },
-
   alergias: {
     type: String
     //required: [true, 'El número exterior es necesario.']
@@ -117,6 +116,26 @@ let pacienteSchema = new Schema({
     type: String
     //required: [true, 'El nombre de la colonia es necesaria.']
   },
+
+  //////////////////////////
+  //// Nota de urgencias
+  fecha1: {
+    type: Date,
+    //required: [true, 'La fecha de ingreso es necesaria.'],
+    default: () => { new Date().toLocaleString() }
+  },
+  seguro: {type: String},
+  diagnosticoEgreso: { type: String },
+  ocupacion: { type: String },
+  FC: { type: String },
+  FR: { type: String },
+  TA: { type: String },
+  T: { type: String },
+  peso1: { type: String },
+  talla1: { type: String },
+  antecedentesImportancia1: { type: String },
+  resumenClinico1: { type: String },
+  indicaciones1: { type: String },
 
 /////////////////////////
 // Historia Clínica

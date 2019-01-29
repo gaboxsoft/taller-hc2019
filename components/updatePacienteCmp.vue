@@ -10,74 +10,88 @@
     <form action="#">
       <div class="row">
         <div class="col-md-10">
-          DATOS GENERALES DEL PACIENTE
+          -- DATOS GENERALES DEL PACIENTE --
 
           <div class="row">
-            <div class="col-md-3">folio:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.folioCuenta" name="folioCuenta"></div>
+            <div class="col-md-3 text-right">folio:</div>
+            <div class="col-md-7 text-left"><input type="text" v-model="paciente.folioCuenta" name="folioCuenta"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Nombre:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.nombre" name="nombre"></div>
+            <div class="col-md-3  text-right">Nombre:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.nombre" name="nombre"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Estado civíl:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
+            <div class="col-md-3  text-right">Estado civíl:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Género:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.genero" name="genero"></div>
+            <div class="col-md-3  text-right">Género:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.genero" name="genero"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Fecha nacimiento:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
+            <div class="col-md-3  text-right">Fecha nacimiento:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Calle:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.calle" name="calle"></div>
+            <div class="col-md-3  text-right">Calle:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.calle" name="calle"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Número exterior:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.numExterior" name="numExterior"></div>
+            <div class="col-md-3  text-right">Número exterior:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.numExterior" name="numExterior"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Número interior:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.numInterior" name="numInterior"></div>
+            <div class="col-md-3  text-right">Número interior:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.numInterior" name="numInterior"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Colonia:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.colonia" name="colonia"></div>
+            <div class="col-md-3  text-right">Colonia:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.colonia" name="colonia"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Municipio:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.municipio" name="municipio"></div>
+            <div class="col-md-3  text-right">Municipio:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.municipio" name="municipio"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">Estado:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.entidad" name="entidad"></div>
+            <div class="col-md-3  text-right">Estado:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.entidad" name="entidad"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">País:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.pais" name="pais"></div>
+            <div class="col-md-3  text-right">País:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.pais" name="pais"></div>
           </div>
 
           <div class="row">
-            <div class="col-md-3">CP:</div>
-            <div class="col-md-7"><input type="text" v-model="paciente.CP" name="CP"></div>
+            <div class="col-md-3  text-right">CP:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.CP" name="CP"></div>
           </div>
-
-
+          <!-- MÉDICO TRATANTE -->
+          <div>
+            <h5>--ACERCA DEL MÉDICO TRATANTE---</h5>
+            <div class="row">
+              <div class="col-md-3  text-right">NOMBRE Médico tratante (MT):</div>
+              <div class="col-md-7  text-left"><input type="text" v-model="paciente.nombreMT" name="nombreMT"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3  text-right">Cédula profesional MT:</div>
+              <div class="col-md-7  text-left"><input type="text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3  text-right">Institución expide Título MT:</div>
+              <div class="col-md-7  text-left"><input type="text" v-model="paciente.institucionMT" name="institucionMT"></div>
+            </div>
+          </div>
         </div>
       </div>
     </form>
@@ -161,6 +175,9 @@
             CP: this.paciente.CP,
             telefonos: this.paciente.telefonos,
             pais: this.paciente.pais,
+            nombreMT: this.paciente.nombreMT,
+            cedulaMT: this.paciente.cedulaMT,
+            institucionMT: this.paciente.institucionMT,
           }
         };
         axios(req)

@@ -11,6 +11,7 @@ const pdf = require('pdfkit');
 const pdfTools = require('../library/pdfkit/gxPdf');
 const hojaInicialExpedientePdf = require('../library/msiReportes/hojaInicialExpedientePdf');
 const historiaClinicaPdf = require('../library/msiReportes/historiaClinicaPdf');
+const notaUrgenciasPdf = require('../library/msiReportes/notaUrgenciasPdf');
 
 const axios = require('axios');
 
@@ -69,8 +70,34 @@ app.get('/msi11/:id', function (req, res) {
     let filePath = historiaClinicaPdf(pacienteBD);
     //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
     //return res.download(path.dirname(filePath), path.basename(filePath));
-    
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT+'/pdfs/'+path.basename(filePath) });
+
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+
+  });
+
+  //return res.status(200).json({ ok: false, mensaje: 'Falló al buscar el Paciente.' });
+});
+
+app.get('/msi12/:id', function (req, res) {
+
+  console.log('generando nota Urgencias');
+  console.log('TOKEN..................', req.get('token'));
+  console.log('ID PACIENTE..................', req.params.id);
+
+  // Obtener el paciente
+  const id = req.params.id;
+  let token = req.get('token');
+  Paciente.findById(id, (err, pacienteBD) => {
+    if (err) {
+      return res.status(400).
+        json({ ok: false, error: 'Error al generar reporte MSI-12 ' + err });
+    };
+    //console.log(`0.-voy a ir a crear hoja exp: `);
+    let filePath = notaUrgenciasPdf(pacienteBD);
+    //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
+    //return res.download(path.dirname(filePath), path.basename(filePath));
+
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
 
   });
 

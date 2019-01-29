@@ -73,6 +73,23 @@ app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
     cedulaMT: '',
     institucionMT: '',
     especialidadMT: '',
+
+    //////////////////////////
+    //// Nota de urgencias
+    fecha1:'',
+    seguro: '',
+    ocupacion:'',
+    diagnosticoEgreso: '',
+    FC: '',
+    FR: '',
+    TA:'',
+    T: '',
+    peso1: '',
+    talla1: '',
+    antecedentesImportancia1: '',
+    resumenClinico1: '',
+    indicaciones1: '',
+
     /////////////////////////
     // Historia clínica
     lugarOrigen: '',
@@ -140,7 +157,8 @@ app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
     'nombre','fechaNacimiento', 'genero',
     'calle', 'numInterior', 'numExterior',
     'colonia', 'municipio',
-    'entidad', 'pais', 'telefonos', 'CP'
+    'entidad', 'pais', 'telefonos', 'CP',
+    'nombreMT','cedulaMT','institucionMT'
     ]);
 
     //console.log('body: ', body);
