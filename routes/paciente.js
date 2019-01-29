@@ -136,9 +136,11 @@ app.post('/paciente', [verificaToken, verificaAdminRol], function(req, res) {
 app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
   let body = _.pick(req.body, [
+    //'folioCuenta',
     'nombre','fechaNacimiento', 'genero',
-    'calle', 'numInterior', 'numExterior', 'municipio',
-    'entidad', 'pais', 'cp', 'telefonos', 'CP', 'pais'
+    'calle', 'numInterior', 'numExterior',
+    'colonia', 'municipio',
+    'entidad', 'pais', 'telefonos', 'CP'
     ]);
 
     //console.log('body: ', body);
@@ -149,7 +151,7 @@ app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
     body.fechaModificacion = Date.now();
   //fechaNacimiento: new Date(body.fechaNacimiento),
   
-    //console.log('body para modificar:', body);
+    console.log('body para modificar:', body);
 
 
     Paciente.findOneAndUpdate({ _id: id, 'situacionSe': { $eq: 1 } }, body, { new: true, runValidators: true, context: 'query' }, (err, pacienteBD) => {

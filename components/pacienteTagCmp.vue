@@ -3,6 +3,7 @@
   <!--<div class="contanier fixed-top margin-bottom:10px">-->
 
   <div>
+    <!--<p>id: -{{getPacienteId}}</p>-->
     <h5 class="bg-warning ">EXPEDIENTE: {{paciente?paciente.nombre:'N I N G U N O'}}</h5>
   </div>
 
@@ -19,10 +20,12 @@ export default
     data() {
       return {
         paciente: { nombre: '' },
-        token:'NONE'
+        token: 'NONE'
       }
-    }
-    ,
+    } ,
+     // props: [
+     //   'paciente'
+     //],
     computed: {
       urlGetPaciente: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
@@ -36,10 +39,15 @@ export default
         //console.log('1 getPaciente-->token: ', this.$store.state.token);
         return this.$store.state.token;
       }
-    },
+      },
+      watch: {
+        getPacienteId: function () {
+          this.getPaciente();
+        }
+      },
     created() {
 
-      //console.log('url getPaciente: ', this.urlGetPaciente)
+      console.log('Aquí en creado pacienteTAGCmp: ', this.urlGetPaciente)
       if (this.getPacienteId === '') {
 
       };
@@ -48,21 +56,24 @@ export default
     methods: {
 
       getPaciente() {
+       
         //console.log('2 getPaciente-->token: ', this.$store.state.token);
-        //console.log('3 getPaciente-->token: ', this.getToken);
+        console.log('3 pacienteTagCmp-->getPaciente: ');
         this.token = this.getToken;
         //console.log('4 getPaciente-->token: ', this.token);
         axios.get(this.urlGetPaciente, {
           token: this.token
         })
           .then((response) => {
+        console.log('5 getPaciente-->lEÍ PACIENTE OK: ');
             this.paciente = response.data.paciente;
-            this.$store.commit('setCurrentPaciente', response.data.paciente);
+            //this.$store.commit('setCurrentPaciente', response.data.paciente);
+            
           },
           (error) => {
             this.paciente = { nombre: '--N I N G U N O--' };
             this.$store.commit('setCurrentPaciente', this.paciente);
-            console.log('hubo error: en pacienteTag : ', this.paciente,' error: ',error.response.ok);
+            console.log('hubo error: en pacienteTag : ',error.response.ok);
               this.err = error.response.data.error;
           });
         //console.log('al final en pacienteTag= ', this.paciente);

@@ -1,18 +1,24 @@
 
 <template>
-    <div class="container">
-      <pacientesCmp/>
+  <div class="container">
+    <div>
+      <pacientesCmp />
+    <!--</div>
+    <div>-->
+      <updatePacienteCmp />
     </div>
+  </div>
 </template>
 
 <script>
   import pacientesCmp from '../components/pacientesCmp';
   import axios from 'axios';
-  
+  import updatePacienteCmp from '~/components/updatePacienteCmp';
   export default {
     name: 'RegistroPaciente',
     components: {
-      pacientesCmp
+      pacientesCmp,
+    updatePacienteCmp
     },
     created() {
       // No hay sesion abierta, redirige a login

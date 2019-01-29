@@ -106,8 +106,7 @@ export default
     name: 'headerCmp',
       components: {
         pacienteTagCmp
-      },
-    
+      }
 
   }
 
