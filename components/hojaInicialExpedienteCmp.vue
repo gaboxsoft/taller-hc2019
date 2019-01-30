@@ -58,7 +58,11 @@ const MAX_SIZE_NOMBRE = 50;
   import axios from 'axios';
   import pacienteTagCmp from '~/components/pacienteTagCmp';
   import notifyCmp from '~/components/notifyCmp';
-  
+
+  const moment = require('moment');
+  require('moment/locale/es');  // without this line it didn't work
+  moment.locale('es')
+
   export default {
     name: 'hojaInicialExpedienteCmp',
     components: {
@@ -113,7 +117,7 @@ const MAX_SIZE_NOMBRE = 50;
     created() {
 
       this.getCurrentPaciente(this.getToken);
-      console.log('EN hojaIniExp.Created, currentPaciente= ', this.Paciente);
+      //console.log('EN hojaIniExp.Created, currentPaciente= ', this.Paciente);
       
     },
     //ready() {
@@ -135,7 +139,7 @@ const MAX_SIZE_NOMBRE = 50;
           token: token
         })
           .then((response) => {
-            console.log('aaquí en getCurrentPaciente axios y regresó: ', response.data.paciente);
+            //console.log('aaquí en getCurrentPaciente axios y regresó: ', response.data.paciente);
             this.paciente = response.data.paciente;
             //this.paciente.fechaIngreso = (new this.paciente.fechaIngreso.toISOString()).split('.')[0]
             //this.$store.commit('setCurrentPaciente', response.data.paciente);

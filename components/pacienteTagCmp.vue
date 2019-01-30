@@ -47,7 +47,7 @@ export default
       },
     created() {
 
-      console.log('Aquí en creado pacienteTAGCmp: ', this.urlGetPaciente)
+      //console.log('Aquí en creado pacienteTAGCmp: ', this.urlGetPaciente)
       if (this.getPacienteId === '') {
 
       };
@@ -58,22 +58,22 @@ export default
       getPaciente() {
        
         //console.log('2 getPaciente-->token: ', this.$store.state.token);
-        console.log('3 pacienteTagCmp-->getPaciente: ');
+        //console.log('3 pacienteTagCmp-->getPaciente: ');
         this.token = this.getToken;
         //console.log('4 getPaciente-->token: ', this.token);
         axios.get(this.urlGetPaciente, {
           token: this.token
         })
           .then((response) => {
-            console.log('5 getPaciente-->lEÍ PACIENTE OK: ', response.data.paciente);
+            //console.log('5 getPaciente-->lEÍ PACIENTE OK: ', response.data.paciente);
             this.paciente = response.data.paciente;
             //this.$store.commit('setCurrentPaciente', response.data.paciente);
             
           },
           (error) => {
             this.paciente = { nombre: '--N I N G U N O--' };
-            this.$store.commit('setCurrentPaciente', this.paciente);
-            console.log('hubo error: en pacienteTag : ',error);
+            //this.$store.commit('setCurrentPaciente', this.paciente);
+            //console.log('hubo error: en pacienteTag : ',error);
               this.err = error.response.data.error;
           });
         //console.log('al final en pacienteTag= ', this.paciente);

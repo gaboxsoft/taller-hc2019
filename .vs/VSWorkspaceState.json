@@ -3,14 +3,12 @@
     "",
     "\\api",
     "\\components",
-    "\\config",
     "\\library",
     "\\library\\msiReportes",
+    "\\library\\pdfkit",
     "\\models",
-    "\\msiformatos",
-    "\\pages",
-    "\\server"
+    "\\routes"
   ],
-  "SelectedNode": "\\server\\index.js",
+  "SelectedNode": "\\routes\\paciente.js",
   "PreviewInSolutionExplorer": false
 }

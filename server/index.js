@@ -16,7 +16,7 @@ console.log('/////////////////////////////////////////////');
 
 /////////////
 
-const cors = require('cors');
+//const cors = require('cors');
 
 const express = require('express')
 const app = express()
@@ -52,7 +52,7 @@ config.dev = !(process.env.NODE_ENV === 'production')
 
 // Implementa CORS
 //
-app.use(cors());
+////app.use(cors());
 ////app.use(function(rep, res, next){
 ////  res.setHeader("Access-control-Allow-Origin", "*");
 ////  res.setHeader("Access-control-Allow-Headers", "Content-Type");

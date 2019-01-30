@@ -252,7 +252,7 @@
     },
     created() {
       this.getCurrentPaciente(this.getToken);
-      console.log('EN historiaClinica.Created, Paciente= ', this.Paciente);
+      //console.log('EN historiaClinica.Created, Paciente= ', this.Paciente);
     },
 
     methods: {
@@ -264,8 +264,8 @@
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('response.data en historia clinica: ', response.data);
-            console.log('paciente en historia clinica: ',this.paciente);
+            //console.log('response.data en historia clinica: ', response.data);
+            //console.log('paciente en historia clinica: ',this.paciente);
             //this.$store.commit('setCurrentPaciente', this.paciente);
           },
             (error) => {

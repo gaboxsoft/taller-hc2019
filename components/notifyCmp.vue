@@ -47,8 +47,8 @@
 
           //myDiv.appendChild(myLink);
 
-          console.log("myElement: ",myElement);
-          console.log("myDivNotify: ",myDivNotify);
+          //console.log("myElement: ",myElement);
+          //console.log("myDivNotify: ",myDivNotify);
           setTimeout(() => { this.show = false; myDivNotify.removeChild(myElement); }, tiempo * 1000);
         }
 

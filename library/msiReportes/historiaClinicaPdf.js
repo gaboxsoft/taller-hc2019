@@ -99,12 +99,12 @@ const historiaClinicaPdf = (paciente) => {
 
 function writeLine(doc, text, row, col, align, fontSize, color) {
   const vacio = '';
-  console.log('in writeLine-> text: [', text, '] typeOf', typeof (text));
-  console.log('in writeLine-> align: [', align, '] typeOf', typeof (align));
-  console.log('in writeLine-> fontSize: [', fontSize, '] typeOf', typeof (fontSize));
-  console.log('in writeLine-> color: [', color, '] typeOf', typeof (color));
-  console.log('in writeLine-> row: [', row, '] typeOf', typeof (row));
-  console.log('in writeLine-> col: [', col, '] typeOf', typeof (col));
+  //console.log('in writeLine-> text: [', text, '] typeOf', typeof (text));
+  //console.log('in writeLine-> align: [', align, '] typeOf', typeof (align));
+  //console.log('in writeLine-> fontSize: [', fontSize, '] typeOf', typeof (fontSize));
+  //console.log('in writeLine-> color: [', color, '] typeOf', typeof (color));
+  //console.log('in writeLine-> row: [', row, '] typeOf', typeof (row));
+  //console.log('in writeLine-> col: [', col, '] typeOf', typeof (col));
 doc.moveDown()
   .fillColor(color||'black')
   .fontSize(fontSize||10)

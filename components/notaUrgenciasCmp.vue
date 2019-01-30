@@ -16,7 +16,7 @@
         <div class="col-md-10">
           <div class="row">
             <div class="col-md-3 text-right">fecha-hora:</div>
-            <div class="col-md-7 text-left"><input type="text" v-model="paciente.fecha1" name="fecha1"></div>
+            <div class="col-md-7 text-left"><input type="datetime" v-model="paciente.fecha1" name="fecha1"></div>
           </div>
 
           <div class="row">
@@ -77,7 +77,11 @@
 
           <div class="row">
             <div class="col-md-3  text-right">Indicaciones:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.indicaciones1" name="indicaciones1"></div>
+           <!-- <div class="col-md-7  text-left"><input type="text" v-model="paciente.indicaciones1" name="indicaciones1"></div>-->
+            <div class="col-md-7  text-left">
+              <textarea v-model="paciente.indicaciones1" name="alergindicaciones1ias" rows="5" cols="50"></textarea>
+<!--              <input type="text" v-model="paciente.indicaciones1" name="indicaciones1">-->
+            </div>
           </div>
 
         </div>
@@ -93,9 +97,9 @@
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
-  const moment = require('moment');
-  require('moment/locale/es');  // without this line it didn't work
-  moment.locale('es')
+  //const moment = require('moment');
+  //require('moment/locale/es');  // without this line it didn't work
+  //moment.locale('es')
   export default {
     name: 'notaUrgenciasCmp',
     components: {
@@ -162,6 +166,8 @@
             console.log('response.data en nota urgencias: ', response.data);
             console.log('paciente en nota urgencias: ',this.paciente);
             //this.$store.commit('setCurrentPaciente', this.paciente);
+            console.log('leí -> fecha de notaUrgencia-> ', this.paciente.fecha1);
+
           },
             (error) => {
               this.err = error.response.data.error;
@@ -172,6 +178,9 @@
         console.log('1 En guardar NU-- url---->>>  ', this.urlHistoriaClinica);
         this.token = this.getToken;
         console.log('2 En guardar NU-- token---->>>  ', this.token);
+        console.log('2.1.- fecha de notaUrgencia-> ', this.paciente.fecha1)
+        console.log('2.2.- fecha de notaUrgencia-> ', this.paciente.fecha1.split('.')[0]);
+        this.paciente.fecha1 = this.paciente.fecha1.split('.')[0];
         const req = {
           method: 'put',
           url: this.urlNotaUrgencias,

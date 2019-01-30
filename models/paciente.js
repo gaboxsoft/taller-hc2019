@@ -8,7 +8,8 @@ const generoValido = require('../models/generoValido');
 // const Domicilio = require('../models/domicilio');
 //const Sello = require('../models/sello');
 //const HojaInicialExpediente = require('../models/hojaInicialExpediente');
-const NotaUrgencia = require('../models/notaUrgencia');
+//const NotaUrgencia = require('../models/notaUrgencias');
+//const HojaEvolucion = require('../models/hojaEvolucion');
 
 const situacionValida = require('./situacionValida');
 
@@ -183,19 +184,26 @@ let pacienteSchema = new Schema({
   RX: { type: String },
 /////////////////////////
 
-
-
-/////////////////////////
-  hojaEvolucion: [{
-    type: Schema.Types.ObjectId,
-    ref: 'hojaEvolucion'
-  }],
+////  //////////////////////////
+////  // Notas de Urgencias
+////  /////////////////////////
+////  notasEvolucion: [{
+////    type: Schema.Types.ObjectId,
+////    ref: 'NotaUrgencias'
+////  }],
+/////////////////////////////
+////  //////////////////////////
+////  // Hoja de Evolución
+////  /////////////////////////
+////  hojaEvolucion: [{
+////    type: Schema.Types.ObjectId,
+////    ref: 'HojaEvolucion'
+////  }],
 /////////////////////////
 // Sello
   fechaCreacionSe: {
     type: Date,
-    required: [true, 'La fecha de creación es necesaria.']
-    ,
+    required: [true, 'La fecha de creación es necesaria.'],
     default: () => { new Date().toLocaleString() }
   },
   fechaModificacionSe: {

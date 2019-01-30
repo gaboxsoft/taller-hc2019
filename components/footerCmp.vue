@@ -37,7 +37,7 @@ export default
       }
     },
     created() {
-      console.log('Footer ---> HOY: ', this.hoy)
+      //console.log('Footer ---> HOY: ', this.hoy)
     }
   }
 </script>
