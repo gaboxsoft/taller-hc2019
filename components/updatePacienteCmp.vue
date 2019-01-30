@@ -10,8 +10,6 @@
     <form action="#">
       <div class="row">
         <div class="col-md-10">
-          -- DATOS GENERALES DEL PACIENTE --
-
           <div class="row">
             <div class="col-md-3 text-right">folio:</div>
             <div class="col-md-7 text-left"><input type="text" v-model="paciente.folioCuenta" name="folioCuenta"></div>
@@ -222,13 +220,109 @@
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('response.data en historia clinica: ', response.data);
-            console.log('paciente en historia clinica: ', this.paciente);
+            console.log('urlGetPaciente en UPDATE_PACIENTEcmp: ', this.urlGetPaciente);
+            console.log('response.data en UPDATE_PACIENTEcmp: ', response.data);
+            
             //this.$store.commit('setCurrentPaciente', this.paciente);
           },
-            (error) => {
-              this.err = error.response.data.error;
-              this.$store.commit('setCurrentPaciente', undefined);
+          (error) => {
+            console.log('paciente en updatePaciente ---ERROR -- NO EXISTE: ', this.urlGetPaciente);
+            this.err = error.response.data.error;
+            console.log('en UpdatePaciente->getCurrentPaciente->error', this.err);
+              //this.$store.commit('setCurrentPaciente', undefined);
+              this.paciente = {
+                folioCuenta: '',
+                nombre: '',
+                genero: '',
+                fechaNacimiento: '',
+                calle: '',
+                numeroInterior: '',
+                numeroExterior: '', 
+                colonia: '',
+                municipio: '',
+                entidad: '',
+                pais: '',
+                cp: '',
+                telefonos: '',
+                ////////////////
+                // Hoja inicial expediente
+                fechaIngreso: '',
+                alergias: '',
+                diagnosticoIngreso: '',
+                otrosDiagnosticos: '',
+                tituloMT: '',
+                tituloAbrMT: '',
+                nombreMT: '',
+                cedulaMT: '',
+                institucionMT: '',
+                especialidadMT: '',
+
+                //////////////////////////
+                //// Nota de urgencias
+                fecha1: '',
+                seguro: '',
+                ocupacion: '',
+                diagnosticoEgreso: '',
+                FC: '',
+                FR: '',
+                TA: '',
+                T: '',
+                peso1: '',
+                talla1: '',
+                antecedentesImportancia1: '',
+                resumenClinico1: '',
+                indicaciones1: '',
+
+                /////////////////////////
+                // Historia clínica
+                lugarOrigen: '',
+                antHeredoFam: '',
+                personalesPato: '',
+                personalesNoPato: '',
+                ago: '',
+                tensionMens: '',
+                ritmo: '',
+                inicioVidaSexual: '',
+                gestados: '',
+                partos: '',
+                abortos: '',
+                cesareas: '',
+                fechaUltimpoParto: '',
+                fechaUltimoAborto: '',
+                pesoProductos: '',
+                fechaUltimaRegla: '',
+                fechaUltimaCitoCervix: '',
+                circuncision: '',
+                protecciónMenstrual: '',
+                otrosHistoriaClinica: '',
+                padecimientoActual: '',
+                peso: '',
+                talla: '',
+                temperatura: '',
+                tensionArterial: '',
+                craneo: '',
+                cara: '',
+                fondoOcular: '',
+                cuello: '',
+                cardioPulmunar: '',
+                abdomen: '',
+                mamas: '',
+                tactoVaginal: '',
+                tactoRectal: '',
+                miembros: '',
+                ID: '',
+                TX: '',
+                LAB: '',
+                USG: '',
+                RX: '',
+                /////////////////////////
+                //Sello
+                fechaCreacionSe: '',
+                fechaModificacionSe: '',
+                situacionSe: 1, //1-activo
+                //fechaBorrado: default nada
+                usuarioSe: req.usuario._id
+              };
             });
       },
 

@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\api",
-    "\\assets\\iconos",
     "\\components",
     "\\config",
     "\\library",
     "\\library\\msiReportes",
     "\\models",
     "\\msiformatos",
-    "\\routes"
+    "\\pages",
+    "\\server"
   ],
-  "SelectedNode": "\\components\\headerCmp.vue",
+  "SelectedNode": "\\server\\index.js",
   "PreviewInSolutionExplorer": false
 }

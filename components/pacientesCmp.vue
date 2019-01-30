@@ -70,7 +70,8 @@ export default {
     return {
       tituloPagina: 'P a c i e n t e',
       token: '',
-      pacientes: {}
+      pacientes: {},
+     
     }
   },
   computed: {
@@ -81,7 +82,8 @@ export default {
       return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
     }
   },
-  created() {
+    created() {
+      console.log('AQUÍ EN PACIENTES_CMP');
     this.getPacientes();
   },
 
@@ -115,24 +117,25 @@ export default {
 
     },
     getCurrentPaciente: function (token) {
+      console.log('Aquí en pacienteCmp-->getCurrentPaciente: ', this.getPacienteId);
 
       axios.get(this.urlApiPaciente, {
         token: token
       })
         .then((response) => {
           this.paciente = response.data.paciente;
-          console.log('response.data en historia clinica: ', response.data);
-          console.log('paciente en historia clinica: ', this.paciente);
+          console.log('Leí currentPaciente en pacientesCmp: ', response.data.paciente);
           //this.$store.commit('setCurrentPaciente', this.paciente);
         },
-          (error) => {
+        (error) => {
+          console.log('Leí paciente en historia clinica --ERROR--: ', error);          
             this.err = error.response.data.error;
             this.$store.commit('setCurrentPaciente', undefined);
           });
     },
 
     getPacientes: function () {
-     console.log('en GetPacientes()');
+     console.log('AQUÍ EN pacientesCmp getPacientes()');
       this.token = this.$store.state.token;
       axios.get(urlGetPacientes, {
         headers: {
@@ -141,7 +144,6 @@ export default {
       }).then((response) => {
         this.pacientes = response.data.pacientes;
         console.log('en GetPacientes()--> listando pacientes', this.pacientes);
-        this.pacientes.push({ folioCuenta: 30+this.pacientes.length, nombre: "JAVIERA", diagnosticoIngreso:"CEGUERA" });       
         this.totalPacientes = this.pacientes.length
         //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
 

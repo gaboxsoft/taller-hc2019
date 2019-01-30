@@ -186,9 +186,9 @@ let pacienteSchema = new Schema({
 
 
 /////////////////////////
-  notasUrgencias: [{
+  hojaEvolucion: [{
     type: Schema.Types.ObjectId,
-    ref: 'NotaUrgencia'
+    ref: 'hojaEvolucion'
   }],
 /////////////////////////
 // Sello

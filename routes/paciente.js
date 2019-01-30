@@ -37,9 +37,12 @@ app.get('/pacientes', verificaToken, function(req, res) {
     //console.log('En /paciente/', id, ' con token:', token);
     Paciente.findById(id, (err, pacienteBD) => {
         if (err) {
-            return res.status(400).
-            json({ ok: false, error: err, msg: 'Y esta esta chingadera....s' });
-        };
+          return res.status(401).
+            json({ ok: false, error: err, mensaje: 'hubo en error' });
+      };
+      if (!pacienteBD) {
+        return res.status(401).json({ ok: false,  mensaje: 'No existe este paciente' });
+      }
         return res.json({ ok: true, paciente: pacienteBD });
     });
 });

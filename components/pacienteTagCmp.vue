@@ -65,7 +65,7 @@ export default
           token: this.token
         })
           .then((response) => {
-        console.log('5 getPaciente-->lEÍ PACIENTE OK: ');
+            console.log('5 getPaciente-->lEÍ PACIENTE OK: ', response.data.paciente);
             this.paciente = response.data.paciente;
             //this.$store.commit('setCurrentPaciente', response.data.paciente);
             
@@ -73,7 +73,7 @@ export default
           (error) => {
             this.paciente = { nombre: '--N I N G U N O--' };
             this.$store.commit('setCurrentPaciente', this.paciente);
-            console.log('hubo error: en pacienteTag : ',error.response.ok);
+            console.log('hubo error: en pacienteTag : ',error);
               this.err = error.response.data.error;
           });
         //console.log('al final en pacienteTag= ', this.paciente);
