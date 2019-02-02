@@ -13,6 +13,7 @@ const pdfTools = require('../library/pdfkit/gxPdf');
 const hojaInicialExpedientePdf = require('../library/msiReportes/hojaInicialExpedientePdf');
 const historiaClinicaPdf = require('../library/msiReportes/historiaClinicaPdf');
 const notaUrgenciasPdf = require('../library/msiReportes/notaUrgenciasPdf');
+const hojaEvolucionPdf = require('../library/msiReportes/hojaEvolucionPdf');
 
 const axios = require('axios');
 
@@ -122,6 +123,54 @@ app.get('/msi12/:id', function (req, res) {
 
   //return res.status(200).json({ ok: false, mensaje: 'Falló al buscar el Paciente.' });
 });
+
+app.get('/msi14/:id', function (req, res) {
+
+  console.log('generando Hoja de Eolución');
+  console.log('TOKEN..................', req.get('token'));
+  console.log('ID PACIENTE..................', req.params.id);
+
+  // Obtener el paciente
+  const id = req.params.id;
+  let token = req.get('token');
+  //let notaUrgenciasId = req.get('notaUrgenciasId');
+
+  Paciente.findById(id, (err, pacienteBD) => {
+    if (err) {
+      return res.status(400).
+        json({ ok: false, error: '1.- Error al generar reporte MSI-14 ' + err });
+    };
+    if (!pacienteBD) {
+      return res.status(400).
+        json({ ok: false, error: '2.- Error al generar reporte MSI-14: No existe paciente ' });
+    };
+
+    Evolucion.find({ 'situacionSe': { $eq: 1 }, 'paciente': { $eq: id } })      
+      .sort({ fecha: 'desc' })
+      .exec((err, evolucionesBD) => {
+        if (err) {
+          return res.status(400).
+            json({ ok: false, error: err });
+        };
+        if (!evolucionesBD) {
+          return res.json({ ok: true, conteo: 0, evoluciones: {}, mensaje: 'No hay hoja de evolución.' });
+        };
+
+
+        let filePath = hojaEvolucionesPdf(pacienteBD, evolucionessBD);
+        //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
+        //return res.download(path.dirname(filePath), path.basename(filePath));
+
+        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+
+      });
+
+
+  });
+
+  //return res.status(200).json({ ok: false, mensaje: 'Falló al buscar el Paciente.' });
+});
+
 
 module.exports = app;
 

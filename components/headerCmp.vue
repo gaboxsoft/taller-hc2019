@@ -36,8 +36,8 @@
             <b-dropdown-item href="#">Urgencias</b-dropdown-item>
             <b-dropdown-item href="#">Órdenes Médico </b-dropdown-item>
             <b-dropdown-item href="#">Estudios</b-dropdown-item>
-            <b-dropdown-item href="#">Notas Urgencia</b-dropdown-item>
-            <b-dropdown-item href="#">Evolución</b-dropdown-item>
+            <b-dropdown-item href="#">Notas de Urgencia</b-dropdown-item>
+            <b-dropdown-item href="/Evolucion">Hoja de Evolución</b-dropdown-item>
             <b-dropdown-item href="#">Recetario</b-dropdown-item>
           </b-nav-item-dropdown>
 
