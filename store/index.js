@@ -3,7 +3,9 @@ export const state = () => ({
   token: 'NONE',
   pacienteId: 'NONE',
   notaUrgenciasId: 'NONE',
-  socketNotasUrgencias: true
+  evolucionId: 'NONE',
+  socketNotasUrgencias: true,
+  socketEvolucion: true
 });
 
 
@@ -13,6 +15,9 @@ export const getters = () => ({
   },
   getNotaUrgenciasId(state) {
     return state.notaUrgenciasId;
+  },
+  getEvolucionId(state) {
+    return state.evolucionId;
   },
   getPacienteId(state) {
     return state.notaUrgenciasId;
@@ -29,13 +34,19 @@ export const mutations = {
   setNotaUrgenciasId(state, payload) {
     state.notaUrgenciasId = payload;
   },
+  setEvolucionId(state, payload) {
+    state.evolucionId = payload;
+  },
   setPacienteId(state, payload) {
     state.pacienteId = payload;
   },
   setSocketNotasUrgencias(state) {
-    console.log('En setSocketNotasUrgencias->antes ', state.socketNotasUrgencias);
     state.socketNotasUrgencias = !state.socketNotasUrgencias;
-    console.log('En setSocketNotasUrgencias->despues ', state.socketNotasUrgencias);
+  },
+  setSocketEvolucion(state) {
+    console.log('En setSocketNotasUrgencias->antes ', state.socketEvolucion);
+    state.socketEvolucion = !state.socketEvolucion;
+    console.log('En setSocketNotasUrgencias->despues ', state.socketEvolucion);
   }
 };
 

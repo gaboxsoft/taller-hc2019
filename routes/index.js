@@ -14,5 +14,6 @@ app.use(require('./reportes'));
 app.use(require('./hojaInicialExpediente'));
 app.use(require('./historiaClinica'));
 app.use(require('./notaUrgencias'));
+app.use(require('./Evolucion'));
 
 module.exports = app;
