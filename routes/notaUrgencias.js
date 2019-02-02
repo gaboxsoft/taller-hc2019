@@ -5,69 +5,97 @@ const app = express();
 
 const _ = require('underscore');
 
+
 let { verificaToken, verificaAdminRol } = require('../middleware/autenticacion');
 
-//app.get('/pacientes', verificaToken, function(req, res) {
 
-//    let limite = Number(req.query.limite || 0);
-//    let desde = Number(req.query.desde || 0);
+ 
+app.get('/notasUrgencias/:id', verificaToken, function (req, res) {
 
-//    Paciente.find({ 'sello.situacion': { $eq: 1 } })
-//        .limit(limite)
-//        .skip(desde)
-//        .exec((err, pacientes) => {
-//            if (err) {
-//                return res.status(400).
-//                json({ ok: false, error: err });
-//            };
-//            Paciente.countDocuments({ 'sello.situacion': { $eq: 1 } }, (err, conteo) => {
-//                if (err) {
-//                    return res.status(400).
-//                    json({ ok: false, error: err });
-//                }
-//                res.json({ ok: true, conteo: conteo, pacientes });
-//            });
-//        });
-//});
+    let limite = Number(req.query.limite || 0);
+  let desde = Number(req.query.desde || 0);
+  let id = req.params.id;
 
-////app.get('/paciente/:id', verificaToken, function (req, res) {
-//  app.get('/paciente/:id',  function (req, res) {
-//    const id = req.params.id;
-//    let token = req.get('token');
-//    console.log('En /paciente/', id, ' con token:', token);
-//    Paciente.findById(id, (err, pacienteBD) => {
-//        if (err) {
-//            return res.status(400).
-//            json({ ok: false, error: err, msg: 'Y esta esta chingadera....s' });
-//        };
-//        return res.json({ ok: true, paciente: pacienteBD });
-//    });
-//});
+  NotaUrgencias.find({ 'situacionSe': { $eq: 1 }, 'paciente': { $eq: id } })
+    .limit(limite)
+    .skip(desde)
+    .exec((err, notasUrgenciasBD) => {
+      if (err) {
+        return res.status(400).
+          json({ ok: false, error: err });
+      };
+      if (!notasUrgenciasBD) {
+        return res.json({ ok: true, conteo: 0, notasUrgencias:{}, mensaje:'No hay notas de urgencias.'});
+      };
+      //NotaUrgencias.countDocuments({ 'situacionSe': { $eq: 1 }, 'paciente': { $eq: id } }, (err, conteo) => {
+      //      if (err) {
+      //          return res.status(400).
+      //          json({ ok: false, error: err });
+      //      }
+      //console.log(notasUrgenciasBD);
 
-//app.post('/HojaInicialExpediente', [verificaToken, verificaAdminRol], function (req, res) {
+      return res.json({ ok: true, conteo: notasUrgenciasBD.length, notasUrgencias: notasUrgenciasBD });
+    });
+        //});
+});
 
-//  let body = req.body;
-//  let hojaInicialExpediente = {
-//    hojaInicialExpediente: {
-//      fechaIngreso: new Date().toLocaleDateString(),
-//      alergias: '',
-//      diagnosticoIngreso: '',
-//      otrosDiagnosticos:''
-//    },
-//    sello: {
-//      fechaModificacion: new Date().toLocaleString(),      
-//      usuario: req.usuario._id
-//    }
-//  };
+////////////////////////////////////////
+//app.get('/paciente/:id', verificaToken, function (req, res) {
+  app.get('/notaUrgencias/:id',  function (req, res) {
+    const id = req.params.id;
+    //let token = req.get('token');
+    console.log('En API/get/notaUrgencia/:notaId/req', (req?'existe REQ':'  NO existe REQ'));
+    console.log('En API/get/notaUrgencia/:notaId/', id);
+    if (!id || id==='NONE') {
+      return res.status(400).
+        json({ ok: false, mensaje: 'existe nota de urgencias' });
+    };
 
-//    paciente.save((err, pacienteBD) => {
-//        if (err) {
-//            res.status(400).json({ ok: false, error: err, body: body });
-//        } else {
-//            res.json({ pacienteBD: pacienteBD });
-//        }
-//    });
-//});
+    NotaUrgencias.findById(id, (err, notaUrgenciasBD) => {
+        if (err) {
+            return res.status(400).
+            json({ ok: false, error: err, mensaje: 'No puede leer nota urgencias' });
+      };
+      if (!notaUrgenciasBD) {
+        return res.status(400).
+          json({ ok: false,  mensaje: 'existe nota de urgencias' });
+      }
+        return res.json({ ok: true, notaUrgencias: notaUrgenciasBD });
+    });
+});
+//////////////////////////////////////////////////
+
+app.post('/notaUrgencias/:id', [verificaToken, verificaAdminRol], function (req, res) {
+
+  let id = req.params.id;
+  let body = req.body;
+  let notaUrgencias = new NotaUrgencias();
+  notaUrgencias.fechaNota = body.fechaNota;
+  notaUrgencias.seguro = body.seguro;
+  notaUrgencias.diagnosticoEgreso = body.diagnosticoEgreso;
+  notaUrgencias.FC = body.FC;
+  notaUrgencias.FR = body.FR;
+  notaUrgencias.TA = body.TA;
+  notaUrgencias.T = body.T;
+  notaUrgencias.peso = body.FR;
+  notaUrgencias.talla = body.talla;
+  notaUrgencias.antecedentes = body.antecedentes;
+  notaUrgencias.resumenClinico = body.resumenClinico;
+  notaUrgencias.indicaciones = body.indicaciones;
+  notaUrgencias.paciente = id;
+
+  notaUrgencias.usuario = req.usuario._id;
+  notaUrgencias.fechaModificacionSe = new Date();
+  notaUrgencias.fechaCreacionSe = new Date();
+
+  notaUrgencias.save((err, notaUrgenciasBD) => {
+        if (err) {
+            res.status(400).json({ ok: false, error: err, body: body });
+        } else {
+          res.json({ notaUrgencias: notaUrgenciasBD });
+        }
+    });
+});
           
 app.put('/NotaUrgencias/:id', [verificaToken, verificaAdminRol], function (req, res) {
  
@@ -88,38 +116,39 @@ app.put('/NotaUrgencias/:id', [verificaToken, verificaAdminRol], function (req, 
     console.log('body para modificar:', body);
 
 
-    Paciente.findOneAndUpdate({ _id: id, 'situacionSe': { $eq: 1 } }, body, { new: true, runValidators: true, context: 'query' }, (err, pacienteBD) => {
+  NotaUrgencias.findOneAndUpdate({ _id: id, 'situacionSe': { $eq: 1 } }, body, { new: true, runValidators: true, context: 'query' }, (err, notaUrgenciasBD) => {
         if (err) {
             return res.status(400).
             json({ ok: false, error: { mensaje: err } });
         }
-        if (!pacienteBD) {
+    if (!notaUrgenciasBD) {
             return res.status(401).
-            json({ ok: false, error: { mensaje: 'No existe paciente.' } });
+            json({ ok: false, error: { mensaje: 'No existe nota de Urgencias.' } });
         }
-        res.json({ ok: true, pacienteBD: pacienteBD });
+    res.json({ ok: true, notaUrgenciasBD: notaUrgenciasBD });
     })
 
 });
 
-//app.delete('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
+app.delete('/notaUrgencias/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
-//    let id = req.params.id;
+    let id = req.params.id;
 
-//    let modificarEstado = { 'sello.situacion': 0 /* borrado*/ , 'sello.fechaBorrado': new Date().toLocaleString() };
+    let modificarEstado = { 'situacionSe': 0  , 'fechaBorradoSe': new Date().toLocaleString() };
 
-//    Paciente.findByIdAndUpdate(id, modificarEstado, { new: true }, (err, personaBorrado) => {
-//        if (err) {
-//            return res.status(400).json({ ok: false, error: { mensaje: err } });
-//        };
-//        if (!personaBorrado) {
-//            return res.status(401).
-//            json({ ok: false, error: { mensaje: 'No existe paciente.' } });
-//        };
-//        res.json({ ok: true, personaBorrado });
-//    });
+    NotaUrgencias.findByIdAndUpdate(id, modificarEstado, { new: true }, (err, notaUrgenciasBorrado) => {
+        if (err) {
+            return res.status(400).json({ ok: false, error: { mensaje: err } });
+        };
+      if (!notaUrgenciasBorrado) {
+            return res.status(401).
+            json({ ok: false, error: { mensaje: 'No existe nota urgencias.' } });
+        };
+      res.json({ ok: true, notaUrgenciasBorrado });
+    });
 
-//});
+});
+
 
 
 module.exports = app;

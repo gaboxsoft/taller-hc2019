@@ -14,62 +14,54 @@
             <div class="col-md-3 text-right">folio:</div>
             <div class="col-md-7 text-left"><input type="text" v-model="paciente.folioCuenta" name="folioCuenta"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Nombre:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.nombre" name="nombre"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Estado civíl:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Género:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.genero" name="genero"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Fecha nacimiento:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
           </div>
-
+          <div class="row">
+            <div class="col-md-3  text-right">Ocupación:</div>
+            <div class="col-md-7  text-left"><input type="text" v-model="paciente.ocupacion" name="fechaNacimiento"></div>
+          </div>
           <div class="row">
             <div class="col-md-3  text-right">Calle:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.calle" name="calle"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Número exterior:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.numExterior" name="numExterior"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Número interior:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.numInterior" name="numInterior"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Colonia:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.colonia" name="colonia"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Municipio:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.municipio" name="municipio"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Estado:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.entidad" name="entidad"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">País:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.pais" name="pais"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">CP:</div>
             <div class="col-md-7  text-left"><input type="text" v-model="paciente.CP" name="CP"></div>
@@ -164,6 +156,7 @@
             nombre: this.paciente.nombre,
             fechaNacimiento: this.paciente.fechaNacimiento,
             genero: this.paciente.genero,
+            ocupacion: this.paciente.ocupacion,
             calle: this.paciente.calle,
             numInterior: this.paciente.numInterior,
             numExterior: this.paciente.numExterior,
@@ -180,12 +173,12 @@
         };
         axios(req)
           .then((response) => {
-            console.log('En guardar hie-- success---->>> pasé ', response.data);
+            //console.log('En guardar hie-- success---->>> pasé ', response.data);
             this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2.5);
 
           })
           .catch(err => {
-            console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
+            //console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
             this.$refs.notify.showNotify("ERROR AL GUARDAR: " + err.response, 2.5);
           });
       },
@@ -203,7 +196,7 @@
 
       },
       seleccionar: function (pacienteId) {
-        console.log('aquí en seleccionar paciente, id: ', pacienteId);
+        //console.log('aquí en seleccionar paciente, id: ', pacienteId);
         this.$store.commit('setPacienteId', pacienteId)
         this.$router.push({ name: 'index' })
         this.$forceUpdate();
@@ -220,15 +213,15 @@
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('urlGetPaciente en UPDATE_PACIENTEcmp: ', this.urlGetPaciente);
-            console.log('response.data en UPDATE_PACIENTEcmp: ', response.data);
+            //console.log('urlGetPaciente en UPDATE_PACIENTEcmp: ', this.urlGetPaciente);
+            //console.log('response.data en UPDATE_PACIENTEcmp: ', response.data);
             
             //this.$store.commit('setCurrentPaciente', this.paciente);
           },
           (error) => {
-            console.log('paciente en updatePaciente ---ERROR -- NO EXISTE: ', this.urlGetPaciente);
+            //console.log('paciente en updatePaciente ---ERROR -- NO EXISTE: ', this.urlGetPaciente);
             this.err = error.response.data.error;
-            console.log('en UpdatePaciente->getCurrentPaciente->error', this.err);
+            //console.log('en UpdatePaciente->getCurrentPaciente->error', this.err);
               //this.$store.commit('setCurrentPaciente', undefined);
               this.paciente = {
                 folioCuenta: '',

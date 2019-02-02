@@ -25,13 +25,13 @@ module.exports = {
     /*
      ** Global CSS
      */
-    css: [],
+  css: [],
 
     /*
      ** Plugins to load before mounting the App
      */
 
-    // Para usar vuex-persistedstate 
+    // Para usar vuex-persistente 
     plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
 
 

@@ -20,7 +20,7 @@
         <b-navbar-nav>
           <b-nav-item-dropdown text="RECEPCIÓN"
                                right>
-            <b-dropdown-item href="/RegistroPaciente">Registro Paciente</b-dropdown-item>
+            <b-dropdown-item href="/RegistroPaciente">Pacientes</b-dropdown-item>
             <b-dropdown-item href="/Contrato">Contrato Prestación Servicios</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="VALORACIÓN"
@@ -91,7 +91,6 @@
       </b-collapse>
     </b-navbar>
 
-
     <pacienteTagCmp />
 </div>
 </template>
@@ -107,10 +106,7 @@ export default
       components: {
         pacienteTagCmp
       }
-
   }
-
-
 </script>
 
 

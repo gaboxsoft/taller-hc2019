@@ -2,7 +2,7 @@
     "name": "nuxt-node",
     "version": "1.0.0",
     "description": "Nodejs and Vue with Express in parallel",
-    "author": "gabox",
+    "author": "Gabriel Suárez Valdez (gaboSoft)",
     "private": true,
     "scripts": {
         "dev": "cross-env NODE_ENV=development nodemon server/index.js -e js,html,vue --watch server ",

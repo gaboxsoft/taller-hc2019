@@ -1,4 +1,5 @@
 const Paciente = require('../models/paciente');
+const NotaUrgencias = require('../models/notaUrgencias');
 
 const express = require('express');
 const app = express();
@@ -83,21 +84,39 @@ app.get('/msi12/:id', function (req, res) {
   console.log('generando nota Urgencias');
   console.log('TOKEN..................', req.get('token'));
   console.log('ID PACIENTE..................', req.params.id);
+  console.log('ID NOTA URGENCIAS..................', req.params.notaUrgenciasId);
 
   // Obtener el paciente
   const id = req.params.id;
   let token = req.get('token');
+  let notaUrgenciasId = req.get('notaUrgenciasId');
+
   Paciente.findById(id, (err, pacienteBD) => {
     if (err) {
       return res.status(400).
-        json({ ok: false, error: 'Error al generar reporte MSI-12 ' + err });
+        json({ ok: false, error: '1.- Error al generar reporte MSI-12 ' + err });
     };
-    //console.log(`0.-voy a ir a crear hoja exp: `);
-    let filePath = notaUrgenciasPdf(pacienteBD);
-    //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
-    //return res.download(path.dirname(filePath), path.basename(filePath));
+    if (!pacienteBD) {
+      return res.status(400).
+        json({ ok: false, error: '2.- Error al generar reporte MSI-12: No existe paciente ' });
+    };
+      NotaUrgencias.findById(notaUrgenciasId, (errNotaUrgencias, notaUrgenciasBD) => {
+        if (errNotaUrgencias) {
+          return res.status(400).
+            json({ ok: false, error: '3.- Error al generar reporte MSI-12: ', errNotaUrgencias});
+        };
+        if (!notaUrgenciasBD) {
+          return res.status(400).
+            json({ ok: false, error: '4.- Error al generar reporte MSI-12: No existe Nota Urgencias ' });
+        };
+        //console.log(`0.-voy a ir a crear hoja exp: `);
+        let filePath = notaUrgenciasPdf(pacienteBD, notaUrgenciasBD);
+        //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
+        //return res.download(path.dirname(filePath), path.basename(filePath));
 
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+      });
+    
 
   });
 

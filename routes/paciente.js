@@ -9,6 +9,10 @@ let { verificaToken, verificaAdminRol } = require('../middleware/autenticacion')
 
 app.get('/pacientes', verificaToken, function(req, res) {
 
+  console.log((req ? 'REQ si' : 'REQ no'));
+  console.log((req.query ? 'REQ.query si' : 'REQ.query no'));
+  console.log((req.query.limite ? 'REQ.query.limite si' : 'REQ.query.limite no'));
+  console.log((req.query.desde ? 'REQ.query.desde si' : 'REQ.query.desde no'));
     let limite = Number(req.query.limite || 0);
     let desde = Number(req.query.desde || 0);
 
@@ -157,7 +161,8 @@ app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
   let body = _.pick(req.body, [
     //'folioCuenta',
-    'nombre','fechaNacimiento', 'genero',
+    'nombre', 'fechaNacimiento', 'genero',
+    'ocupacion',
     'calle', 'numInterior', 'numExterior',
     'colonia', 'municipio',
     'entidad', 'pais', 'telefonos', 'CP',

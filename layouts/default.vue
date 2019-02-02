@@ -1,7 +1,6 @@
 <template>
   <div>
     <headerCmp />
-
     <nuxt />
     <footerCmp />
   </div>
@@ -17,19 +16,23 @@
     }
   }
 </script>
+<!--<style>-->
 
-<style>
-    .main-container {
-    /*min-height: 100vh;*/
-    /*display: flex;*/
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 90px;
-  }
-    </style>
+  /*.main-container {*/
+    /*--min-height: 100vh;*/
+    /*--display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*text-align: center;*/
+    /*padding-top: 90px;*/
+  /*}*/
 
-  <!--html {
+<!--</style>-->
+
+ 
+
+
+<!--html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -77,5 +80,3 @@
   background-color: #35495e;
 }
 </style>-->
-
-

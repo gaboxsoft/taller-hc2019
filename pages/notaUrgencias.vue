@@ -1,17 +1,25 @@
 
 <template>
-    <div class="container">
-      <notaUrgenciasCmp/>
-    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <notasUrgenciasCmp />
+      </div>
+      <div class="col-md-4">
+        <notaUrgenciasCmp />
+      </div>
+  </div>
+
+  </div>
 </template>
 
 <script>
+  import notasUrgenciasCmp from '~/components/notasUrgenciasCmp';
   import notaUrgenciasCmp from '~/components/notaUrgenciasCmp';
-  import axios from 'axios';
-  
   export default {
     name: 'NotaUrgencias',
     components: {
+      notasUrgenciasCmp,
       notaUrgenciasCmp
     },
     created() {
@@ -19,6 +27,7 @@
       if (this.$store.state.token === 'NONE') {
         this.$router.push({ name: 'login' })
       };
+      this.$store.commit('setNotaUrgenciasId', 'NUEVO');
 
     }
   };

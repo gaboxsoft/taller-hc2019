@@ -40,8 +40,6 @@ app.use(bodyParser.json());
 //Habilitar la carpeta public
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-console.log('-----> hostPort=', process.env.HOSTPORT);
-
 app.set('port', process.env.PORT)
 
 // Import and Set Nuxt.js options

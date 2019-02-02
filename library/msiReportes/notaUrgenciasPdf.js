@@ -8,7 +8,7 @@ const moment = require('moment');
 require('moment/locale/es');  // without this line it didn't work
 moment.locale('es')
 
-const notaUrgenciasPdf = (paciente) => {
+const notaUrgenciasPdf = (paciente, notaUrgencias) => {
   const hojaCartaPort = [612, 792];
   const hojaCartaLan = [792, 612];
 
@@ -83,6 +83,7 @@ const notaUrgenciasPdf = (paciente) => {
 
 function writeLine(doc, text, row, col, align, fontSize, color) {
   const vacio = '';
+  console.log('---- ');
   console.log('in writeLine-> text: [', text, '] typeOf', typeof (text));
   console.log('in writeLine-> align: [', align, '] typeOf', typeof (align));
   console.log('in writeLine-> fontSize: [', fontSize, '] typeOf', typeof (fontSize));

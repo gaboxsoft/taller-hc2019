@@ -10,17 +10,19 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 
+
 let verificaToken = (req, res, next) => {
     //let request = req;
   let token = req.get('token');
-  console.log('0> En VerificaToken, req -->', req);
-  console.log('1> En VerificaToken, token -->', token);
-  console.log('1.1> En VerificaToken, req -->', req.get('token'));
+  //console.log('0> En VerificaToken, req -->', req);
+  //console.log('1> En VerificaToken, token -->', new Date(Date.now()), token);
+  //console.log('1.1> En VerificaToken, req -->', req.get('token'));
 
     jwt.verify(token, process.env.SEED, (err, decode) => {
-        console.log('2> En VerificaToken, token -->', token);
+        //console.log('2>> En VerificaToken, token -->', token);
         const hoy = new Date(Date.now());
         if (err) {
+          //console.log('2.1>> En VerificaToken, token -->error:', token);
             return res.status(401).json({
                 ok: false,
                 error: { mensaje: '>>>>>>Token no válido.1', err, ahora: hoy, lapso: process.env.CADUCIDAD }
@@ -150,6 +152,28 @@ let verificaPrimerUsuarioAdmin = (req, res, next) => {
   });
   next();
 };
+
+
+
+
+//let verificaToken = (req, res, next) => {
+//  next();
+//}
+//let verificaAdminRol = (req, res, next) => {
+//  next();
+//}
+//let verificaOperadorRol = (req, res, next) => {
+//  next();
+//}
+//let verificaDoctorRol = (req, res, next) => {
+//  next();
+//}
+//let verificaEnfermeriaRol = (req, res, next) => {
+//  next();
+//}
+//let verificaPrimerUsuarioAdmin = (req, res, next) => {
+//  next();
+//}
 
 module.exports = {
   verificaToken, verificaAdminRol,

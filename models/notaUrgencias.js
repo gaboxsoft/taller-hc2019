@@ -1,25 +1,25 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const edoCivilValido = require('./EdoCivilValido');
+const situacionValida = require('./situacionValida');
 
 var notaUrgenciasSchema = new Schema({
 
-  fechaEmision: {
+  fechaNota: {
     type: Date,
     //required: [true, 'La fecha de ingreso es necesaria.'],
     default: () => { new Date().toLocaleString() }
   },
-  lugarNacimiento: {
-    type: String
-  },
-  ocupacion: {
-    type: String
-  },
-  estadoCivil: {
-    type: String,
-    enum: edoCivilValido
-  },
+  //lugarNacimiento: {
+  //  type: String
+  //},
+  //ocupacion: {
+  //  type: String
+  //},
+  //estadoCivil: {
+  //  type: String,
+  //  enum: edoCivilValido
+  //},
   seguro: {
     type: String
   },
@@ -39,7 +39,7 @@ var notaUrgenciasSchema = new Schema({
     type: String
   },
   peso: {
-    type: Number
+    type: String
   },
   talla: {
     type: String
@@ -57,7 +57,38 @@ var notaUrgenciasSchema = new Schema({
   paciente: {
     type: Schema.Types.ObjectId,
     ref: 'Usuario'
+  },
+
+  //situacionSe: {
+  //  type: Number,
+  //  default:1
+  //},
+
+  /////////////////////////
+// Sello
+  fechaCreacionSe: {
+    type: Date,
+    required: [true, 'La fecha de creación es necesaria.'],
+    default: () => { new Date().toLocaleString() }
+  },
+  fechaModificacionSe: {
+    type: Date
+  },
+  situacionSe: {
+    type: Number,
+    required: [true, 'La situación deldocumento es necesaria.'],
+    enum: situacionValida,
+    default: 1 // 0-borrardo,  1-activo
+  },
+  fechaBorradoSe: {
+    type: Date
+  },
+  usuarioSe: {
+    type: Schema.Types.ObjectId,
+    ref: 'Usuario'
   }
+/////////////////////////
+
 });
 
 module.exports = mongoose.model('NotaUrgencias', notaUrgenciasSchema);

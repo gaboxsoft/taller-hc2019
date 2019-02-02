@@ -83,7 +83,7 @@ export default {
     }
   },
     created() {
-      console.log('AQUÍ EN PACIENTES_CMP');
+      //console.log('AQUÍ EN PACIENTES_CMP');
     this.getPacientes();
   },
 
@@ -103,7 +103,7 @@ export default {
 
     },
     seleccionar: function (pacienteId) {
-      console.log('aquí en seleccionar paciente, id: ', pacienteId);
+      //console.log('aquí en seleccionar paciente, id: ', pacienteId);
       this.$store.commit('setPacienteId', pacienteId)
       //this.$router.push({ name: 'index' })
       //this.$router.push({ name: 'hojaInicialExpediente' })
@@ -117,25 +117,25 @@ export default {
 
     },
     getCurrentPaciente: function (token) {
-      console.log('Aquí en pacienteCmp-->getCurrentPaciente: ', this.getPacienteId);
+      //console.log('Aquí en pacienteCmp-->getCurrentPaciente: ', this.getPacienteId);
 
       axios.get(this.urlApiPaciente, {
         token: token
       })
         .then((response) => {
           this.paciente = response.data.paciente;
-          console.log('Leí currentPaciente en pacientesCmp: ', response.data.paciente);
+          //console.log('Leí currentPaciente en pacientesCmp: ', response.data.paciente);
           //this.$store.commit('setCurrentPaciente', this.paciente);
         },
         (error) => {
-          console.log('Leí paciente en historia clinica --ERROR--: ', error);          
+          //console.log('Leí paciente en historia clinica --ERROR--: ', error);          
             this.err = error.response.data.error;
-            this.$store.commit('setCurrentPaciente', undefined);
+            this.$store.commit('setPacienteId', undefined);
           });
     },
 
     getPacientes: function () {
-     console.log('AQUÍ EN pacientesCmp getPacientes()');
+     //console.log('AQUÍ EN pacientesCmp getPacientes()');
       this.token = this.$store.state.token;
       axios.get(urlGetPacientes, {
         headers: {
@@ -143,7 +143,7 @@ export default {
         }
       }).then((response) => {
         this.pacientes = response.data.pacientes;
-        console.log('en GetPacientes()--> listando pacientes', this.pacientes);
+        //console.log('en GetPacientes()--> listando pacientes', this.pacientes);
         this.totalPacientes = this.pacientes.length
         //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
 

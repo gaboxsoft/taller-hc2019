@@ -7,89 +7,83 @@
     <notifyCmp ref="notify"/>
 
     <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
+    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
 
     <br />
     <br />
     <form action="#">
       <div class="row">
         <div class="col-md-10">
+          <!--<div class="row">
+            <div class="col-md-7 text-sm-left">{{notaUrgencias._id}}</div>
+          </div>-->
           <div class="row">
             <div class="col-md-3 text-right">fecha-hora:</div>
-            <div class="col-md-7 text-left"><input type="datetime" v-model="paciente.fecha1" name="fecha1"></div>
+            <div class="col-md-5 text-left"><input type="datetime" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
           </div>
-
           <div class="row">
-            <div class="col-md-3  text-right">Ocupacion:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.ocupacion" name="ocupacion"></div>
+            <div class="col-md-5  text-right">Ocupacion:</div>
+            <!--            <div class="col-md-5  text-left"><input type="text" v-model="paciente.ocupacion" name="ocupacion"></div>-->
+            <div class="col-md-4  text-left">{{paciente.ocupacion}}</div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Seguro:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.seguro" name="seguro"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.seguro" name="seguro"></div>
           </div>
-
 
           <div class="row">
             <div class="col-md-3  text-right">Diagnóstico egreso:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.diagnosticoEgreso" name="diagnosticoEgreso"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso"></div>
           </div>
 
+          
           <div class="row">
             <div class="col-md-3  text-right">FC:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.FC" name="FC"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.FC" name="FC"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">FR:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.FR" name="FR"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.FR" name="FR"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">TA:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.TA" name="TA"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.TA" name="TA"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">T:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.T" name="T"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.T" name="T"></div>
           </div>
+
+
 
           <div class="row">
             <div class="col-md-3  text-right">Peso:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.peso1" name="peso1"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.peso" name="peso"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Talla:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.talla1" name="talla1"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.talla" name="talla"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Antecedentes importantes:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.antecedentesImportancia1" name="antecedentesImportancia1"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Resumen clínico:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.resumenClinico1" name="resumenClinico1"></div>
+            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico"></div>
           </div>
-
           <div class="row">
             <div class="col-md-3  text-right">Indicaciones:</div>
-           <!-- <div class="col-md-7  text-left"><input type="text" v-model="paciente.indicaciones1" name="indicaciones1"></div>-->
-            <div class="col-md-7  text-left">
-              <textarea v-model="paciente.indicaciones1" name="alergindicaciones1ias" rows="5" cols="50"></textarea>
-<!--              <input type="text" v-model="paciente.indicaciones1" name="indicaciones1">-->
+            <div class="col-md-5  text-left">
+              <textarea v-model="notaUrgencias.indicaciones" name="indicaciones" rows="5" cols="50"></textarea>
             </div>
           </div>
-
         </div>
       </div>
 
     </form>
     <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
+    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
 
   </div>
 </template>
@@ -108,111 +102,205 @@
     data() {
       return {
         tituloPagina: 'NOTA URGENCIAS',
-        /////////////////////////
-        // nota de Urgencias
-        /////////////////////////
-        paciente: {
-          fecha1: () => { new Date().toLocaleString() },
+        
+        paciente: {},
+        notaUrgencias: {},
+        notaUrgenciasNuevo: {
+          fechaNota: (new Date().toISOString()).split('.')[0],
           seguro: '',
           diagnosticoEgreso: '',
-          ocupacion:'',
           FC: '',
-          TR: '',
+          FR: '',
           TA: '',
           T: '',
-          peso1: '',
-          talla1: '',
-          antecedentesImportancia1: '',
-          resumenClinico1: '',
-          indicaciones1:''
+          peso: '',
+          talla: '',
+          antecedentes: '',
+          resumenClinico: '',
+          indicaciones: ''
         }
       }
     },
 
     computed: {
+      urlApiNotaUrgencias: function () {
+        return 'http://localhost:3000/NotaUrgencias/';
+      },
       urlGetPaciente: function () {
         return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
-      urlNotaUrgencias: function () {
-        return 'http://localhost:3000/NotaUrgencias/' + this.$store.state.pacienteId;
+      urlGetNotaUrgencias: function () {
+        return 'http://localhost:3000/NotaUrgencias/' + this.$store.notaUrgenciasId;
       },
       urlNotaUrgenciasPdf: function () {
         return 'http://localhost:3000/msi12/' + this.$store.state.pacienteId;
       },
-      getPaciente: function () {
-        return this.$store.state.currentPaciente;
-      },
-      setPaciente: function () {
-        this.$store.commit(this.currentPaciente);
+      getNotaUrgenciasId: function () {
+        return this.$store.state.notaUrgenciasId;
       },
       getToken: function () {
         return this.$store.state.token;
       }
     },
+    watch: {
+      getNotaUrgenciasId: function () {
+        console.log('notasUrgenciasCmp->Watch->getNotaUrgenciasId->', this.getNotaUrgenciasId)
+
+        this.getCurrentPaciente(this.getToken);
+        if (!this.getNotaUrgenciasId || this.getNotaUrgenciasId === 'NUEVO' || this.getNotaUrgenciasId === 'NONE') {
+          console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...2');
+          this.notaUrgencias = this.notaUrgenciasNuevo;
+        }
+        else { 
+          console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
+          this.getNotaUrgencias();
+        }
+        
+      }
+    },
     created() {
       this.getCurrentPaciente(this.getToken);
-      console.log('EN nota urgencias.Created, Paciente= ', this.Paciente);
+      if (!this.getNotaUrgenciasId || this.getNotaUrgenciasId === 'NUEVO' || this.getNotaUrgenciasId === 'NONE') {
+        console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...1');
+        this.$store.commit('setNotaUrgenciasId', 'NUEVO');
+        this.notaUrgencias = this.notaUrgenciasNuevo;
+      }
+      else { 
+        console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
+        this.getNotaUrgencias();
+      }
+      //console.log('EN nota urgencias.Created, Paciente= ', this.Paciente);
     },
 
     methods: {
+      
+      getNotaUrgencias: function () {
 
-      getCurrentPaciente: function (token) {
+        console.log('--1.- en NotaUrgenciasCmp->urlNotaUrgencias->', this.urlGetNotaUrgencias);
+        //console.log('--1.1.- en NotasUrgenciasCmp->Token->', this.getToken);
+        //console.log('--1.2.- en NotasUrgenciasCmp->Token->', this.$store.state.pacienteId);
+        console.log('--1.3.- en NotaUrgenciasCmp->urlNotaUrgencias->', this.urlApiNotaUrgencias + this.$store.state.notaUrgenciasId);
+        console.log('--1.4.- en NotaUrgenciasCmp->notaUrgenciasId->', this.$store.state.notaUrgenciasId);
+        //axios.get(this.urlGetNotasUrgencias, {
+        axios.get(this.urlApiNotaUrgencias + this.$store.state.notaUrgenciasId, {
+          //token: token
+          headers: {
+            token: this.getToken
+          }
+        })
+          .then((response) => {
+            console.log('ojo 22.-response.data en nota urgencias: ', response.data);
+            this.notaUrgencias = response.data.notaUrgencias;
+            this.notaUrgencias.fechaNota = this.notaUrgencias.fechaNota.split('.')[0];
+
+          },
+            (error) => {
+              this.err = error;
+              console.log('23.-ERROR response.data en nota urgencias: ');
+              this.$store.commit('setNotaUrgenciasId', undefined);
+            });
+      },
+
+      getCurrentPaciente: function () {
 
         axios.get(this.urlGetPaciente, {
-          token: token
+          token: this.getToken
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('response.data en nota urgencias: ', response.data);
             console.log('paciente en nota urgencias: ',this.paciente);
-            //this.$store.commit('setCurrentPaciente', this.paciente);
-            console.log('leí -> fecha de notaUrgencia-> ', this.paciente.fecha1);
 
           },
             (error) => {
               this.err = error.response.data.error;
-              this.$store.commit('setCurrentPaciente', undefined);
+              this.$store.commit('setPacienteId', undefined);
             });
       },
       guardar: function () {
-        console.log('1 En guardar NU-- url---->>>  ', this.urlHistoriaClinica);
+        
+        console.log('1 En guardar NU-- url---->>>  ', this.urlApiNotaUrgencias + this.$store.state.pacienteId);
         this.token = this.getToken;
-        console.log('2 En guardar NU-- token---->>>  ', this.token);
-        console.log('2.1.- fecha de notaUrgencia-> ', this.paciente.fecha1)
-        console.log('2.2.- fecha de notaUrgencia-> ', this.paciente.fecha1.split('.')[0]);
-        this.paciente.fecha1 = this.paciente.fecha1.split('.')[0];
-        const req = {
-          method: 'put',
-          url: this.urlNotaUrgencias,
-          headers: {
-            token: this.token
-          },
-          data: {
-            fecha1: this.paciente.fecha1,
-            diagnosticoEgreso: this.paciente.diagnosticoEgreso,
-            seguro: this.paciente.seguro,
-            ocupacion: this.paciente.ocupacion,
-            FC: this.paciente.FC,
-            FR: this.paciente.FR,
-            TA: this.paciente.TA,
-            T: this.paciente.T,
-            peso1: this.paciente.peso1,
-            talla1: this.paciente.talla1,
-            antecedentesImportancia1: this.paciente.antecedentesImportancia1,
-              resumenClinico1: this.paciente.resumenClinico1,
-            indicaciones1: this.paciente.indicaciones1
-          }
-        };
-        axios(req)
-          .then((response) => {
-            console.log('En guardar NU-- success---->>> pasé ', response.data);
-            this.$refs.notify.showNotify("DOCUMENTO GUARDADO", .5);
+        this.notaUrgencias.fechaNota = this.notaUrgencias.fechaNota.split('.')[0];
+        //console.log('2 En guardar NU-- token---->>>  ', this.token);
+        console.log('2.1.- fecha de notaUrgencia-> ', this.notaUrgencias.fechaNota)
+        console.log('2.2.- nuevo->notaUrgenciasId  ', this.$store.state.notaUrgenciasId);
 
-          })
-          .catch(err => {
-            console.log('ERROR  al guardar NU-- fail---->>> ', err.response);
-            this.$refs.notify.showNotify("ERROR AL GUARDAR "+err, 5);
-          });
+        
+        if (this.$store.state.notaUrgenciasId === 'NUEVO') {
+          const req = {
+            method: 'post',
+            url: this.urlApiNotaUrgencias + this.$store.state.pacienteId,
+            headers: {
+              token: this.token
+            },
+            data: {
+              fechaNota: this.notaUrgencias.fechaNota,
+              diagnosticoEgreso: this.notaUrgencias.diagnosticoEgreso,
+              seguro: this.notaUrgencias.seguro,
+              ocupacion: this.notaUrgencias.ocupacion,
+              FC: this.notaUrgencias.FC,
+              FR: this.notaUrgencias.FR,
+              TA: this.notaUrgencias.TA,
+              T: this.notaUrgencias.T,
+              peso: this.notaUrgencias.peso,
+              talla: this.notaUrgencias.talla,
+              antecedentesImportancia: this.notaUrgencias.antecedentesImportancia,
+              resumenClinico: this.notaUrgencias.resumenClinico,
+              indicaciones: this.notaUrgencias.indicaciones
+            }
+          };
+
+          axios(req)
+            .then((response) => {
+              console.log('3.1.-En guardar NUEVO  NU-- success---->>> pasé ', response.data.notaUrgencias);
+              
+              this.notaUrgencias = response.data.notaUrgencias;
+              this.$refs.notify.showNotify("DOCUMENTO NUEVO GUARDADO", 2);
+
+              this.$store.commit('setNotaUrgenciasId', this.notaUrgencias._id);
+              this.$store.commit('setSocketNotasUrgencias');
+            })
+            .catch(err => {
+              console.log('3.2.-ERROR  al guardar NUEVO  NU-- fail---->>> ', err);
+              this.$refs.notify.showNotify("ERROR AL GUARDAR " + err, 5);
+            });
+        }
+        else {
+          const req = {
+            method: 'put',
+            url: this.urlApiNotaUrgencias + this.$store.state.notaUrgenciasId,
+            headers: {
+              token: this.token
+            },
+            data: {
+              fechaNota: this.notaUrgencias.fechaNota,
+              diagnosticoEgreso: this.notaUrgencias.diagnosticoEgreso,
+              seguro: this.notaUrgencias.seguro,
+              ocupacion: this.notaUrgencias.ocupacion,
+              FC: this.notaUrgencias.FC,
+              FR: this.notaUrgencias.FR,
+              TA: this.notaUrgencias.TA,
+              T: this.notaUrgencias.T,
+              peso: this.notaUrgencias.peso,
+              talla: this.notaUrgencias.talla,
+              antecedentesImportancia: this.notaUrgencias.antecedentesImportancia,
+              resumenClinico: this.notaUrgencias.resumenClinico,
+              indicaciones: this.notaUrgencias.indicaciones
+            }
+          };
+          axios(req)
+            .then((response) => {
+              console.log('4.1.- En guardar NU-- success---->>> pasé ', response.data);
+              this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2);
+              this.$store.commit('setSocketNotasUrgencias');
+              this.$store.commit('setNotaUrgenciasId', this.notaUrgencias._id);
+
+            })
+            .catch(err => {
+              console.log('4.2.- ERROR  al guardar NU-- fail---->>> ', err);
+              this.$refs.notify.showNotify("ERROR AL GUARDAR " + err, 5);
+            });
+        }
       },
       imprimir: function () {
 

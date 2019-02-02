@@ -151,9 +151,9 @@ const MAX_SIZE_NOMBRE = 50;
       },
       guardarHojaInicialExpediente: function () {
 
-        console.log('1 En guardar hie-- url---->>>  ', this.urlHojaInicialExpediente);
+        //console.log('1 En guardar hie-- url---->>>  ', this.urlHojaInicialExpediente);
         this.token = this.getToken;
-        console.log('2 En guardar hie-- token---->>>  ', this.token);
+        //console.log('2 En guardar hie-- token---->>>  ', this.token);
         const req = {
           method: 'put',
           url: this.urlHojaInicialExpediente,
@@ -174,18 +174,18 @@ const MAX_SIZE_NOMBRE = 50;
         };
         axios(req)
           .then((response) => {
-            console.log('En guardar hie-- success---->>> pasé ', response.data);
+            //console.log('En guardar hie-- success---->>> pasé ', response.data);
             this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2.5);
 
           })
           .catch(err => {
-            console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
+            //console.log('ERROR  al guardar HIE-- fail---->>> pasé ', err.response);
             this.$refs.notify.showNotify("ERROR AL GUARDAR: "+err.response, 2.5);
           });
       },
       imprimirHojaInicialExpediente: function () {
 
-        console.log('aquí en imprimir HIE...', this.urlHojaInicialExpedientePdf);
+        //console.log('aquí en imprimir HIE...', this.urlHojaInicialExpedientePdf);
         
         axios.get(this.urlHojaInicialExpedientePdf, {
           headers: {
@@ -195,17 +195,17 @@ const MAX_SIZE_NOMBRE = 50;
           }
         })
           .then((response) => {
-            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
+            //console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
             this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4,response.data.pdfFile, true);
           },
             (error) => {
               this.err = error.response.data.error;
-              console.log('Error en imprimirHojaInicialExpediente: ', this.err);
+              //console.log('Error en imprimirHojaInicialExpediente: ', this.err);
               this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO: "+error, 5);
             });
       },     
       seleccionar: function (pacienteId) {
-        console.log('aquí en seleccionar paciente, id: ', pacienteId);
+        //console.log('aquí en seleccionar paciente, id: ', pacienteId);
         this.$store.commit('setPacienteId', pacienteId)
         this.$router.push({ name: 'index' })
         this.$forceUpdate();
