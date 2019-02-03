@@ -4,7 +4,7 @@
     <h1 class=" text-primary">{{tituloPagina}}</h1>
     <notifyCmp ref="notify" />
     <b-btn class="bg-success" v-on:click="agregar">NUEVA NOTA DE EVOLUCION</b-btn>
-    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
+    <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
 
     <p></p>
     <div class="row">
@@ -24,11 +24,11 @@
                 <td>{{e.descripcion}}</td>
                 
                 <td style="width:25px;">
-                  <b-btn btn-xs
+                  <!--<b-btn btn-xs
                          v-on:click="imprimir(e._id)">
                     Imp
-                    <!-- <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
-                  </b-btn>
+                     <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
+                  </b-btn>-->
                   <!--</td>
     <td style="width:25px;">-->
                   <b-btn btn-xs
@@ -49,8 +49,8 @@
     <p></p>
 
 
-    <!--<b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-  <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
+    <!--<b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>-->
+  <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
 
   </div>
 </template>
@@ -174,17 +174,14 @@
       },
     
       imprimir: function (evolucionId) {
-        if (evolucionId == '') {
-          return;
-        }
+        
         console.log('aquí en imprimir HojaEvolucion...', this.urlHojaEvolucionPdf);
         this.seleccionar(evolucionId);
         axios.get(this.urlHojaEvolucionPdf, {
           headers: {
             token: this.getToken,
             Accept: 'application/pdf',
-            responseType: 'blob',
-            notaUrgenciasId: notaUrgenciasId
+            responseType: 'blob'
           }
         })
           .then((response) => {

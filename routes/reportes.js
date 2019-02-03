@@ -1,5 +1,6 @@
 const Paciente = require('../models/paciente');
 const NotaUrgencias = require('../models/notaUrgencias');
+const Evolucion = require('../models/evolucion');
 
 const express = require('express');
 const app = express();
@@ -157,13 +158,15 @@ app.get('/msi14/:id', function (req, res) {
         };
 
 
-        let filePath = hojaEvolucionesPdf(pacienteBD, evolucionessBD);
+        let filePath = hojaEvolucionPdf(pacienteBD, evolucionesBD);
         //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
         //return res.download(path.dirname(filePath), path.basename(filePath));
 
         return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
 
       });
+
+
 
 
   });

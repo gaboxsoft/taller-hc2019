@@ -38,8 +38,17 @@ const hojaEvolucionPdf = (paciente, evoluciones) => {
   const maxAlto = altoHoja - margenInf - margenSup;
   const sizePaperLetter = '210.02x297.01';
   const centroMedico = 'Médica San Isidro';
-  //
-  //console.log('paciente: ', paciente);
+  
+  console.log('paciente: ', paciente.nombre);
+  console.log('evoluciones: ');
+  if (evoluciones) {
+    for (var v in evoluciones) {
+      console.log(v);
+    };
+  }
+  else {
+    console.log('--NO HAY EVOLUCIÓN-');
+  }
 
   let imgFormato = path.resolve(__dirname, '../../msiformatos/msi14.jpg');
 
@@ -60,21 +69,21 @@ const hojaEvolucionPdf = (paciente, evoluciones) => {
     evoluciones.forEach(function (e) {
       if (line==0) {
         // Escribe encabezados
-        fields.forEach(function (field) {
+        pages[0].forEach(function (field) {
           writeLine(doc, eval(field.name), field.row, field.col, field.align, field.fontSize, field.color);
         });
       };
       writeLine(doc, e.fecha, row, col, 'left', 10, 'black');
-      writeLine(doc, e.descricion, row, col + 3, 'left', 10, 'black');
+      writeLine(doc, e.descripcion, row, col + 3, 'left', 10, 'black');
       row += .5;
       line++;
-      // agrega otra hoja
-      if (line % linesByPage == 0) {
-        doc.image(imgFormato, {
-          fit: [anchoHoja, altoHoja]
-        });
-        line = 0;
-      }
+      //// agrega otra hoja
+      //if (line % linesByPage == 0) {
+      //  doc.image(imgFormato, {
+      //    fit: [anchoHoja, altoHoja]
+      //  });
+      //  line = 0;
+      //}
     });
  
 
