@@ -5,12 +5,12 @@
     "\\components",
     "\\layouts",
     "\\library",
-    "\\node_modules\\bootstrap\\dist",
-    "\\node_modules\\bootstrap\\dist\\css",
-    "\\node_modules\\bootstrap\\dist\\js",
-    "\\node_modules\\bootstrap\\js",
-    "\\pages"
+    "\\library\\msiReportes",
+    "\\middleware",
+    "\\models",
+    "\\routes",
+    "\\store"
   ],
-  "SelectedNode": "\\library",
+  "SelectedNode": "\\library\\msiReportes\\hojaEvolucionFields.cfg",
   "PreviewInSolutionExplorer": false
 }

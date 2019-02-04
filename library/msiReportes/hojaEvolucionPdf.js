@@ -64,8 +64,8 @@ const hojaEvolucionPdf = (paciente, evoluciones) => {
   page = 1;
   linesByPage = 3;
   line = 0;
-  col = 2;
-  row = 5;
+  col = 1.5;
+  row = 8.2;
     evoluciones.forEach(function (e) {
       if (line==0) {
         // Escribe encabezados
@@ -73,8 +73,9 @@ const hojaEvolucionPdf = (paciente, evoluciones) => {
           writeLine(doc, eval(field.name), field.row, field.col, field.align, field.fontSize, field.color);
         });
       };
-      writeLine(doc, e.fecha, row, col, 'left', 10, 'black');
-      writeLine(doc, e.descripcion, row, col + 3, 'left', 10, 'black');
+      writeLine(doc, new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+        , row, col, 'left', 8, 'black');
+      writeLine(doc, e.descripcion, row, col + 3, 'left', 8, 'black');
       row += .5;
       line++;
       //// agrega otra hoja

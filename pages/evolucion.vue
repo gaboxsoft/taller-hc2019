@@ -6,7 +6,7 @@
         <evolucionesCmp />
       </div>
       <div class="col-md-4">
-        <!--<evolucionCmp />-->
+        <evolucionCmp />
       </div>
   </div>
 
