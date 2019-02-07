@@ -39,10 +39,8 @@ process.env.CADUCIDAD = process.env.CADUCIDAD || 1000 * 60 * 60 * 24 * 30; //60s
 //process.env.CADUCIDAD = process.env.CADUCIDAD || 1000 * 5; //1000 milisegundos=1seg => 1hra = 1000*60segs*60mins
 
 // Client_Id de google
-process.env.CLIENT_ID = process.env.CLIENT_ID || '403607364933-cndqin88pdjlrpcuhrcb4djn38us80dd.apps.googleusercontent.com';
+process.env.CLIENT_ID = process.env.GOOGLE_CLIENT_ID || 'none';
 
-// Diferencia de la zona horaria central de México: UTC-6 
-process.env.UTCmx = process.env.UTCmx || (1000 * 60 * 60 * 6);
 
 /////////////////////////
 //// Agrega las variables de sesion
