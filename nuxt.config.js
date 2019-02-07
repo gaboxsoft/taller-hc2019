@@ -66,6 +66,11 @@ module.exports = {
     /*
      ** Middleware for API use and be able to use in parallel with Vue
      */
-    serverMiddleware: ['~/api/index.js']
+  serverMiddleware: ['~/api/index.js'],
+  env: {
+    url_Server: process.env.URL_SERVER
+  },
+
+
 
 }

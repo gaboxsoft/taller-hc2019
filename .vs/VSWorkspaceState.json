@@ -3,14 +3,14 @@
     "",
     "\\api",
     "\\components",
+    "\\config",
     "\\layouts",
     "\\library",
     "\\library\\msiReportes",
     "\\middleware",
-    "\\models",
     "\\routes",
     "\\store"
   ],
-  "SelectedNode": "\\library\\msiReportes\\hojaEvolucionFields.cfg",
+  "SelectedNode": "\\routes\\server.js",
   "PreviewInSolutionExplorer": false
 }

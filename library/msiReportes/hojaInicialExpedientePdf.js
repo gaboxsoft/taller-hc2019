@@ -87,7 +87,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   let ingreso = paciente.fechaIngreso || vacio;
   if (!(ingreso == vacio)) {
     ingreso = moment(ingreso).format('Do MMM YYYY, h:mm:ss a');
-    console.log('ingreso: ',ingreso)
+    console.log('ingreso: ', ingreso, '--', moment(ingreso),'--',paciente.fechaIngreso);
   }
   
   doc.moveDown()

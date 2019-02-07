@@ -69,7 +69,7 @@
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
-  //const moment = require('moment');
+  const moment = require('moment');
   //require('moment/locale/es');  // without this line it didn't work
   //moment.locale('es')
   export default {
@@ -146,8 +146,8 @@
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('response.data en nota urgencias: ', response.data);
-            console.log('paciente en nota urgencias: ', this.paciente);
+            //console.log('response.data en nota urgencias: ', response.data);
+            //console.log('paciente en nota urgencias: ', this.paciente);
           },
             (error) => {
               this.err = error.response.data.error;
@@ -167,20 +167,30 @@
           }
         })
           .then((response) => {
-            console.log('21.-response.data en nota urgencias: ', response.data);
-            console.log('22.-response.data.conteo en nota urgencias: ', response.data.conteo);
-            console.log('23.-response.data.notasUrgencias: ', response.data.notasUrgencias);
+            //console.log('21.-response.data en nota urgencias: ', response.data);
+            //console.log('22.-response.data.conteo en nota urgencias: ', response.data.conteo);
+            //console.log('23.-response.data.notasUrgencias: ', response.data.notasUrgencias);
             if (response.data.conteo = 0) {
-             this.notasUrgencias = notasVacia;
+              this.notasUrgencias = notasVacia;
             }
+
             else {
               this.notasUrgencias = response.data.notasUrgencias;
+              //console.log('nota urgencias_>', this.notasUrgencias);
+              for (var i = 0; i < this.notasUrgencias.length; i++) {
+                this.notasUrgencias[i].fechaNota = moment(this.notasUrgencias[i].fechaNota).format('YYYY-MM-DD HH:mm');
+              }
+              //for (let x in this.notasUrgencias) {
+              //  console.log('fecha_>', x.fechaNota);
+               
+              //}
             }
-            console.log('24.-final this.notasUrgencias: ', this.notasUrgencias);
+            //console.log('24.-final this.notasUrgencias: ', this.notasUrgencias);
           },
             (error) => {
               this.err = error.response.data.error;
               this.notasUrgencias = this.notasVacia;
+
               //this.$store.commit('setCurrentPaciente', undefined);
             });
       },
@@ -189,7 +199,7 @@
         if (notaUrgenciasId == '') {
           return;
         }
-        console.log('aquí en imprimir NU...', this.urlNotaUrgenciasPdf);
+        //console.log('aquí en imprimir NU...', this.urlNotaUrgenciasPdf);
         this.seleccionar(notaUrgenciasId);
         axios.get(this.urlNotaUrgenciasPdf, {
           headers: {
@@ -200,13 +210,13 @@
           }
         })
           .then((response) => {
-            console.log('aaquí en imprimir NU axios y regresó: ', response);
-            console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
+            //console.log('aaquí en imprimir NU axios y regresó: ', response);
+            //console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
             this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile,true);
           },
             (error) => {
               this.err = error.response.data.error;
-              console.log('Error en imprimir Nota Urgencias: ', this.err);
+              //console.log('Error en imprimir Nota Urgencias: ', this.err);
               this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO", 5);
             });
       }

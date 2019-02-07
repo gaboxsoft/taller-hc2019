@@ -19,7 +19,7 @@
           </div>-->
           <div class="row">
             <div class="col-md-3 text-right">fecha-hora:</div>
-            <div class="col-md-5 text-left"><input type="datetime" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
+            <div class="col-md-5 text-left"><input type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
           </div>
           <div class="row">
             <div class="col-md-5  text-right">Ocupacion:</div>
@@ -91,7 +91,7 @@
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
-  //const moment = require('moment');
+  const moment = require('moment');
   //require('moment/locale/es');  // without this line it didn't work
   //moment.locale('es')
   export default {
@@ -106,7 +106,7 @@
         paciente: {},
         notaUrgencias: {},
         notaUrgenciasNuevo: {
-          fechaNota: (new Date().toISOString()).split('.')[0],
+          fechaNota: moment().format('YYYY-MM-DDTHH:mm'), //(new Date().toISOString()).split('.')[0],
           seguro: '',
           diagnosticoEgreso: '',
           FC: '',
@@ -191,7 +191,7 @@
           .then((response) => {
             console.log('ojo 22.-response.data en nota urgencias: ', response.data);
             this.notaUrgencias = response.data.notaUrgencias;
-            this.notaUrgencias.fechaNota = this.notaUrgencias.fechaNota.split('.')[0];
+            this.notaUrgencias.fechaNota = moment(this.notaUrgencias.fechaNota).format('YYYY-MM-DDTHH:mm');
 
           },
             (error) => {

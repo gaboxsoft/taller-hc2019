@@ -19,8 +19,10 @@
     </span>-->
       <span>
         <label for="paciente.fechaIngreso">Fecha ingreso:</label>
-        <input type="text" v-model="paciente.fechaIngreso" />
+
+        <input type="datetime-local" v-model="paciente.fechaIngreso" />
       </span>
+
       <span>
         <b-btn class="bg-info" v-on:click="getFechaAhora">AHORA</b-btn>
       </span>
@@ -60,8 +62,8 @@ const MAX_SIZE_NOMBRE = 50;
   import notifyCmp from '~/components/notifyCmp';
 
   const moment = require('moment');
-  require('moment/locale/es');  // without this line it didn't work
-  moment.locale('es')
+  //require('moment/locale/es');  // without this line it didn't work
+  //moment.locale('es')
 
   export default {
     name: 'hojaInicialExpedienteCmp',
@@ -74,7 +76,7 @@ const MAX_SIZE_NOMBRE = 50;
         tituloPagina: 'HOJA INICIAL DE EXPEDIENTE',
         token: '',
         paciente: { //hojaInicioExpediente
-          fechaIngreso: (new Date().toISOString()).split('.')[0],
+          fechaIngreso: moment().format('YYYY-MM-DDTHH:mm:ss'),//(new Date().toISOString()).split('.')[0],
             tituloMT: '',
           nombreMT: '',
           cedulaMT: '',
@@ -89,6 +91,9 @@ const MAX_SIZE_NOMBRE = 50;
     },
 
     computed: {
+      url_Server: function () {
+        return process.env.url_Server;
+      },
       urlGetPaciente: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
         //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
@@ -115,6 +120,9 @@ const MAX_SIZE_NOMBRE = 50;
       }
     },
     created() {
+      console.log('url_Server: ', this.url_Server);
+     
+      console.log('fechaHora:', this.getFechaHora());
 
       this.getCurrentPaciente(this.getToken);
       //console.log('EN hojaIniExp.Created, currentPaciente= ', this.Paciente);
@@ -127,13 +135,30 @@ const MAX_SIZE_NOMBRE = 50;
 
     methods: {
       getFechaAhora: function () {
-        this.fechaIngreso = new Date().toISOString().split('.')[0];
+        this.fechaIngreso = this.getFechaHora();
+      },
+
+      getFechaHora: function () {
+        axios.get('/fechaHora', {
+          headers: {
+            token: this.getToken
+          }
+        })
+          .then((response) => {
+            console.log('fechaHora servidor: ', response.data.fechaHora);
+            return response.data.fechaHora;
+          },
+            (error) => {
+              console.log('ERROR en fechaHora servidor ');
+              this.err = error.response.data.error;
+              return new Date();
+            });
       },
 
       getCurrentPaciente: function (token) {
 
         //console.log('aquí en getCurrentPaciente y token:', token);
-        //console.log('aquí en getCurrentPaciente y url:', this.urlGetPaciente);
+        console.log('aquí en getCurrentPaciente y url:', this.urlGetPaciente);
 
         axios.get(this.urlGetPaciente, {
           token: token
@@ -141,10 +166,15 @@ const MAX_SIZE_NOMBRE = 50;
           .then((response) => {
             //console.log('aaquí en getCurrentPaciente axios y regresó: ', response.data.paciente);
             this.paciente = response.data.paciente;
+            console.log('fechaIngreso paciente de la BD: ', this.paciente.fechaIngreso);
+            this.paciente.fechaIngreso = moment(this.paciente.fechaIngreso).format('YYYY-MM-DDTHH:mm:ss');
+            console.log('fechaIngreso paciente de en moment(): ', this.paciente.fechaIngreso);
+
             //this.paciente.fechaIngreso = (new this.paciente.fechaIngreso.toISOString()).split('.')[0]
             //this.$store.commit('setCurrentPaciente', response.data.paciente);
           },
-            (error) => {
+          (error) => {
+            console.log('error en getCurrentPaciente(): ' + error);
               this.err = error.response.data.error;
              // this.$store.commit('setCurrentPaciente', undefined);
             });

@@ -38,9 +38,9 @@
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
-  //const moment = require('moment');
-  //require('moment/locale/es');  // without this line it didn't work
-  //moment.locale('es')
+  const moment = require('moment');
+  require('moment/locale/es');  // without this line it didn't work
+  moment.locale('es')
   export default {
     name: 'evolucionCmp',
     components: {
@@ -53,7 +53,7 @@
         paciente: {},
         evolucion: {},
         evolucionNuevo: {
-          fecha: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),//(new Date().toISOString()).split('.')[0],
+          fecha: moment(),////new Date().toISOString().replace(/T/, ' ').replace(/\..+/, ''),//(new Date().toISOString()).split('.')[0],
           descripcion: ''
         }
       }

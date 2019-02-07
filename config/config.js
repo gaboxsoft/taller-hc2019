@@ -1,6 +1,8 @@
 /*
  * Configuraciones Públicas Globales
  */
+
+
 ///////////////////
 // Servidor Host
 
@@ -8,6 +10,7 @@ process.env.HOST = process.env.HOST || 'http://127.0.0.1'
 
 // puerto default del servidor
 process.env.PORT = process.env.PORT || 3000;
+
 
 //////////
 // Entorno de ejecución
@@ -26,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
   process.env.URLDB = 'mongodb://<dbuser>:<dbpassword>@ds030829.mlab.com:30829/medica';
 }                       
 // Determina el HostPort
-process.env.HOSTPORT = process.env.HOST + ':' + process.env.PORT;
+process.env.URL_SERVER = process.env.HOST + ':' + process.env.PORT;
 
 // seed
 process.env.SEED = process.env.SEED || "este-es-el-seed-de-desarrollo";

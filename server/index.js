@@ -8,7 +8,7 @@ console.log('>> process.env.PORT=', process.env.PORT);
 console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
 console.log('>> process.env.MONGO_URI = ', process.env.MONGO_URI);
 console.log('>> process.env.URLDB = ', process.env.URLDB);
-console.log('>> process.env.HOSTPORT = ', process.env.HOSTPORT);
+console.log('>> process.env.HOSTPORT = ', process.env.URL_SERVER);
 console.log('/////////////////////////////////////////////');
 
 

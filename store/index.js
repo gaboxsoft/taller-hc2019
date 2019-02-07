@@ -5,7 +5,9 @@ export const state = () => ({
   notaUrgenciasId: 'NONE',
   evolucionId: 'NONE',
   socketNotasUrgencias: true,
-  socketEvolucion: true
+  socketEvolucion: true,
+  host: 'NONE',
+  port: 0
 });
 
 
@@ -24,6 +26,9 @@ export const getters = () => ({
   },
   getSocketNotasUrgencias(state) {
     return state.socketNotasUrgencias;
+  },
+  getServer(state) {
+    return state.host+':'+state.port;
   }
 });
 
@@ -44,9 +49,13 @@ export const mutations = {
     state.socketNotasUrgencias = !state.socketNotasUrgencias;
   },
   setSocketEvolucion(state) {
-    console.log('En setSocketNotasUrgencias->antes ', state.socketEvolucion);
     state.socketEvolucion = !state.socketEvolucion;
-    console.log('En setSocketNotasUrgencias->despues ', state.socketEvolucion);
+  },
+  setHost(state,payload) {
+    state.host = payload;
+  },
+  setPort(state, payload) {
+    state.port = payload;
   }
 };
 
