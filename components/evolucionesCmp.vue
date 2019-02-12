@@ -1,56 +1,62 @@
 
 <template>
-  <div class="main-container ">
-    <h1 class=" text-primary">{{tituloPagina}}</h1>
+  <div>
+    <!--<h1 class=" text-primary">{{tituloPagina}}</h1>-->
+    <!--<b-btn class="bg-success" v-on:click="agregar">NUEVA NOTA DE EVOLUCION</b-btn>-->
+    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
     <notifyCmp ref="notify" />
-    <b-btn class="bg-success" v-on:click="agregar">NUEVA NOTA DE EVOLUCION</b-btn>
-    <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
 
-    <p></p>
-    <div class="row">
-      <div class="col-md-6">
-        
-          <no-ssr>
-            <table class="table table-striped table-bordered table-hover table-info ">
-              <tr>
-                <!--<td>ID</td>-->
-                <td>FECHA</td>
-                <td>EVOLUCIÓN</td>
-              </tr>
-              <tr v-model="evoluciones"
-                  v-for="e in evoluciones">
-                <!--<td>{{nu._id}}</td>-->
-                <td>{{e.fecha}}</td>
-                <td>{{e.descripcion}}</td>
-                
-                <td style="width:25px;">
-                  <!--<b-btn btn-xs
-                         v-on:click="imprimir(e._id)">
-                    Imp
-                     <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
-                  </b-btn>-->
-                  <!--</td>
-    <td style="width:25px;">-->
-                  <b-btn btn-xs
-                         v-on:click="seleccionar(e._id)">
-                    Sel
-                    <!-- <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
-                  </b-btn>
-                </td>
+    <!--<p></p>-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-12">-->
 
-              </tr>
-            </table>
-          </no-ssr>
+        <no-ssr>
+          <table class="table table-striped table-bordered table-hover table-info ">
+            <tr>
+              <!--<td>ID</td>-->
+              <td>FECHA</td>
+              <td >
+                EVOLUCIÓN
+                <b-btn class="bg-success" v-on:click="agregar">+</b-btn>
+              </td>
+              <td>
+                <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
+              </td>
+            </tr>
+            <tr v-model="evoluciones"
+                v-for="e in evoluciones">
+              <!--<td>{{nu._id}}</td>-->
+              <td>{{e.fecha}}</td>
+              <td>{{e.descripcion}}</td>
+
+              <td style="width:25px;">
+                <!--<b-btn btn-xs
+                     v-on:click="imprimir(e._id)">
+                Imp
+                 <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
+              </b-btn>-->
+                <!--</td>
+              <td style="width:25px;">-->
+                <b-btn btn-xs
+                       v-on:click="seleccionar(e._id)">
+                  Sel
+                  <!-- <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
+                </b-btn>
+              </td>
+
+            </tr>
+          </table>
+        </no-ssr>
 
 
 
-        </div>     
-    </div>
-    <p></p>
+      <!--</div>-->
+    <!--</div>
+    <p></p>-->
 
 
     <!--<b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>-->
-  <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
+    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
 
   </div>
 </template>
@@ -58,7 +64,7 @@
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
-  //const moment = require('moment');
+  const moment = require('moment');
   //require('moment/locale/es');  // without this line it didn't work
   //moment.locale('es')
   export default {
@@ -79,16 +85,18 @@
 
     computed: {
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer+'/paciente/' + this.$store.state.pacienteId; //'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlGetEvolucion: function () {
-        return 'http://localhost:3000/Evolucion/' + this.$store.state.evolucionId;
+        return process.env.urlServer + '/Evolucion/' + this.$store.state.evolucionId;//'http://localhost:3000/Evolucion/' + this.$store.state.evolucionId;
       },
       urlGetEvoluciones: function () {
-        return 'http://localhost:3000/Evoluciones/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/Evoluciones/' + this.$store.state.pacienteId; 
+        //return 'http://localhost:3000/Evoluciones/' + this.$store.state.pacienteId;
       },
       urlHojaEvolucionPdf: function () {
-        return 'http://localhost:3000/msi14/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi14/' + this.$store.state.pacienteId; 
+        //return 'http://localhost:3000/msi14/' + this.$store.state.pacienteId;
       },
       getSocketEvolucion: function () {
         return this.$store.state.socketEvolucion;
@@ -119,9 +127,6 @@
 
       },
       seleccionar: function (evolucionId) {
-        if (evolucionId=='') {
-          return;
-        }
         console.log('aquí en seleccionar Evolucion, id: ', evolucionId);
         //this.$store.commit('setPacienteId', pacienteId)
         this.$store.commit('setEvolucionId', evolucionId)
@@ -163,6 +168,9 @@
             }
             else {
               this.evoluciones = response.data.evoluciones;
+              for (var i = 0; i < this.evoluciones.length; i++) {
+                this.evoluciones[i].fecha = moment(this.evoluciones[i].fecha).format('ddd DD MMM YYYY HH:mm:ss');
+              }
             }
             console.log('24.-final this.evoluciones: ', this.evoluciones);
           },
@@ -173,10 +181,10 @@
             });
       },
     
-      imprimir: function (evolucionId) {
+      imprimir: function () {
         
         console.log('aquí en imprimir HojaEvolucion...', this.urlHojaEvolucionPdf);
-        this.seleccionar(evolucionId);
+        //this.seleccionar(evolucionId);
         axios.get(this.urlHojaEvolucionPdf, {
           headers: {
             token: this.getToken,
@@ -200,7 +208,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .main-container {
     /*min-height: 100vh;*/
     /*display: flex;*/

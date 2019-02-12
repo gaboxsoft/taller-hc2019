@@ -28,12 +28,14 @@ let pacienteSchema = new Schema({
   nombre: {
     type: String,
     minlength: 2,
+    uppercase: true,
     required: [true, 'El NOMBRE es necesario.']
   },
   genero: {
     type: String,
     enum: generoValido,
     maxlength: 1,
+    uppercase: true,
     required: [true, 'Se requiere especificar el género del paciente.']
   },
   fechaNacimiento: {
@@ -43,39 +45,48 @@ let pacienteSchema = new Schema({
   //////////////////////////
   //// Domicilio
   calle: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El nombre de la calle es necesiaria.']
   },
   numExterior: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El número exterior es necesario.']
   },
   numInterior: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [false, 'El número interior es opcional.']
   },
   colonia: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El nombre de la colonia es necesaria.']
   },
   municipio: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El nombre del municipio es necesario.']
   },
   entidad: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El nombre de la entidad es necesaria.']
   },
   pais: {
-    type: String
+    type: String,
+    uppercase: true
   },
   CP: {
     type: String,
-    maxlength: 5
+    maxlength: 5,
+    uppercase: true
     //required: [false, 'El nCódigo Postal es opcional.']
   },
   telefonos: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'Almenos un teléfono es necesiario.']
   },
   /////////////////////////
@@ -88,12 +99,24 @@ let pacienteSchema = new Schema({
   ////  ref: 'Usuario'
   ////},
 
-  tituloMT: { type: String },
-  tituloAbrMT: { type: String },
-  nombreMT: { type: String },
-  cedulaMT: { type: String },
-  institucionMT: { type: String },
-  especialidadMT: { type: String },
+  tituloMT: {
+    type: String,
+    uppercase: true },
+  tituloAbrMT: {
+    type: String,
+    uppercase: true },
+  nombreMT: {
+    type: String,
+    uppercase: true},
+  cedulaMT: {
+    type: String,
+    uppercase: true },
+  institucionMT: {
+    type: String,
+    uppercase: true },
+  especialidadMT: {
+    type: String,
+    uppercase: true },
 
   //////////////////////////
 
@@ -106,82 +129,189 @@ let pacienteSchema = new Schema({
     default: () => { new Date().toLocaleString() }
   },
   alergias: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El número exterior es necesario.']
   },
   diagnosticoIngreso: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [false, 'El número interior es opcional.']
   },
   otrosDiagnosticos: {
-    type: String
+    type: String,
+    uppercase: true
     //required: [true, 'El nombre de la colonia es necesaria.']
   },
 
   //////////////////////////
   //// Nota de urgencias
-  fecha1: {
+  fechaNota: {
     type: Date,
     //required: [true, 'La fecha de ingreso es necesaria.'],
     default: () => { new Date().toLocaleString() }
   },
-  seguro: {type: String},
-  diagnosticoEgreso: { type: String },
+  seguro: {
+    type: String,
+    uppercase: true},
+  diagnosticoEgreso: {
+    type: String,
+    uppercase: true },
   ocupacion: { type: String },
-  FC: { type: String },
-  FR: { type: String },
-  TA: { type: String },
-  T: { type: String },
-  peso1: { type: String },
-  talla1: { type: String },
-  antecedentesImportancia1: { type: String },
-  resumenClinico1: { type: String },
-  indicaciones1: { type: String },
+  FC: {
+    type: String,
+    uppercase: true },
+  FR: {
+    type: String,
+    uppercase: true },
+  TA: {
+    type: String,
+    uppercase: true },
+  T: {
+    type: String,
+    uppercase: true },
+  peso1: {
+    type: String,
+    uppercase: true },
+  talla1: {
+    type: String,
+    uppercase: true },
+  antecedentesImportancia1: {
+    type: String,
+    uppercase: true },
+  resumenClinico1: {
+    type: String,
+    uppercase: true },
+  indicaciones1: {
+    type: String,
+    uppercase: true},
 
 /////////////////////////
 // Historia Clínica
 /////////////////////////
-  edoCivil: { type: String },
-  lugarOrigen: { type: String },
-  antHeredoFam: { type: String },
-  personalesPato: { type: String },
-  personalesNoPato: { type: String },
-  ago: { type: String },
-  tensionMens: { type: String },
-  ritmo: { type: String },
-  inicioVidaSexual: { type: String },
-  gestados: { type: String },
-  partos: { type: String },
-  abortos: { type: String },
-  cesareas: { type: String },
-  fechaUltimpoParto: { type: String },
-  fechaUltimoAborto: { type: String },
-  pesoProductos: { type: String },
-  fechaUltimaRegla: { type: String },
-  fechaUltimaCitoCervix: { type: String },
-  circuncision: { type: String },
-  proteccionMenstrual: { type: String },
-  otrosHistoriaClinica: { type: String },
-  padecimientoActual: { type: String },
-  peso: { type: String },
-  talla: { type: String },
-  temperatura: { type: String },
-  tensionArterial: { type: String },
-  craneo: { type: String },
-  cara: { type: String },
-  fondoOcular: { type: String },
-  cuello: { type: String },
-  cardioPulmunar: { type: String },
-  abdomen: { type: String },
-  mamas: { type: String },
-  tactoVaginal: { type: String },
-  tactoRectal: { type: String },
-  miembros: { type: String },
-  ID: { type: String },
-  TX: { type: String },
-  LAB: { type: String },
-  USG: { type: String },
-  RX: { type: String },
+  edoCivil: {
+    type: String,
+    uppercase: true },
+  lugarOrigen: {
+    type: String,
+    uppercase: true },
+  antHeredoFam: {
+    type: String,
+    uppercase: true },
+  personalesPato: {
+    type: String,
+    uppercase: true },
+  personalesNoPato: {
+    type: String,
+    uppercase: true },
+  ago: {
+    type: String,
+    uppercase: true },
+  tensionMens: {
+    type: String,
+    uppercase: true },
+  ritmo: {
+    type: String,
+    uppercase: true },
+  inicioVidaSexual: {
+    type: String,
+    uppercase: true},
+  gestados: {
+    type: String,
+    uppercase: true },
+  partos: {
+    type: String,
+    uppercase: true },
+  abortos: {
+    type: String,
+    uppercase: true },
+  cesareas: {
+    type: String,
+    uppercase: true},
+  fechaUltimpoParto: {
+    type: String,
+    uppercase: true },
+  fechaUltimoAborto: {
+    type: String,
+    uppercase: true},
+  pesoProductos: {
+    type: String,
+    uppercase: true },
+  fechaUltimaRegla: {
+    type: String,
+    uppercase: true },
+  fechaUltimaCitoCervix: {
+    type: String,
+    uppercase: true },
+  circuncision: {
+    type: String,
+    uppercase: true },
+  proteccionMenstrual: {
+    type: String,
+    uppercase: true},
+  otrosHistoriaClinica: {
+    type: String,
+    uppercase: true},
+  padecimientoActual: {
+    type: String,
+    uppercase: true },
+  peso: {
+    type: String,
+    uppercase: true },
+  talla: {
+    type: String,
+    uppercase: true },
+  temperatura: {
+    type: String,
+    uppercase: true },
+  tensionArterial: {
+    type: String,
+    uppercase: true },
+  craneo: {
+    type: String,
+    uppercase: true },
+  cara: {
+    type: String,
+    uppercase: true},
+  fondoOcular: {
+    type: String,
+    uppercase: true},
+  cuello: {
+    type: String,
+    uppercase: true },
+  cardioPulmunar: {
+    type: String,
+    uppercase: true },
+  abdomen: {
+    type: String,
+    uppercase: true},
+  mamas: {
+    type: String,
+    uppercase: true},
+  tactoVaginal: {
+    type: String,
+    uppercase: true},
+  tactoRectal: {
+    type: String,
+    uppercase: true },
+  miembros: {
+    type: String,
+    uppercase: true },
+  ID: {
+    type: String,
+    uppercase: true },
+  TX: {
+    type: String,
+    uppercase: true},
+  LAB: {
+    type: String,
+    uppercase: true},
+  USG: {
+    type: String,
+    uppercase: true},
+  RX: {
+    type: String,
+    uppercase: true },
 /////////////////////////
 
 ////  //////////////////////////

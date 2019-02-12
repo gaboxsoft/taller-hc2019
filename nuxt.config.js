@@ -68,7 +68,7 @@ module.exports = {
      */
   serverMiddleware: ['~/api/index.js'],
   env: {
-    url_Server: process.env.URL_SERVER
+    urlServer: process.env.URL_SERVER
   },
 
 

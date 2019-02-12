@@ -1,102 +1,102 @@
 
 <template>
-  <div class="main-container ">
+  <div >
+    <div id="datosGenerales">
 
-    <h1 class=" text-primary">{{tituloPagina}}</h1>
-
+      <h2 class="text-primary">{{tituloPagina}}</h2>
+    </div>
+    
     <notifyCmp ref="notify" />
+    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
 
-    <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <form action="#">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-3 text-right">folio:</div>
-            <div class="col-md-7 text-left"><input type="text" v-model="paciente.folioCuenta" name="folioCuenta"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Nombre:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.nombre" name="nombre"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Estado civíl:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Género:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.genero" name="genero"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Fecha nacimiento:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Ocupación:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.ocupacion" name="fechaNacimiento"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Calle:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.calle" name="calle"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Número exterior:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.numExterior" name="numExterior"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Número interior:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.numInterior" name="numInterior"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Colonia:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.colonia" name="colonia"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Municipio:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.municipio" name="municipio"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Estado:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.entidad" name="entidad"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">País:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.pais" name="pais"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">CP:</div>
-            <div class="col-md-7  text-left"><input type="text" v-model="paciente.CP" name="CP"></div>
-          </div>
-          <!-- MÉDICO TRATANTE -->
-          <div>
-            <h5>--ACERCA DEL MÉDICO TRATANTE---</h5>
-            <div class="row">
-              <div class="col-md-3  text-right">NOMBRE Médico tratante (MT):</div>
-              <div class="col-md-7  text-left"><input type="text" v-model="paciente.nombreMT" name="nombreMT"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-3  text-right">Cédula profesional MT:</div>
-              <div class="col-md-7  text-left"><input type="text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-3  text-right">Institución expide Título MT:</div>
-              <div class="col-md-7  text-left"><input type="text" v-model="paciente.institucionMT" name="institucionMT"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="row">
+      <div class="col-md-3 text-right">folio:</div>
+      <div class="col-md-2 text-left bg-warning">{{paciente.folioCuenta}}</div>
+    </div>
+
+    <form class="form-inline" action="#">
+      <!--<div class="row">-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<div class="col-md-3  text-right">Estado civíl:</div>
+  <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>-->
+
+      <div class="col-md-3  text-right">Nombre:</div>
+      <div class="col-md-9"> <input type="text" class="text input-text" v-model="paciente.nombre" name="nombre"></div>
+      <!--</div>-->
+      <!--<div class="row">-->
+      <div class="col-md-3  text-right">Estado civíl:</div>
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>
+      <!--</div>-->
+      <!--<div class="row">-->
+      <div class="col-md-3  text-right">Género:</div>
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.genero" name="genero"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Nacimiento:</div>
+      <div class="col-md-7  text-left"><input type="date" class="input-text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Ocupación:</div>
+      <div class="col-md-9  text-left"><input type="text" class="input-text" v-model="paciente.ocupacion" name="fechaNacimiento"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Calle:</div>
+      <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.calle" name="calle"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Núm. exterior:</div>
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numExterior" name="numExterior"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Núm. interior:</div>
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numInterior" name="numInterior"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Colonia:</div>
+      <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.colonia" name="colonia"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Municipio:</div>
+      <div class="col-md-9  txt-left"><input type="text" class="text input-text" v-model="paciente.municipio" name="municipio"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">Estado:</div>
+      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.entidad" name="entidad"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">País:</div>
+      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.pais" name="pais"></div>
+      <!--</div>
+  <div class="row">-->
+      <div class="col-md-3  text-right">CP:</div>
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.CP" name="CP"></div>
+      <!--</div>-->
+      <!-- MÉDICO TRATANTE -->
+      <!--<h5>--ACERCA DEL MÉDICO TRATANTE---</h5>-->
+      
+      <div class="col-md-3  text-right">NOMBRE Méd. tratante (MT):</div>
+        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.nombreMT" name="nombreMT"></div>
+
+        <div class="col-md-3  text-right">Cédula profesional MT:</div>
+        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
+
+        <div class="col-md-3  text-right">Institución expide Título MT:</div>
+        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.institucionMT" name="institucionMT"></div>
+      
     </form>
-    <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
+    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
+    <br />
+    <br />
   </div>
 </template>
-
 <script>
-  const urlGetPacientes = 'http://localhost:3000/Pacientes?limite=0&desde=0';
+  const urlGetPacientes = process.env.urlServer + '/Pacientes?limite=0&desde=0';//'http://localhost:3000/Pacientes?limite=0&desde=0';
   const MAX_SIZE_NOMBRE = 50;
   import axios from 'axios';
 
   import notifyCmp from '~/components/notifyCmp';
-
+  import moment from 'moment';
   export default {
     name: 'updatePacienteCmp',
     components: {
@@ -116,20 +116,22 @@
         return this.$store.state.token;
       },
       urlApiPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/Paciente/' + this.$store.state.pacienteId;//'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/Paciente/' + this.$store.state.pacienteId;
+        //'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       getPacienteId() {
         return this.$store.state.pacienteId;
       }
     },
     watch: {
-      getPacienteId: function() {
+      getPacienteId() {
         this.getCurrentPaciente(this.getToken);
       }
-    },
+
+    } ,  
     created() {
       this.getCurrentPaciente(this.getToken);
     },
@@ -137,7 +139,7 @@
 
     methods: {
       guardar: function () {
-
+        console.log('fecha Nacimiento', this.paciente.fechaNacimiento);
         this.token = this.getToken;
         const req = {
           method: 'put',
@@ -154,6 +156,7 @@
 
             folioCuenta: this.paciente.folioCuenta,
             nombre: this.paciente.nombre,
+            edoCivil: this.paciente.edoCivil,
             fechaNacimiento: this.paciente.fechaNacimiento,
             genero: this.paciente.genero,
             ocupacion: this.paciente.ocupacion,
@@ -168,13 +171,14 @@
             pais: this.paciente.pais,
             nombreMT: this.paciente.nombreMT,
             cedulaMT: this.paciente.cedulaMT,
-            institucionMT: this.paciente.institucionMT,
+            institucionMT: this.paciente.institucionMT
           }
         };
         axios(req)
           .then((response) => {
             //console.log('En guardar hie-- success---->>> pasé ', response.data);
             this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2.5);
+            this.$store.commit('setSocketDatosGenerales');
 
           })
           .catch(err => {
@@ -198,8 +202,10 @@
       seleccionar: function (pacienteId) {
         //console.log('aquí en seleccionar paciente, id: ', pacienteId);
         this.$store.commit('setPacienteId', pacienteId)
-        this.$router.push({ name: 'index' })
-        this.$forceUpdate();
+
+
+        //this.$router.push({ name: 'index' })
+        //this.$forceUpdate();
 
       },
       addPaciente: function () {
@@ -207,6 +213,7 @@
 
       },
       getCurrentPaciente: function (token) {
+        //console.log('>> urlGetPaciente en UPDATE_PACIENTEcmp: ', this.urlGetPaciente);
 
         axios.get(this.urlGetPaciente, {
           token: token
@@ -215,13 +222,13 @@
             this.paciente = response.data.paciente;
             //console.log('urlGetPaciente en UPDATE_PACIENTEcmp: ', this.urlGetPaciente);
             //console.log('response.data en UPDATE_PACIENTEcmp: ', response.data);
-            
+            this.paciente.fechaNacimiento = moment(this.paciente.fechaNacimiento).format('YYYY-MM-DD');
             //this.$store.commit('setCurrentPaciente', this.paciente);
           },
-          (error) => {
-            //console.log('paciente en updatePaciente ---ERROR -- NO EXISTE: ', this.urlGetPaciente);
-            this.err = error.response.data.error;
-            //console.log('en UpdatePaciente->getCurrentPaciente->error', this.err);
+            (error) => {
+              //console.log('paciente en updatePaciente ---ERROR -- NO EXISTE: ', this.urlGetPaciente);
+              this.err = error.response.data.error;
+              //console.log('en UpdatePaciente->getCurrentPaciente->error', this.err);
               //this.$store.commit('setCurrentPaciente', undefined);
               this.paciente = {
                 folioCuenta: '',
@@ -230,7 +237,7 @@
                 fechaNacimiento: '',
                 calle: '',
                 numeroInterior: '',
-                numeroExterior: '', 
+                numeroExterior: '',
                 colonia: '',
                 municipio: '',
                 entidad: '',
@@ -314,7 +321,7 @@
                 fechaModificacionSe: '',
                 situacionSe: 1, //1-activo
                 //fechaBorrado: default nada
-                usuarioSe: req.usuario._id
+                usuarioSe: ''//req.usuario._id
               };
             });
       },
@@ -341,36 +348,6 @@
       }
     }
   }
+
 </script>
 
-<style>
-  .main-container {
-    /*min-height: 100vh;*/
-    /*display: flex;*/
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 90px;
-  }
-
-  .title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
-  }
-</style>

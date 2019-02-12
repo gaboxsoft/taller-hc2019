@@ -127,6 +127,7 @@
       agregar: function () {
         console.log('aquí en agregar nota urgencias');
         //this.$store.commit('setPacienteId', pacienteId)
+        
         this.$store.commit('setNotaUrgenciasId', 'NUEVO');
 
       },
@@ -225,7 +226,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .main-container {
     /*min-height: 100vh;*/
     /*display: flex;*/

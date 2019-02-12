@@ -107,7 +107,7 @@ function writeLine(doc, text, row, col, align, fontSize, color) {
   //console.log('in writeLine-> col: [', col, '] typeOf', typeof (col));
 doc.moveDown()
   .fillColor(color||'black')
-  .fontSize(fontSize||10)
+  .fontSize(fontSize || 10)  
   .text(text||vacio, pdfTools.cmToPt(col||1), pdfTools.cmToPt(row||1), {
     align: align||'left',
     //indent: 2,

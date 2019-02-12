@@ -1,91 +1,91 @@
 <template>
-
   <!--<div class="contanier fixed-top margin-bottom:10px">-->
-
   <div>
     <!--<p>id: -{{getPacienteId}}</p>-->
-    <h5 class="bg-warning ">EXPEDIENTE: {{paciente?paciente.nombre:'N I N G U N O'}}</h5>
+    <h5 class="bg-warning ">EXPEDIENTE: {{paciente?paciente.nombre:'N I N G U N O'}} <!----- {{paciente?paciente.diagnosticoIngreso:''}}--></h5>
   </div>
-
   <!--</div>-->
-
 </template>
-
 <script>
-import axios from 'axios';
-export default
-  {
-    name: 'pacienteTagCmp',
-    ////////////////////////
-    data() {
-      return {
-        paciente: { nombre: '' },
-        token: 'NONE'
-      }
-    } ,
-     // props: [
-     //   'paciente'
-     //],
-    computed: {
-      urlGetPaciente: function () {
-        //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
-        //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+  import axios from 'axios';
+  export default
+    {
+      name: 'pacienteTagCmp',
+      ////////////////////////
+      data() {
+        return {
+          paciente: { nombre: '' },
+          token: 'NONE'
+        }
       },
-      getPacienteId: function () {
-        return this.$store.state.pacienteId;
-      },
-      getToken: function () {
-        //console.log('1 getPaciente-->token: ', this.$store.state.token);
-        return this.$store.state.token;
-      }
+      // props: [
+      //   'paciente'
+      //],
+      computed: {
+        urlGetPaciente: function () {
+          //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
+          //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
+          return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        },
+        getPacienteId: function () {
+          return this.$store.state.pacienteId;
+        },
+        getSocketDatosGenerales: function () {
+          return this.$store.state.socketDatosGenerales;
+        },
+        getToken: function () {
+          //console.log('1 getPaciente-->token: ', this.$store.state.token);
+          return this.$store.state.token;
+        }
       },
       watch: {
         getPacienteId: function () {
           this.getPaciente();
+        },
+        getSocketDatosGenerales: function () {
+          this.getPaciente();
         }
       },
-    created() {
+      created() {
 
-      //console.log('Aquí en creado pacienteTAGCmp: ', this.urlGetPaciente)
-      if (this.getPacienteId === '') {
+        //console.log('Aquí en creado pacienteTAGCmp: ', this.urlGetPaciente)
+        if (this.getPacienteId === '') {
 
-      };
-      this.getPaciente();
-    },
-    methods: {
+        };
+        this.getPaciente();
+      },
+      methods: {
 
-      getPaciente() {
-       
-        //console.log('2 getPaciente-->token: ', this.$store.state.token);
-        //console.log('3 pacienteTagCmp-->getPaciente: ');
-        this.token = this.getToken;
-        //console.log('4 getPaciente-->token: ', this.token);
-        axios.get(this.urlGetPaciente, {
-          token: this.token
-        })
-          .then((response) => {
-            //console.log('5 getPaciente-->lEÍ PACIENTE OK: ', response.data.paciente);
-            this.paciente = response.data.paciente;
-            //this.$store.commit('setCurrentPaciente', response.data.paciente);
-            
-          },
-          (error) => {
-            this.paciente = { nombre: '--N I N G U N O--' };
-            //this.$store.commit('setCurrentPaciente', this.paciente);
-            //console.log('hubo error: en pacienteTag : ',error);
-              this.err = error.response.data.error;
-          });
-        //console.log('al final en pacienteTag= ', this.paciente);
+        getPaciente() {
+
+          //console.log('2 getPaciente-->token: ', this.$store.state.token);
+          //console.log('3 pacienteTagCmp-->getPaciente: ');
+          this.token = this.getToken;
+          //console.log('4 getPaciente-->token: ', this.token);
+          axios.get(this.urlGetPaciente, {
+            token: this.token
+          })
+            .then((response) => {
+              //console.log('5 getPaciente-->lEÍ PACIENTE OK: ', response.data.paciente);
+              this.paciente = response.data.paciente;
+              //this.$store.commit('setCurrentPaciente', response.data.paciente);
+
+            },
+              (error) => {
+                this.paciente = { nombre: '--N I N G U N O--' };
+                //this.$store.commit('setCurrentPaciente', this.paciente);
+                //console.log('hubo error: en pacienteTag : ',error);
+                this.err = error.response.data.error;
+              });
+          //console.log('al final en pacienteTag= ', this.paciente);
+        }
       }
     }
-  }
 
 
 </script>
 
-
-<!--<style>
+<!--<style scoped>
   html {
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;

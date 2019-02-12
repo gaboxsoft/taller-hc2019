@@ -1,26 +1,30 @@
 
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <evolucionesCmp />
-      </div>
-      <div class="col-md-4">
-        <evolucionCmp />
-      </div>
-  </div>
-
-  </div>
+  <div >
+    <div>
+      <h2 class="text-primary text-center">{{tituloPagina}}</h2>
+    </div>
+    <div class="col-md-12">
+      <evolucionCmp />
+      <evolucionesCmp />
+    </div>
+  </div> 
 </template>
 
 <script>
   import evolucionesCmp from '~/components/evolucionesCmp';
   import evolucionCmp from '~/components/evolucionCmp';
+  
   export default {
     name: 'HojaEvolucion',
     components: {
       evolucionesCmp,
       evolucionCmp
+    },
+    data() {
+      return {
+        tituloPagina: 'Hoja de evolución'
+      }
     },
     created() {
       // No hay sesion abierta, redirige a login
@@ -30,39 +34,7 @@
       this.$store.commit('setEvolucionId', 'NUEVO');
 
     }
-  };
+  }
   
 </script>
 
-<style>
-
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

@@ -21,37 +21,48 @@ var notaUrgenciasSchema = new Schema({
   //  enum: edoCivilValido
   //},
   seguro: {
-    type: String
+    type: String,
+    uppercase: true
   },
   diagnosticoEgreso: {
-    type: String
+    type: String,
+    uppercase: true
   },
   FC: {
-    type: String
+    type: String,
+    uppercase: true
   },
   FR: {
-    type: String
+    type: String,
+    uppercase: true
   },
   TA: {
-    type: String
+    type: String,
+    uppercase: true
   },
   T: {
-    type: String
+    type: String,
+    uppercase: true
   },
   peso: {
-    type: String
+    type: String,
+    uppercase: true
   },
   talla: {
-    type: String
+    type: String,
+    uppercase: true
   },
   antecedentes: {
-    type: String
+    type: String,
+    uppercase: true
   },
   resumenClinico: {
-    type: String
+    type: String,
+    uppercase: true
   },
   indicaciones: {
-    type: String
+    type: String,
+    uppercase: true
   },
 
   paciente: {

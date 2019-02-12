@@ -1,56 +1,38 @@
 
 <template>
-  <div id="main" class="main-container ">
-    <h1 class=" text-primary">{{tituloPagina}}</h1>
+  <div id="main">
+    <h2 class="text-center text-primary">{{tituloPagina}}</h2>
     <notifyCmp ref="notify"/>
     
-    <b-btn class="bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
-    <b-btn class="bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
+    <b-btn class="button-right bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
+    <b-btn class="button-right bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
 
-
-    <br />
-    <br />
-    <form action="#">
-      <!--<span>
-      <label for="paciente.fechaIngreso">Fecha Ingreso:</label>
-      <input type="date" :value="paciente.fechaIngreso.toISOString().split('.')[0]"
-             @input="paciente.fechaIngreso = $event.target.valueAsDate">
-      <input-date v-model="paciente.fechaIngreso"></input-date>
-    </span>-->
-      <span>
-        <label for="paciente.fechaIngreso">Fecha ingreso:</label>
-
+    <div>
+      <form action="#">
+       
+        <div>Fecha ingreso:</div>
         <input type="datetime-local" v-model="paciente.fechaIngreso" />
-      </span>
+       
+        <!--rows="3" cols="80"-->
+        <div>
+          Alergias:
+        </div>
+        <textarea class="input-text" v-model="paciente.alergias" name="alergias" rows="3" cols="80"></textarea>
 
-      <span>
-        <b-btn class="bg-info" v-on:click="getFechaAhora">AHORA</b-btn>
-      </span>
+        <div>
+          Diagnóstico de ingreso:
+        </div>
+        <textarea class="input-text" v-model="paciente.diagnosticoIngreso" name="diagnosticoIngreso" rows="3" cols="80"></textarea>
 
-      <!--<p>
-      <label for="paciente.nombre">nombre</label><br>
-      <input type="text" v-model="paciente.nombre" name="nombre" />
+        <div>
+          Otros diagnósticos:
+        </div>
+        <textarea class="input-text" v-model="paciente.otrosDiagnosticos" name="otrosDiagnosticos" rows="3" cols="80"></textarea>
 
-    </p>-->
-      <p>
-        <label for="paciente.alergias">Alergias</label><br>
-        <textarea v-model="paciente.alergias" name="alergias" rows="3" cols="80">
-                </textarea>
-      </p>
-      <p>
-        <label for="paciente.diagnosticoIngreso">Diagnóstico de ingreso:</label><br>
-        <textarea v-model="paciente.diagnosticoIngreso" name="diagnosticoIngreso" rows="5" cols="80">
-                </textarea>
-      </p>
-      <p>
-        <label for="paciente.otrosDiagnosticos">Otros diagnósticos:</label><br>
-        <textarea v-model="paciente.otrosDiagnosticos" name="otrosDiagnosticos" rows="5" cols="80">
-                </textarea>
-      </p>
-    </form>
-    <b-btn class="bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
-    <b-btn class="bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
-
+      </form>
+      <b-btn class="button-right bg-success" v-on:click="guardarHojaInicialExpediente">GUARDAR</b-btn>
+      <b-btn class="button-right bg-success" v-on:click="imprimirHojaInicialExpediente">IMPRIMIR</b-btn>
+    </div>
   </div>
 </template>
 
@@ -139,20 +121,9 @@ const MAX_SIZE_NOMBRE = 50;
       },
 
       getFechaHora: function () {
-        axios.get('/fechaHora', {
-          headers: {
-            token: this.getToken
-          }
-        })
-          .then((response) => {
-            console.log('fechaHora servidor: ', response.data.fechaHora);
-            return response.data.fechaHora;
-          },
-            (error) => {
-              console.log('ERROR en fechaHora servidor ');
-              this.err = error.response.data.error;
-              return new Date();
-            });
+        axios.get('/fechaHora', {headers: {token: this.getToken}})
+          .then((response) => {return response.data.fechaHora;},
+            (error) => {this.err = error.response.data.error;return new Date();});
       },
 
       getCurrentPaciente: function (token) {
@@ -205,7 +176,9 @@ const MAX_SIZE_NOMBRE = 50;
         axios(req)
           .then((response) => {
             //console.log('En guardar hie-- success---->>> pasé ', response.data);
+            this.$store.commit('setSocketDatosGenerales')
             this.$refs.notify.showNotify("DOCUMENTO GUARDADO", 2.5);
+
 
           })
           .catch(err => {
@@ -225,7 +198,7 @@ const MAX_SIZE_NOMBRE = 50;
           }
         })
           .then((response) => {
-            //console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
+            console.log('aaquí en imprimirHojaInicialExpediente axios y regresó: ', response.data.pdfFile);
             this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4,response.data.pdfFile, true);
           },
             (error) => {
@@ -266,35 +239,3 @@ const MAX_SIZE_NOMBRE = 50;
   
 </script>
 
-<style>
-.main-container {
-  /*min-height: 100vh;*/
-  /*display: flex;*/
-  justify-content: center;
-  /*align-items: center;
-  text-align: center;*/
-  padding-top: 90px;
-}
-
-/*.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}*/
-</style>

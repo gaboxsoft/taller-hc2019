@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <headerCmp />
     <nuxt />
     <footerCmp />
@@ -16,18 +16,42 @@
     }
   }
 </script>
-<!--<style>-->
+<style>
+  body {
+    padding: 0px,0px,0px,0px;
+    margin-top: 90px;
+    margin:150px,0px,0px,0px;
+  }
+  .textarea-size {
+    width: 100%;
+  }
+  .text {
+    width: 100%;
+  }
+  .input-text {
+    text-transform: uppercase
+  }
+  .button-right {
+    float: right;
+  }
+  /*.notify-container {
+    min-height: 100vh;
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px,5px,5px,5px;
+  }*/
+  /*.main-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 40px;
+  }*/
 
-  /*.main-container {*/
-    /*--min-height: 100vh;*/
-    /*--display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*text-align: center;*/
-    /*padding-top: 90px;*/
-  /*}*/
-
-<!--</style>-->
+</style>
 
  
 

@@ -1,23 +1,23 @@
+// Habilita las variables de entorno
+require('dotenv').config();
+
+// Configura variables de entorno
 require('../config/config.js');
 
 
-/////////////
 console.log('/////////////////////////////////////////////', Date.now());
 console.log('>> process.env.HOST=', process.env.HOST);
 console.log('>> process.env.PORT=', process.env.PORT);
 console.log('>> process.env.NODE_ENV =', process.env.NODE_ENV);
 console.log('>> process.env.MONGO_URI = ', process.env.MONGO_URI);
 console.log('>> process.env.URLDB = ', process.env.URLDB);
-console.log('>> process.env.HOSTPORT = ', process.env.URL_SERVER);
+console.log('>> process.env.URL_SERVER = ', process.env.URL_SERVER);
 console.log('/////////////////////////////////////////////');
 
 
-
-
-/////////////
-
 //const cors = require('cors');
 
+// Habilita servidor 
 const express = require('express')
 const app = express()
 

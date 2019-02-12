@@ -176,6 +176,8 @@
       
       getNotaUrgencias: function () {
 
+       
+
         console.log('--1.- en NotaUrgenciasCmp->urlNotaUrgencias->', this.urlGetNotaUrgencias);
         //console.log('--1.1.- en NotasUrgenciasCmp->Token->', this.getToken);
         //console.log('--1.2.- en NotasUrgenciasCmp->Token->', this.$store.state.pacienteId);
@@ -252,13 +254,17 @@
 
           axios(req)
             .then((response) => {
-              console.log('3.1.-En guardar NUEVO  NU-- success---->>> pasé ', response.data.notaUrgencias);
-              
-              this.notaUrgencias = response.data.notaUrgencias;
               this.$refs.notify.showNotify("DOCUMENTO NUEVO GUARDADO", 2);
+              console.log('3.1.-En guardar NUEVO  NU-- success---->>> pasé ', response.data.notaUrgencias);
+              // Aquí después de que se guarda
+              // deben limpiarse el contenido de las compos
+              // para iniciar una nueva nota de evolución
+              this.notaUrgencias = this.notaUrgenciasNuevo;
 
+              //this.notaUrgencias = response.data.notaUrgencias;
               this.$store.commit('setNotaUrgenciasId', this.notaUrgencias._id);
               this.$store.commit('setSocketNotasUrgencias');
+
             })
             .catch(err => {
               console.log('3.2.-ERROR  al guardar NUEVO  NU-- fail---->>> ', err);
@@ -329,7 +335,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .main-container {
     /*min-height: 100vh;*/
     /*display: flex;*/

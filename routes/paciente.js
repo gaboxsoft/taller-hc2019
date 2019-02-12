@@ -162,7 +162,7 @@ app.put('/paciente/:id', [verificaToken, verificaAdminRol], function(req, res) {
   let body = _.pick(req.body, [
     //'folioCuenta',
     'nombre', 'fechaNacimiento', 'genero',
-    'ocupacion',
+    'edoCivil', 'ocupacion', 
     'calle', 'numInterior', 'numExterior',
     'colonia', 'municipio',
     'entidad', 'pais', 'telefonos', 'CP',

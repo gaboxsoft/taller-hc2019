@@ -47,7 +47,7 @@ app.get('/msi10/:id', function (req, res) {
     console.log(`0.-voy a ir a crear hoja inicial exp: `);
     let filePath = hojaInicialExpedientePdf(pacienteBD);
 
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-10', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-10', pdfFile: process.env.URL_SERVER + '/pdfs/' + path.basename(filePath) });
 
   });
 
@@ -58,8 +58,8 @@ app.get('/msi10/:id', function (req, res) {
 app.get('/msi11/:id', function (req, res) {
 
   console.log('generando historia clinica');
-  console.log('TOKEN..................', req.get('token'));
-  console.log('ID PACIENTE..................', req.params.id);
+  //console.log('TOKEN..................', req.get('token'));
+  //console.log('ID PACIENTE..................', req.params.id);
 
   // Obtener el paciente
   const id = req.params.id;
@@ -74,7 +74,7 @@ app.get('/msi11/:id', function (req, res) {
     //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
     //return res.download(path.dirname(filePath), path.basename(filePath));
 
-    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+    return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.URL_SERVER + '/pdfs/' + path.basename(filePath) });
 
   });
 
@@ -84,9 +84,9 @@ app.get('/msi11/:id', function (req, res) {
 app.get('/msi12/:id', function (req, res) {
 
   console.log('generando nota Urgencias');
-  console.log('TOKEN..................', req.get('token'));
-  console.log('ID PACIENTE..................', req.params.id);
-  console.log('ID NOTA URGENCIAS..................', req.params.notaUrgenciasId);
+  //console.log('TOKEN..................', req.get('token'));
+  //console.log('ID PACIENTE..................', req.params.id);
+  //console.log('ID NOTA URGENCIAS..................', req.params.notaUrgenciasId);
 
   // Obtener el paciente
   const id = req.params.id;
@@ -116,7 +116,7 @@ app.get('/msi12/:id', function (req, res) {
         //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
         //return res.download(path.dirname(filePath), path.basename(filePath));
 
-        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.URL_SERVER + '/pdfs/' + path.basename(filePath) });
       });
     
 
@@ -128,8 +128,8 @@ app.get('/msi12/:id', function (req, res) {
 app.get('/msi14/:id', function (req, res) {
 
   console.log('generando Hoja de Eolución');
-  console.log('TOKEN..................', req.get('token'));
-  console.log('ID PACIENTE..................', req.params.id);
+  //console.log('TOKEN..................', req.get('token'));
+  //console.log('ID PACIENTE..................', req.params.id);
 
   // Obtener el paciente
   const id = req.params.id;
@@ -162,7 +162,7 @@ app.get('/msi14/:id', function (req, res) {
         //console.log('path=', path.dirname(filePath), "name=", path.basename(filePath))
         //return res.download(path.dirname(filePath), path.basename(filePath));
 
-        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.HOSTPORT + '/pdfs/' + path.basename(filePath) });
+        return res.status(200).json({ ok: true, menssaje: 'Se genero el formato MSI-11', pdfFile: process.env.URL_SERVER + '/pdfs/' + path.basename(filePath) });
 
       });
 

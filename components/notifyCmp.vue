@@ -1,14 +1,16 @@
 <template>
   
-    <div id="notify"
+    <div id="notify" ref="Notify"
          class="alert alert-danger" role="alert"
          v-show="show">
+      <!--<h1 id="tag" ref="Tag" v-show="showTag">mensaje</h1>
+      <a id="link" ref="Link" v-show="showLink" href="#">link</a>-->
   </div>
 </template>
 
 
 <script>
-
+  
   export default
     {
       name: 'notifyCmp',
@@ -16,100 +18,43 @@
       },
       data(){
         return{
-          show: false
+          show: false,
+          showTag: false,
+          showLink:false
         }
       },
 
       methods: {
         showNotify: function (mensaje, tiempo, link, target) {
-
-          var myDivNotify = document.getElementById('notify');
-
-          var myElement = "";
+          var d = document.createElement('div');
+          var e = {};
           if (link) {
-            myElement = document.createElement('a');
-            myElement.innerText = mensaje;
-            myElement.href = link;
+            e = document.createElement('a');
+            e.innerText = mensaje;
+            e.href = link;
+            e.className = "text-center";
             if (target) {
-              myElement.target = "_blank"
+              e.target = "_blank"
             }
+            //this.showLink = true;
           }
           else {
-            myElement = document.createElement('p');
-            myElement.innerText = mensaje;
+            e = document.createElement('h5');
+            e.innerText = mensaje;
+            //this.showTag = true;
           }
-          myDivNotify.appendChild(myElement);
-          this.show = true;
-          //var myLink = document.createElement('a');
-          //myLink.href = "#";
-          //myLink.innerText = mensaje;
-          //myLink.target = "_blank";
-
-          //myDiv.appendChild(myLink);
-
-          //console.log("myElement: ",myElement);
-          //console.log("myDivNotify: ",myDivNotify);
-          setTimeout(() => { this.show = false; myDivNotify.removeChild(myElement); }, tiempo * 1000);
+          d.appendChild(e);
+          this.$refs.Notify.appendChild(d);
+          this.show = true;          
+          setTimeout(() => {
+            this.show = false;
+            this.$refs.Notify.removeChild(d);
+          },
+            tiempo * 1000);
         }
+           
 
       }
 
   }
 </script>
-
-<!--<style scoped>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-.container {
-  /*min-height: 100vh;
-  display: flex;*/
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 5px, 5px, 5px, 0px;
-}
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-</style>-->

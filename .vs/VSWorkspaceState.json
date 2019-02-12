@@ -9,8 +9,8 @@
     "\\library\\msiReportes",
     "\\middleware",
     "\\routes",
-    "\\store"
+    "\\server"
   ],
-  "SelectedNode": "\\routes\\server.js",
+  "SelectedNode": "\\components\\updatePacienteCmp.vue",
   "PreviewInSolutionExplorer": false
 }

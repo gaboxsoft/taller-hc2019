@@ -20,7 +20,8 @@ let usuarioSchema = new Schema({
         type: String,
         default: '',
         minlength: 5,
-        required: [true, 'El NOMBRE es necesario.']
+      required: [true, 'El NOMBRE es necesario.'],
+      uppercase: true
     },
 
     // Profesión 
@@ -28,28 +29,33 @@ let usuarioSchema = new Schema({
   titulo: {
     type: String,
     default: '',
+    uppercase: true
     //required: [true, 'El número de cédula profesional es necesario.']
   },
   tituloAbr: {
     type: String,
     default: '',
+    uppercase: true
     //required: [true, 'El número de cédula profesional es necesario.']
   },
   cedula: {
         type: String,
         default: '',
-        unique: true,
+    unique: true,
+    uppercase: true
         //required: [true, 'El número de cédula profesional es necesario.']
     },
     institucion: {
         type: String,
-        default: '',
+      default: '',
+      uppercase: true
         //required: [true, 'El nombre de la Institución que expide el Título es necesario.']
     },
 
     especialidad: {
         type: String,
-        default: '',
+      default: '',
+      uppercase: true
         //required: [true, 'La especialidad es necesaria.']
     },
 
