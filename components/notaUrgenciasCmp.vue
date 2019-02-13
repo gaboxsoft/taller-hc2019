@@ -19,63 +19,63 @@
           </div>-->
           <div class="row">
             <div class="col-md-3 text-right">fecha-hora:</div>
-            <div class="col-md-5 text-left"><input type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
+            <div class="col-md-5 text-left"><input class="input-text" type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
           </div>
           <div class="row">
             <div class="col-md-5  text-right">Ocupacion:</div>
-            <!--            <div class="col-md-5  text-left"><input type="text" v-model="paciente.ocupacion" name="ocupacion"></div>-->
+            <!--            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="paciente.ocupacion" name="ocupacion"></div>-->
             <div class="col-md-4  text-left">{{paciente.ocupacion}}</div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Seguro:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.seguro" name="seguro"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.seguro" name="seguro"></div>
           </div>
 
           <div class="row">
             <div class="col-md-3  text-right">Diagnóstico egreso:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso"></div>
           </div>
 
           
           <div class="row">
             <div class="col-md-3  text-right">FC:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.FC" name="FC"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FC" name="FC"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">FR:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.FR" name="FR"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FR" name="FR"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">TA:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.TA" name="TA"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.TA" name="TA"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">T:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.T" name="T"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.T" name="T"></div>
           </div>
 
 
 
           <div class="row">
             <div class="col-md-3  text-right">Peso:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.peso" name="peso"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.peso" name="peso"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Talla:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.talla" name="talla"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.talla" name="talla"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Antecedentes importantes:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Resumen clínico:</div>
-            <div class="col-md-5  text-left"><input type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico"></div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico"></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Indicaciones:</div>
             <div class="col-md-5  text-left">
-              <textarea v-model="notaUrgencias.indicaciones" name="indicaciones" rows="5" cols="50"></textarea>
+              <textarea class="input-text" v-model="notaUrgencias.indicaciones" name="indicaciones" rows="5" cols="50"></textarea>
             </div>
           </div>
         </div>

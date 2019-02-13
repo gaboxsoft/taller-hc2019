@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="container">
       <hojaInicialExpedienteCmp/>
     </div>
 </template>

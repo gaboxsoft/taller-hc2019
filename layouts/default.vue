@@ -20,7 +20,8 @@
   body {
     padding: 0px,0px,0px,0px;
     margin-top: 90px;
-    margin:150px,0px,0px,0px;
+    /*margin: 150px,0px,0px,0px;*/
+    /*align-items: center;*/
   }
   .textarea-size {
     width: 100%;

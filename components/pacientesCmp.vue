@@ -2,15 +2,15 @@
 <template>
   <div >
     <a ref="linkToDatosGenerales" href="#datosGenerales">ir a Generales</a>
-      <no-ssr>
-        <table class="table table-striped table-bordered table-hover table-info ">
+    <no-ssr>
+      <!--<table class="table table-striped table-bordered table-hover table-info ">-->
+        <table class="table table-bordered table-info ">
           <tr>
             <td>FOLIO</td>
             <td>NOMBRE</td>
             <td>GENERO</td>
             <td>DIAGNOSTICO</td>
             <td>TELÉFONOS</td>
-            
           </tr>
           <tr v-model="pacientes"
               v-for="p in pacientes">
@@ -21,37 +21,16 @@
             <td>{{p.telefonos}}</td>
             <td style="width:25px;">
               <b-btn btn-xs
-                     v-on:click="seleccionar(p._id)">Sel
-                <!--<img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
-              </b-btn>
-            </td >
-            <!--<td>
-              <b-btn btn-xs
-                     v-on:click="eliminar">
-                <img src="../assets/iconos/boton-eliminar.png" style="width: 25px;">
+                     v-on:click="seleccionar(p._id)">
+                Sel
               </b-btn>
             </td>
-            <td>
-              <b-btn btn-xs
-                     v-on:click="modificar">
-                <img src="../assets/iconos/boton-modificar.png" style="width: 25px;">
-              </b-btn>
-            </td>
-            <td>
-              <b-btn btn-xs
-                     v-on:click="archiva">
-              <img src="../assets/iconos/boton-archivar.png" style="width: 25px;">
-              </b-btn>
-            </td>-->
+            
           </tr>
         </table>
-      </no-ssr>
+</no-ssr>
     </div>
-    <!--<b-btn class="bg-success"
-           v-on:click="addPaciente">AGREGAR PACIENTE</b-btn>-->
-    <!--<updatePacienteCmp/>-->
-
-  <!--</div>-->
+    
 </template>
 
 <script>
