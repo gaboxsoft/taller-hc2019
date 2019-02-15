@@ -1,14 +1,10 @@
 
 <template>
   <div class="main-container ">
-
     <h1 class=" text-primary">{{tituloPagina}}</h1>
-
-    <notifyCmp ref="notify"/>
-
+    <notifyCmp ref="notify" />
     <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
     <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
-
     <br />
     <br />
     <form action="#">
@@ -36,14 +32,18 @@
             <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso"></div>
           </div>
 
-          
+
           <div class="row">
-            <div class="col-md-3  text-right">FC:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FC" name="FC"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">FR:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FR" name="FR"></div>
+            FC:
+            <input class="input-text col-md-2" type="text" v-model="notaUrgencias.FC" name="FC">
+            <!--<div class="col-md-3  text-right">FC:</div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FC" name="FC"></div>-->
+            <!--</div>
+            <div class="row">-->
+            FR:
+            <input class="input-text col-md-2" type="text" v-model="notaUrgencias.FR" name="FR">
+            <!--<div class="col-md-3  text-right">FR:</div>
+            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FR" name="FR"></div>-->
           </div>
           <div class="row">
             <div class="col-md-3  text-right">TA:</div>
@@ -70,7 +70,7 @@
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Resumen clínico:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico"></div>
+            <div class="col-md-5  text-left"><textarea class="input-text" type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico" rows="5" cols="50"></textarea></div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Indicaciones:</div>
@@ -80,14 +80,11 @@
           </div>
         </div>
       </div>
-
     </form>
     <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
     <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
-
   </div>
 </template>
-
 <script>
   import axios from 'axios';
   import notifyCmp from '~/components/notifyCmp';
@@ -102,7 +99,7 @@
     data() {
       return {
         tituloPagina: 'NOTA URGENCIAS',
-        
+
         paciente: {},
         notaUrgencias: {},
         notaUrgenciasNuevo: {
@@ -151,11 +148,11 @@
           console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...2');
           this.notaUrgencias = this.notaUrgenciasNuevo;
         }
-        else { 
+        else {
           console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
           this.getNotaUrgencias();
         }
-        
+
       }
     },
     created() {
@@ -165,7 +162,7 @@
         this.$store.commit('setNotaUrgenciasId', 'NUEVO');
         this.notaUrgencias = this.notaUrgenciasNuevo;
       }
-      else { 
+      else {
         console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
         this.getNotaUrgencias();
       }
@@ -173,10 +170,10 @@
     },
 
     methods: {
-      
+
       getNotaUrgencias: function () {
 
-       
+
 
         console.log('--1.- en NotaUrgenciasCmp->urlNotaUrgencias->', this.urlGetNotaUrgencias);
         //console.log('--1.1.- en NotasUrgenciasCmp->Token->', this.getToken);
@@ -210,7 +207,7 @@
         })
           .then((response) => {
             this.paciente = response.data.paciente;
-            console.log('paciente en nota urgencias: ',this.paciente);
+            console.log('paciente en nota urgencias: ', this.paciente);
 
           },
             (error) => {
@@ -219,7 +216,7 @@
             });
       },
       guardar: function () {
-        
+
         console.log('1 En guardar NU-- url---->>>  ', this.urlApiNotaUrgencias + this.$store.state.pacienteId);
         this.token = this.getToken;
         this.notaUrgencias.fechaNota = this.notaUrgencias.fechaNota.split('.')[0];
@@ -227,7 +224,7 @@
         console.log('2.1.- fecha de notaUrgencia-> ', this.notaUrgencias.fechaNota)
         console.log('2.2.- nuevo->notaUrgenciasId  ', this.$store.state.notaUrgenciasId);
 
-        
+
         if (this.$store.state.notaUrgenciasId === 'NUEVO') {
           const req = {
             method: 'post',
@@ -311,7 +308,7 @@
       imprimir: function () {
 
         console.log('aquí en imprimir NU...', this.urlNotaUrgenciasPdf);
-       
+
         axios.get(this.urlNotaUrgenciasPdf, {
           headers: {
             token: this.getToken,
@@ -322,7 +319,7 @@
           .then((response) => {
             console.log('aaquí en imprimir NU axios y regresó: ', response);
             console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
-            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile,true);
+            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile, true);
           },
             (error) => {
               this.err = error.response.data.error;
@@ -334,8 +331,8 @@
   };
 
 </script>
-
 <style scoped>
+
   .main-container {
     /*min-height: 100vh;*/
     /*display: flex;*/

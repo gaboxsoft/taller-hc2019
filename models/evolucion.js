@@ -13,7 +13,8 @@ var evolucionSchema = new Schema({
     default: () => { new Date().toLocaleString() }
   },
   descripcion: {
-    type: String
+    type: String,
+    uppercase: true
   },
    paciente: {
     type: Schema.Types.ObjectId,

@@ -9,20 +9,20 @@
       <no-ssr>
         <table class="table table-bordered table-info ">
           <tr>
-            <td>FECHA-HORA</td>
+            <td style="width:10%;">FECHA-HORA</td>
             <td>
               EVOLUCIÓN
             </td>
           </tr>
           <tr>
             <td>
-                  <input type="datetime-local" v-model="evolucion.fecha" name="fecha">
+              <input type="datetime-local" v-model="evolucion.fecha" name="fecha">
             </td>
             <td>
               <!-- cols="50" rows="2" -->
-              <textarea class="textarea-size" type="text" v-model="evolucion.descripcion" name="descripcion"></textarea>
-              <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
+              <textarea class="input-text textarea-size" type="text" v-model="evolucion.descripcion" name="descripcion"></textarea>
             </td>
+            <b-btn class="bg-success " v-on:click="guardar">GUARDAR</b-btn>
           </tr>
         </table>
       </no-ssr>
@@ -57,16 +57,20 @@
 
     computed: {
       urlApiEvolucion: function () {
-        return 'http://localhost:3000/Evolucion/';
+        return process.env.urlServer + 'Evolucion';
+        //return 'http://localhost:3000/Evolucion/';
       },
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + 'Paciente' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlGetEvolucion: function () {
-        return 'http://localhost:3000/Evolucion/' + this.$store.evolucionId;
+        return process.env.urlServer + 'Evolucion' + this.$store.evolucionId;
+        //return 'http://localhost:3000/Evolucion/' + this.$store.evolucionId;
       },
       urlHojaEvolucionPdf: function () {
-        return 'http://localhost:3000/msi14/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi14/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/msi14/' + this.$store.state.pacienteId;
       },
       getEvolucionId: function () {
         return this.$store.state.evolucionId;
@@ -113,7 +117,7 @@
 
     methods: {
       getFechaHora: function () {
-        axios.get('/fechaHora', { headers: { token: this.getToken } })
+        axios.get(process.env.urlServer+'/fechaHora', { headers: { token: this.getToken } })
           .then((response) => { return response.data.fechaHora; },
             (error) => { this.err = error.response.data.error; return new Date(); });
       },

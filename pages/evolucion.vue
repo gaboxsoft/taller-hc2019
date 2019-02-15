@@ -1,10 +1,10 @@
 
 <template>
-  <div >
+  <div class="container">
     <div>
       <h2 class="text-primary text-center">{{tituloPagina}}</h2>
     </div>
-    <div class="col-md-12">
+    <div>
       <evolucionCmp />
       <evolucionesCmp />
     </div>
@@ -23,7 +23,7 @@
     },
     data() {
       return {
-        tituloPagina: 'Hoja de evolución'
+        tituloPagina: 'Hoja de Evolución'
       }
     },
     created() {

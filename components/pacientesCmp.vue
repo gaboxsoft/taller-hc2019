@@ -1,35 +1,36 @@
 
 <template>
-  <div >
+  <div>
     <a ref="linkToDatosGenerales" href="#datosGenerales">ir a Generales</a>
     <no-ssr>
       <!--<table class="table table-striped table-bordered table-hover table-info ">-->
-        <table class="table table-bordered table-info ">
-          <tr>
-            <td>FOLIO</td>
-            <td>NOMBRE</td>
-            <td>GENERO</td>
-            <td>DIAGNOSTICO</td>
-            <td>TELÉFONOS</td>
-          </tr>
-          <tr v-model="pacientes"
-              v-for="p in pacientes">
-            <td>{{p.folioCuenta}}</td>
-            <td style="width:200px;">{{p.nombre}}</td>
-            <td>{{p.genero}}</td>
-            <td>{{p.diagnosticoIngreso}}</td>
-            <td>{{p.telefonos}}</td>
-            <td style="width:25px;">
-              <b-btn btn-xs
-                     v-on:click="seleccionar(p._id)">
-                Sel
-              </b-btn>
-            </td>
-            
-          </tr>
-        </table>
-</no-ssr>
-    </div>
+      <table class="table table-bordered table-info ">
+        <tr>
+          <td>FOLIO</td>
+          <td>NOMBRE</td>
+          <td>GENERO</td>
+          <td>DIAGNOSTICO</td>
+          <td>TELÉFONOS</td>
+        </tr>
+        <tr v-model="pacientes"
+            v-for="p in pacientes">
+          <td>{{p.folioCuenta}}</td>
+          <td style="width:200px;">{{p.nombre}}</td>
+          <td>{{p.genero}}</td>
+          <td>{{p.diagnosticoIngreso}}</td>
+          <td>{{p.telefonos}}</td>
+          <td style="width:25px;">
+            <b-btn class="bg-success" btn-xs
+                   v-on:click="seleccionar(p._id)">
+              Abrir Documento
+            </b-btn>
+          </td>
+
+        </tr>
+      </table>
+    </no-ssr>
+
+  </div>
     
 </template>
 
@@ -54,19 +55,19 @@ export default {
         return this.$store.state.token;
       },
       urlApiPaciente () {
-        return process.env.urlServer +'/Paciente' + this.$store.state.pacienteId;
+        return process.env.urlServer +'/Paciente/' + this.$store.state.pacienteId;
       },
     getSocketDatosGenerales() {
       return this.$store.state.socketDatosGenerales;
     },
     getPacienteId() {
-      return this.$store.state.socketDatosGenerales;
+      return this.$store.state.pacienteId;
     }
     },
 
     watch: {
       getPacienteId: function () {
-        this.$store.commit('setSocket');
+        this.$store.commit('setSocketDatosGenerales');
       },
       getSocketDatosGenerales: function () {
         this.getPacientes();
@@ -81,18 +82,7 @@ export default {
 
   methods: {
 
-    eliminar: function () {
-      return true;
-    }
-    ,
-    archiva: () => {
-      return true;
-
-    },
-    modificar: () => {
-      return true;
-
-    },
+    
     seleccionar: function (pacienteId) {
       //console.log('aquí en seleccionar paciente, id: ', pacienteId);
       this.$store.commit('setPacienteId', pacienteId)
@@ -102,32 +92,28 @@ export default {
       //this.$forceUpdate();
       //this.getPacientes();
     },
-    updatePaciente: (pacienteId) => {
-      this.seleccionar(pacienteId);
-      this.getCurrentPaciente(this.getToken);
-      return true;
+    //updatePaciente: (pacienteId) => {
+    //  this.seleccionar(pacienteId);
+    //  this.getCurrentPaciente(this.getToken);
+    //  return true;
 
-    },
+    //},
     getCurrentPaciente: function (token) {
-      //console.log('Aquí en pacienteCmp-->getCurrentPaciente: ', this.getPacienteId);
+      //console.log('getCurrentPaciente->this.urlApiPaciente:', this.urlApiPaciente)
 
       axios.get(this.urlApiPaciente, {
         token: token
       })
         .then((response) => {
           this.paciente = response.data.paciente;
-          //console.log('Leí currentPaciente en pacientesCmp: ', response.data.paciente);
-          //this.$store.commit('setCurrentPaciente', this.paciente);
         },
-        (error) => {
-          //console.log('Leí paciente en historia clinica --ERROR--: ', error);          
+        (error) => {        
             this.err = error.response.data.error;
             this.$store.commit('setPacienteId', undefined);
           });
     },
 
     getPacientes: function () {
-     //console.log('AQUÍ EN pacientesCmp getPacientes()');
       this.token = this.$store.state.token;
       axios.get(urlGetPacientes, {
         headers: {
@@ -135,16 +121,12 @@ export default {
         }
       }).then((response) => {
         this.pacientes = response.data.pacientes;
-        //console.log('en GetPacientes()--> listando pacientes', this.pacientes);
         this.totalPacientes = this.pacientes.length
-        //console.log('En pacientesCmp-- success---->>> pasé ', new Date(), '--', this.pacientes.length);
 
       })
         .catch(err => {
-          //console.log('---->>> error en Leer la lista de Pacientes:' + err);
           this.totalPacientes = this.pacientes.length
           this.pacientes = {};
-          //console.log('En pacientesCmp-- fail---->>> pasé ', new Date(), '--', this.pacientes.length);
         });
     }
   }

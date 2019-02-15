@@ -1,11 +1,10 @@
 
 <template>
-  <div >
-    <div id="datosGenerales">
-
+  <div style="margin-top:100px;">
+    <div>
       <h2 class="text-primary">{{tituloPagina}}</h2>
     </div>
-    
+
     <notifyCmp ref="notify" />
     <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
 
@@ -19,7 +18,7 @@
       <!--</div>-->
       <!--<div class="row">-->
       <!--<div class="col-md-3  text-right">Estado civíl:</div>
-  <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>-->
+      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>-->
 
       <div class="col-md-3  text-right">Nombre:</div>
       <div class="col-md-9"> <input type="text" class="text input-text" v-model="paciente.nombre" name="nombre"></div>
@@ -31,59 +30,70 @@
       <!--<div class="row">-->
       <div class="col-md-3  text-right">Género:</div>
       <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.genero" name="genero"></div>
+      <!--  -->
+      <!--<div>-->
+      <div class="col-md-3  text-right">Género:</div>
+      <div class="col-md-7  text-left">
+        <input type="radio" id="hombre" value="H" v-model="paciente.genero">
+        Hombre
+        <input type="radio" id="mujer" value="M" v-model="paciente.genero">
+        Mujer
+      </div>
+      <!--</div>-->
+      <!--  -->
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Nacimiento:</div>
       <div class="col-md-7  text-left"><input type="date" class="input-text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Ocupación:</div>
       <div class="col-md-9  text-left"><input type="text" class="input-text" v-model="paciente.ocupacion" name="fechaNacimiento"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Calle:</div>
       <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.calle" name="calle"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Núm. exterior:</div>
       <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numExterior" name="numExterior"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Núm. interior:</div>
       <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numInterior" name="numInterior"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Colonia:</div>
       <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.colonia" name="colonia"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Municipio:</div>
       <div class="col-md-9  txt-left"><input type="text" class="text input-text" v-model="paciente.municipio" name="municipio"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">Estado:</div>
       <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.entidad" name="entidad"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">País:</div>
       <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.pais" name="pais"></div>
       <!--</div>
-  <div class="row">-->
+      <div class="row">-->
       <div class="col-md-3  text-right">CP:</div>
       <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.CP" name="CP"></div>
       <!--</div>-->
       <!-- MÉDICO TRATANTE -->
       <!--<h5>--ACERCA DEL MÉDICO TRATANTE---</h5>-->
-      
+
       <div class="col-md-3  text-right">NOMBRE Méd. tratante (MT):</div>
-        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.nombreMT" name="nombreMT"></div>
+      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.nombreMT" name="nombreMT"></div>
 
-        <div class="col-md-3  text-right">Cédula profesional MT:</div>
-        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
+      <div class="col-md-3  text-right">Cédula profesional MT:</div>
+      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
 
-        <div class="col-md-3  text-right">Institución expide Título MT:</div>
-        <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.institucionMT" name="institucionMT"></div>
-      
+      <div class="col-md-3  text-right">Institución expide Título MT:</div>
+      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.institucionMT" name="institucionMT"></div>
+
     </form>
     <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
     <br />
@@ -131,7 +141,7 @@
         this.getCurrentPaciente(this.getToken);
       }
 
-    } ,  
+    },
     created() {
       this.getCurrentPaciente(this.getToken);
     },
@@ -140,6 +150,19 @@
     methods: {
       guardar: function () {
         console.log('fecha Nacimiento', this.paciente.fechaNacimiento);
+
+        //// supervisa que Genero viene codificado como H/M se cambie por M/F
+        //if (!this.paciente.genero) {
+        //  this.paciente.genero = 'M'
+        //};
+        //if (this.paciente.genero.toUpperCase() === 'H') {
+        //  this.paciente.genero = 'M';
+        //};
+        //if (this.paciente.genero.toUpperCase() === 'M') {
+        //  this.paciente.genero = 'F';
+        //};
+
+
         this.token = this.getToken;
         const req = {
           method: 'put',

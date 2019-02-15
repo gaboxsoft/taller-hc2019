@@ -170,19 +170,19 @@ let pacienteSchema = new Schema({
   T: {
     type: String,
     uppercase: true },
-  peso1: {
+  peso: {
     type: String,
     uppercase: true },
-  talla1: {
+  talla: {
     type: String,
     uppercase: true },
-  antecedentesImportancia1: {
+  antecedentesImportancia: {
     type: String,
     uppercase: true },
-  resumenClinico1: {
+  resumenClinico: {
     type: String,
     uppercase: true },
-  indicaciones1: {
+  indicaciones: {
     type: String,
     uppercase: true},
 
@@ -204,9 +204,10 @@ let pacienteSchema = new Schema({
   personalesNoPato: {
     type: String,
     uppercase: true },
-  ago: {
+  menarca: {
     type: String,
-    uppercase: true },
+    uppercase: true
+  },
   tensionMens: {
     type: String,
     uppercase: true },

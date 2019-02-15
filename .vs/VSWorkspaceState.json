@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\api",
+    "\\assets",
+    "\\assets\\css",
     "\\components",
     "\\config",
     "\\layouts",
-    "\\library",
-    "\\library\\msiReportes",
-    "\\middleware",
-    "\\routes",
-    "\\server"
+    "\\models",
+    "\\pages",
+    "\\store"
   ],
-  "SelectedNode": "\\components\\updatePacienteCmp.vue",
+  "SelectedNode": "\\pages\\RegistroPaciente.vue",
   "PreviewInSolutionExplorer": false
 }

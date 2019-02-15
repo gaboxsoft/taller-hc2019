@@ -3,8 +3,9 @@
   <div class="container">
     <h2 class="text-primary text-center">{{tituloPagina}}</h2>
     <div>
-      <pacientesCmp />    
-      <updatePacienteCmp />
+      <pacientesCmp />
+      <div id="datosGenerales"></div>
+      <updatePacienteCmp style="margin-top:100px;" />
     </div>
   </div>
 </template>
@@ -20,7 +21,7 @@
     },
     data() {
       return {
-        tituloPagina:'Lista Pacientes'
+        tituloPagina:'Lista de Pacientes'
       }
     },
     created() {
@@ -28,7 +29,6 @@
       if (this.$store.state.token === 'NONE') {
         this.$router.push({ name: 'login' })
       };
-
     }
   };
   

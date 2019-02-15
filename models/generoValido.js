@@ -1,6 +1,6 @@
 // Roles de usuarios para controlar acceso a los diferentes API's 
 let generoValido = {
-    values: ['M', 'F'],
+    values: ['H', 'M'],
     message: '{VALUE} no es un GÉNERO válido.'
 }
 
