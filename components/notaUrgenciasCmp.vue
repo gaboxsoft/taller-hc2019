@@ -9,18 +9,18 @@
     <br />
     <form action="#">
       <div class="row">
-        <div class="col-md-10">
+        <div >
           <!--<div class="row">
             <div class="col-md-7 text-sm-left">{{notaUrgencias._id}}</div>
           </div>-->
           <div class="row">
-            <div class="col-md-3 text-right">fecha-hora:</div>
+            <div class="col-md-3 text-right">fecha:</div>
             <div class="col-md-5 text-left"><input class="input-text" type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
           </div>
           <div class="row">
-            <div class="col-md-5  text-right">Ocupacion:</div>
+            
             <!--            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="paciente.ocupacion" name="ocupacion"></div>-->
-            <div class="col-md-4  text-left">{{paciente.ocupacion}}</div>
+            <div>Ocupacion: {{paciente.ocupacion}}</div>
           </div>
           <div class="row">
             <div class="col-md-3  text-right">Seguro:</div>
@@ -28,52 +28,45 @@
           </div>
 
           <div class="row">
-            <div class="col-md-3  text-right">Diagnóstico egreso:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso"></div>
+            <div class="col-md-10  text-left">Diagnóstico egreso:</div>
+            <div class="col-md-5  text-left"><textarea class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso" rows="5" cols="50"></textarea></div>
           </div>
 
 
           <div class="row">
             FC:
-            <input class="input-text col-md-2" type="text" v-model="notaUrgencias.FC" name="FC">
-            <!--<div class="col-md-3  text-right">FC:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FC" name="FC"></div>-->
-            <!--</div>
-            <div class="row">-->
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FC" name="FC">
             FR:
-            <input class="input-text col-md-2" type="text" v-model="notaUrgencias.FR" name="FR">
-            <!--<div class="col-md-3  text-right">FR:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.FR" name="FR"></div>-->
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FR" name="FR">
           </div>
           <div class="row">
-            <div class="col-md-3  text-right">TA:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.TA" name="TA"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">T:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.T" name="T"></div>
+            TA:
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.TA" name="TA">
+            T:
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.T" name="T">
           </div>
 
+          <div class="row">
+            Peso:
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.peso" name="peso">
 
-
-          <div class="row">
-            <div class="col-md-3  text-right">Peso:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.peso" name="peso"></div>
+            Talla:
+            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.talla" name="talla">
           </div>
           <div class="row">
-            <div class="col-md-3  text-right">Talla:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.talla" name="talla"></div>
+            <div class="col-md-10" >Antecedentes importantes:</div>
+            <div class="col-md-5  text-left">
+              <textarea class="input-text" type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia" rows="3" cols="50"></textarea>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-3  text-right">Antecedentes importantes:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia"></div>
+            <div class="col-md-10">R e s u m e n  c l í n i c o :</div>
+            <div class="col-md-5  text-left">
+              <textarea class="input-text" v-model="notaUrgencias.resumenClinico" name="resumenClinico" rows="3" cols="50"></textarea>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-3  text-right">Resumen clínico:</div>
-            <div class="col-md-5  text-left"><textarea class="input-text" type="text" v-model="notaUrgencias.resumenClinico" name="resumenClinico" rows="5" cols="50"></textarea></div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Indicaciones:</div>
+            <div class="col-md-10"> I n d i c a c i o n e s :</div>
             <div class="col-md-5  text-left">
               <textarea class="input-text" v-model="notaUrgencias.indicaciones" name="indicaciones" rows="5" cols="50"></textarea>
             </div>
@@ -331,36 +324,4 @@
   };
 
 </script>
-<style scoped>
 
-  .main-container {
-    /*min-height: 100vh;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;
-    text-align: center;*/
-    padding-top: 90px;
-  }
-
-  /*.title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-      'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
-  }*/
-</style>
