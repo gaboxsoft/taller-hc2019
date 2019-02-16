@@ -4,7 +4,7 @@
     <a ref="linkToDatosGenerales" href="#datosGenerales">ir a Generales</a>
     <no-ssr>
       <!--<table class="table table-striped table-bordered table-hover table-info ">-->
-      <table class="table table-bordered table-info ">
+      <table class="table table-bordered table-info " style="width:50%;">
         <tr>
           <td>FOLIO</td>
           <td>NOMBRE</td>
@@ -12,7 +12,7 @@
           <td>DIAGNOSTICO</td>
           <td>TELÉFONOS</td>
         </tr>
-        <tr v-model="pacientes"
+        <tr :class="{'bg-warning':p._id===$store.state.pacienteId}" v-model="pacientes"
             v-for="p in pacientes">
           <td>{{p.folioCuenta}}</td>
           <td style="width:200px;">{{p.nombre}}</td>
@@ -22,7 +22,7 @@
           <td style="width:25px;">
             <b-btn class="bg-success" btn-xs
                    v-on:click="seleccionar(p._id)">
-              Abrir Documento
+              Abrir
             </b-btn>
           </td>
 

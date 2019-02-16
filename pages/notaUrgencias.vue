@@ -1,15 +1,16 @@
 
 <template>
-  <div >
+  <div id="notaUrgencias">
+    <h3 class="text-center text-primary">{{tituloPagina}}</h3>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <notasUrgenciasCmp />
       </div>
       <div class="col-md-4">
         <notaUrgenciasCmp />
       </div>
-  </div>
 
+    </div>
   </div>
 </template>
 
@@ -21,6 +22,11 @@
     components: {
       notasUrgenciasCmp,
       notaUrgenciasCmp
+    },
+    data() {
+      return {
+        tituloPagina:'Nota de Urgencias'
+      }
     },
     created() {
       // No hay sesion abierta, redirige a login

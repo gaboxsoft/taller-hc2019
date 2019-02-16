@@ -1,68 +1,41 @@
 
 <template>
-  <div class="main-container ">
-    <h1 class=" text-primary">{{tituloPagina}}</h1>
+  <div >
+    <!--<h1 class=" text-primary">{{tituloPagina}}</h1>-->
     <notifyCmp ref="notify" />
-    <b-btn class="bg-success" v-on:click="agregar">NUEVA NOTA DE URGENCIAS</b-btn>
-    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
-
-    <p></p>
+    <b-btn class="bg-success button-right" v-on:click="agregar">NUEVA NOTA</b-btn>
+    <br />
+    <a ref="linkToNotaUrgencias" href="#notaUrgencias">ir a Generales</a>
     <div class="row">
-      <div class="col-md-6">
-        
-        <!--<div class="row">
-          <div class="col-md-3 text-right">fecha-hora:
-            <div class="col-md-5 text-left"><input type="datetime" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
-          </div>
-          <div class="col-md-3 text-right">id
-            <div class="col-md-5 text-left"><input type="datetime" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
-        </div>-->
-        
-          <no-ssr>
-            <table class="table table-striped table-bordered table-hover table-info col-md-8">
+      <div>
+        <no-ssr>
+          <table class="table  table-bordered table-hover table-info ">
+            <thead>
               <tr>
-                <!--<td>ID</td>-->
                 <td>FECHA</td>
                 <td>DIAGNOSTICO</td>
                 <td>INDICACIONES</td>
               </tr>
-              <tr v-model="notasUrgencias"
-                  v-for="nu in notasUrgencias">
-                <!--<td>{{nu._id}}</td>-->
-                <td>{{nu.fechaNota}}</td>
-                <!--<td style="width:200px;">{{nu.diagnosticoEgreso}}</td>-->
-                <td>{{nu.diagnosticoEgreso}}</td>
-                <td>{{nu.indicaciones}}</td>
-
-                <td style="width:25px;">
-                  <b-btn btn-xs
-                         v-on:click="imprimir(nu._id)">
-                    Imp
-                    <!-- <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
-                  </b-btn>
-                  <!--</td>
-    <td style="width:25px;">-->
-                  <b-btn btn-xs
-                         v-on:click="seleccionar(nu._id)">
-                    Sel
-                    <!-- <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">-->
-                  </b-btn>
-                </td>
-
-              </tr>
-            </table>
-          </no-ssr>
-
-
-
-        </div>     
+            </thead>
+            <tr :class="{'bg-warning':nu._id===$store.state.notaUrgenciasId}" v-model="notasUrgencias" v-for="nu in notasUrgencias">
+              <!--<td>{{nu._id}}</td>-->
+              <td>{{nu.fechaNota}}</td>
+              <!--<td style="width:200px;">{{nu.diagnosticoEgreso}}</td>-->
+              <td>{{nu.diagnosticoEgreso}}</td>
+              <td>{{nu.indicaciones}}</td>
+              <td>
+                <b-btn class="btn bg-success btn-xs"  v-on:click="seleccionar(nu._id)">
+                  Abrir
+                </b-btn>
+                <!--<b-btn ref="VerPdf" class="btn bg-warning btn-xs"  v-on:click="imprimir(nu._id)">
+                  Ver
+                </b-btn>-->
+              </td>
+            </tr>
+          </table>
+        </no-ssr>
+      </div>
     </div>
-    <p></p>
-
-
-    <!--<b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-  <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
-
   </div>
 </template>
 
@@ -78,14 +51,14 @@
       notifyCmp
     },
     data() {
-      return {    
+      return {
         tituloPagina: 'NOTAS DE URGENCIAS',
         notasVacia: [
           { _id: '', fechaNota: '', diagnosticoEgreso: '', indicaciones: '' }
         ],
-        notasUrgencias:{},
+        notasUrgencias: {},
         notaUrgenciasId: {},
-        notaUrgenciaId:''
+        notaUrgenciaId: ''
       }
     },
 
@@ -129,16 +102,16 @@
         //this.$store.commit('setPacienteId', pacienteId)
         
         this.$store.commit('setNotaUrgenciasId', 'NUEVO');
-
+        this.$refs.linkToNotaUrgencias.click();
       },
       seleccionar: function (notaUrgenciasId) {
-        if (notaUrgenciasId=='') {
+        if (notaUrgenciasId == '') {
           return;
         }
         console.log('aquí en seleccionar nota urgencia, id: ', notaUrgenciasId);
         //this.$store.commit('setPacienteId', pacienteId)
         this.$store.commit('setNotaUrgenciasId', notaUrgenciasId)
-
+        this.$refs.linkToNotaUrgencias.click();
       },
       getCurrentPaciente: function (token) {
 
@@ -183,7 +156,7 @@
               }
               //for (let x in this.notasUrgencias) {
               //  console.log('fecha_>', x.fechaNota);
-               
+
               //}
             }
             //console.log('24.-final this.notasUrgencias: ', this.notasUrgencias);
@@ -195,7 +168,7 @@
               //this.$store.commit('setCurrentPaciente', undefined);
             });
       },
-    
+
       imprimir: function (notaUrgenciasId) {
         if (notaUrgenciasId == '') {
           return;
@@ -213,7 +186,7 @@
           .then((response) => {
             //console.log('aaquí en imprimir NU axios y regresó: ', response);
             //console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
-            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile,true);
+            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile, true);
           },
             (error) => {
               this.err = error.response.data.error;

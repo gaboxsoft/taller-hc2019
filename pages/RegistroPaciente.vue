@@ -1,15 +1,13 @@
 
 <template>
-  <div class="container">
+  <div  id="datosGenerales">
     <h2 class="text-primary text-center">{{tituloPagina}}</h2>
-    <div>
-      <pacientesCmp />
-      <div id="datosGenerales"></div>
-      <updatePacienteCmp style="margin-top:100px;" />
-    </div>
+    <pacientesCmp />
+    <div></div>
+    <!--style="margin-top:100px;"-->
+    <updatePacienteCmp />
   </div>
 </template>
-
 <script>
   import pacientesCmp from '../components/pacientesCmp';
   import updatePacienteCmp from '~/components/updatePacienteCmp';
@@ -17,11 +15,11 @@
     name: 'RegistroPaciente',
     components: {
       pacientesCmp,
-    updatePacienteCmp
+      updatePacienteCmp
     },
     data() {
       return {
-        tituloPagina:'Lista de Pacientes'
+        tituloPagina: 'Lista de Pacientes'
       }
     },
     created() {
@@ -31,5 +29,5 @@
       };
     }
   };
-  
+
 </script>

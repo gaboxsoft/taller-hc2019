@@ -1,105 +1,104 @@
 
 <template>
-  <div style="margin-top:100px;">
+  <!--style="margin-top:100px;"-->
+  <div class="col-md-8">
     <div>
       <h2 class="text-primary">{{tituloPagina}}</h2>
     </div>
 
     <notifyCmp ref="notify" />
-    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
+    <b-btn class="bg-success button-right " v-on:click="guardar">GUARDAR</b-btn>
 
     <div class="row">
-      <div class="col-md-3 text-right">folio:</div>
+      folio:
       <div class="col-md-2 text-left bg-warning">{{paciente.folioCuenta}}</div>
     </div>
 
-    <form class="form-inline" action="#">
-      <!--<div class="row">-->
-      <!--</div>-->
-      <!--<div class="row">-->
-      <!--<div class="col-md-3  text-right">Estado civíl:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>-->
+    <form action="#">
+      <table class="table table-sm table-info">
 
-      <div class="col-md-3  text-right">Nombre:</div>
-      <div class="col-md-9"> <input type="text" class="text input-text" v-model="paciente.nombre" name="nombre"></div>
-      <!--</div>-->
-      <!--<div class="row">-->
-      <div class="col-md-3  text-right">Estado civíl:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></div>
-      <!--</div>-->
-      <!--<div class="row">-->
-      <div class="col-md-3  text-right">Género:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.genero" name="genero"></div>
-      <!--  -->
-      <!--<div>-->
-      <div class="col-md-3  text-right">Género:</div>
-      <div class="col-md-7  text-left">
-        <input type="radio" id="hombre" value="H" v-model="paciente.genero">
-        Hombre
-        <input type="radio" id="mujer" value="M" v-model="paciente.genero">
-        Mujer
-      </div>
-      <!--</div>-->
-      <!--  -->
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Nacimiento:</div>
-      <div class="col-md-7  text-left"><input type="date" class="input-text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Ocupación:</div>
-      <div class="col-md-9  text-left"><input type="text" class="input-text" v-model="paciente.ocupacion" name="fechaNacimiento"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Calle:</div>
-      <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.calle" name="calle"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Núm. exterior:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numExterior" name="numExterior"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Núm. interior:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.numInterior" name="numInterior"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Colonia:</div>
-      <div class="col-md-9  text-left"><input type="text" class="text input-text" v-model="paciente.colonia" name="colonia"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Municipio:</div>
-      <div class="col-md-9  txt-left"><input type="text" class="text input-text" v-model="paciente.municipio" name="municipio"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">Estado:</div>
-      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.entidad" name="entidad"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">País:</div>
-      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.pais" name="pais"></div>
-      <!--</div>
-      <div class="row">-->
-      <div class="col-md-3  text-right">CP:</div>
-      <div class="col-md-7  text-left"><input type="text" class="input-text" v-model="paciente.CP" name="CP"></div>
-      <!--</div>-->
-      <!-- MÉDICO TRATANTE -->
-      <!--<h5>--ACERCA DEL MÉDICO TRATANTE---</h5>-->
-
-      <div class="col-md-3  text-right">NOMBRE Méd. tratante (MT):</div>
-      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.nombreMT" name="nombreMT"></div>
-
-      <div class="col-md-3  text-right">Cédula profesional MT:</div>
-      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.cedulaMT" name="cedulaMT"></div>
-
-      <div class="col-md-3  text-right">Institución expide Título MT:</div>
-      <div class="col-md-7  text-left"><input type="text" class="text input-text" v-model="paciente.institucionMT" name="institucionMT"></div>
-
+        <tbody>
+          <tr>
+            <td style="width:25%;">Nombre:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.nombre" name="nombre"></td>
+          </tr>
+          <tr>
+            <td>Estado civíl:</td>
+            <td><input type="text" class="input-text" v-model="paciente.edoCivil" name="edoCivil"></td>
+          </tr>
+          <tr>
+            <td>Género:</td>
+            <td>
+              <div>
+                <input type="radio" id="hombre" value="H" v-model="paciente.genero">Hombre
+                <input type="radio" id="mujer" value="M" v-model="paciente.genero">Mujer
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Nacimiento:</td>
+            <td><input type="date" class="input-text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></td>
+          </tr>
+          <tr>
+            <td>Ocupación:</td>
+            <td><input type="text" class="input-text" v-model="paciente.ocupacion" name="fechaNacimiento"></td>
+          </tr>
+          <tr>
+            <td>Calle:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.calle" name="calle"></td>
+          </tr>
+          <tr>
+            <td>Núm. exterior:</td>
+            <td><input type="text" class="input-text" v-model="paciente.numExterior" name="numExterior"></td>
+          </tr>
+          <tr>
+            <td>Núm. interior:</td>
+            <td><input type="text" class="input-text" v-model="paciente.numInterior" name="numInterior"></td>
+          </tr>
+          <tr>
+            <td>Colonia:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.colonia" name="colonia"></td>
+          </tr>
+          <tr>
+            <td>Municipio:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.municipio" name="municipio"></td>
+          </tr>
+          <tr>
+            <td>Estado:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.entidad" name="entidad"></td>
+          </tr>
+          <tr>
+            <td>País:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.pais" name="pais"></td>
+          </tr>
+          <tr>
+            <td>CP:</td>
+            <td><input type="text" class="input-text" v-model="paciente.CP" name="CP"></td>
+          </tr>
+          <tr>
+            <td>NOMBRE Méd. tratante (MT):</td>
+            <td><input type="text" class="text input-text" v-model="paciente.nombreMT" name="nombreMT"></td>
+          </tr>
+          <tr>
+            <td>Cédula profesional MT:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.cedulaMT" name="cedulaMT"></td>
+          </tr>
+          <tr>
+            <td>Institución expide Título MT:</td>
+            <td><input type="text" class="text input-text" v-model="paciente.institucionMT" name="institucionMT"></td>
+          </tr>
+        </tbody>
+      </table>
+      <!--</no-ssr>-->
     </form>
-    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
+    <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
+    <br />
+    <br />
     <br />
     <br />
   </div>
 </template>
+
 <script>
   const urlGetPacientes = process.env.urlServer + '/Pacientes?limite=0&desde=0';//'http://localhost:3000/Pacientes?limite=0&desde=0';
   const MAX_SIZE_NOMBRE = 50;
@@ -114,7 +113,7 @@
     },
     data() {
       return {
-        tituloPagina: 'DATOS GENERALES DEL PACIENTE SELECCIONADO',
+        tituloPagina: 'DATOS GENERALES DEL PACIENTE',
         totalPacientes: 0,
         pacientes: {},
         token: '',

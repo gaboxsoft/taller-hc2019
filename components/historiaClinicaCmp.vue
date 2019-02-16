@@ -9,6 +9,47 @@
     <br />
     <form action="#">
 
+      <table class="table table-sm table-hover table-info">
+        <tbody>
+          <tr>
+            <td>Estado civíl: </td>
+            <td><input class="input-text" type="text" v-model="paciente.edoCivil" name="edoCivil"></td>
+          </tr>
+          <tr>
+            <td>Lugar de Origen:</td>
+            <td><input class="input-text" type="text" v-model="paciente.lugarOrigen" name="lugarOrigen"></td>
+          </tr>
+          <tr>
+            <td>Antecedentes Heterodofamiliares:</td>
+            <td><textarea class="input-text" v-model="paciente.antHeredoFam" name="antHeredoFam" rows="3" cols="50"></textarea></td>
+          </tr>
+          <tr>
+            <td>Personales patológicos:</td>
+            <td><textarea class="input-text" v-model="paciente.personalesPato" name="personalesPato" rows="3" cols="50"></textarea></td>
+          </tr>
+          <tr>
+            <td>Personales NO patológicos:</td>
+            <td><textarea class="input-text" v-model="paciente.personalesNoPato" name="personalesNoPato" rows="3" cols="50"></textarea></td>
+          </tr>
+          <tr>
+            <td>Género:</td>
+            <td>
+              <input type="radio" id="hombre" value="H" v-model="paciente.genero">
+              Masculino
+              <input type="radio" id="mujer" value="M" v-model="paciente.genero">
+              Femenino
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
 
       <div>Estado civíl: <input class="input-text" type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
       <div>Lugar de Origen: <input class="input-text" type="text" v-model="paciente.lugarOrigen" name="lugarOrigen"></div>
@@ -41,7 +82,7 @@
         <input class="input-text" type="text" v-model="paciente.tensionMens" name="tensionMens">
         <br />
         <!--<label for="paciente.ritmo">Ritmo:</label>
-    <input class="input-text" type="text" v-model="paciente.ritmo" name="ritmo">-->
+        <input class="input-text" type="text" v-model="paciente.ritmo" name="ritmo">-->
         <!--  -->
         <div>
           Ritmo:
@@ -97,63 +138,63 @@
         <label for="paciente.circuncision">Circuncisión:</label>
         <input class="input-text" type="text" v-model="paciente.circuncision" name="circuncision">
         <br />
-        </div>
-        <label for="paciente.otrosHistoriaClinica">Otros:</label>
-        <input class="input-text" type="text" v-model="paciente.otrosHistoriaClinica" name="otrosHistoriaClinica">
-        <br />
-        <label for="paciente.padecimientoActual">Padecimiento Actual:</label>
-        <input class="input-text" type="text" v-model="paciente.padecimientoActual" name="padecimientoActual">
-        <br />
-        <label for="paciente.peso">Peso:</label>
-        <input class="input-text" type="text" v-model="paciente.peso" name="peso">
-        <br />
-        <label for="paciente.talla">Talla:</label>
-        <input class="input-text" type="text" v-model="paciente.talla" name="talla">
-        <br />
-        <label for="paciente.temperatura">Temperatura:</label>
-        <input class="input-text" type="text" v-model="paciente.temperatura" name="temperatura">
-        <br />
-        <label for="paciente.tensionArterial">Tension Arterial:</label>
-        <input class="input-text" type="text" v-model="paciente.tensionArterial" name="tensionArterial">
-        <br />
-        <label for="paciente.craneo">Craneo:</label>
-        <input class="input-text" type="text" v-model="paciente.craneo" name="craneo">
-        <br />
-        <label for="paciente.cara">Cara:</label>
-        <input class="input-text" type="text" v-model="paciente.cara" name="cara">
-        <br />
-        <label for="paciente.fondoOcular">Fondo Ocular:</label>
-        <input class="input-text" type="text" v-model="paciente.fondoOcular" name="fondoOcular">
-        <br />
-        <label for="paciente.cuello">cuello:</label>
-        <input class="input-text" type="text" v-model="paciente.cuello" name="cuello">
-        <br />
-        <label for="paciente.cardioPulmunar">Cardio Pulmunar:</label>
-        <input class="input-text" type="text" v-model="paciente.cardioPulmunar" name="cardioPulmunar">
-        <br />
-        <label for="paciente.abdomen">Abdomen:</label>
-        <input class="input-text" type="text" v-model="paciente.abdomen" name="abdomen">
-        <br />
-        <label for="paciente.tactoRectal">Tacto Rectal:</label>
-        <input class="input-text" type="text" v-model="paciente.tactoRectal" name="tactoRectal">
-        <br />
-        <label for="paciente.miembros">Miembros:</label>
-        <input class="input-text" type="text" v-model="paciente.miembros" name="miembros">
-        <br />
-        <label for="paciente.ID">ID:</label>
-        <input class="input-text" type="text" v-model="paciente.ID" name="ID">
-        <br />
-        <label for="paciente.TX">TX:</label>
-        <input class="input-text" type="text" v-model="paciente.TX" name="TX">
-        <br />
-        <label for="paciente.LAB">LAB:</label>
-        <input class="input-text" type="text" v-model="paciente.LAB" name="LAB">
-        <br />
-        <label for="paciente.USG">USG:</label>
-        <input class="input-text" type="text" v-model="paciente.USG" name="USG">
-        <br />
-        <label for="paciente.RX">RX:</label>
-        <input class="input-text" type="text" v-model="paciente.RX" name="RX">
+      </div>
+      <label for="paciente.otrosHistoriaClinica">Otros:</label>
+      <input class="input-text" type="text" v-model="paciente.otrosHistoriaClinica" name="otrosHistoriaClinica">
+      <br />
+      <label for="paciente.padecimientoActual">Padecimiento Actual:</label>
+      <input class="input-text" type="text" v-model="paciente.padecimientoActual" name="padecimientoActual">
+      <br />
+      <label for="paciente.peso">Peso:</label>
+      <input class="input-text" type="text" v-model="paciente.peso" name="peso">
+      <br />
+      <label for="paciente.talla">Talla:</label>
+      <input class="input-text" type="text" v-model="paciente.talla" name="talla">
+      <br />
+      <label for="paciente.temperatura">Temperatura:</label>
+      <input class="input-text" type="text" v-model="paciente.temperatura" name="temperatura">
+      <br />
+      <label for="paciente.tensionArterial">Tension Arterial:</label>
+      <input class="input-text" type="text" v-model="paciente.tensionArterial" name="tensionArterial">
+      <br />
+      <label for="paciente.craneo">Craneo:</label>
+      <input class="input-text" type="text" v-model="paciente.craneo" name="craneo">
+      <br />
+      <label for="paciente.cara">Cara:</label>
+      <input class="input-text" type="text" v-model="paciente.cara" name="cara">
+      <br />
+      <label for="paciente.fondoOcular">Fondo Ocular:</label>
+      <input class="input-text" type="text" v-model="paciente.fondoOcular" name="fondoOcular">
+      <br />
+      <label for="paciente.cuello">cuello:</label>
+      <input class="input-text" type="text" v-model="paciente.cuello" name="cuello">
+      <br />
+      <label for="paciente.cardioPulmunar">Cardio Pulmunar:</label>
+      <input class="input-text" type="text" v-model="paciente.cardioPulmunar" name="cardioPulmunar">
+      <br />
+      <label for="paciente.abdomen">Abdomen:</label>
+      <input class="input-text" type="text" v-model="paciente.abdomen" name="abdomen">
+      <br />
+      <label for="paciente.tactoRectal">Tacto Rectal:</label>
+      <input class="input-text" type="text" v-model="paciente.tactoRectal" name="tactoRectal">
+      <br />
+      <label for="paciente.miembros">Miembros:</label>
+      <input class="input-text" type="text" v-model="paciente.miembros" name="miembros">
+      <br />
+      <label for="paciente.ID">ID:</label>
+      <input class="input-text" type="text" v-model="paciente.ID" name="ID">
+      <br />
+      <label for="paciente.TX">TX:</label>
+      <input class="input-text" type="text" v-model="paciente.TX" name="TX">
+      <br />
+      <label for="paciente.LAB">LAB:</label>
+      <input class="input-text" type="text" v-model="paciente.LAB" name="LAB">
+      <br />
+      <label for="paciente.USG">USG:</label>
+      <input class="input-text" type="text" v-model="paciente.USG" name="USG">
+      <br />
+      <label for="paciente.RX">RX:</label>
+      <input class="input-text" type="text" v-model="paciente.RX" name="RX">
 
     </form>
     <b-btn class="button-right bg-success" v-on:click="guardar">GUARDAR</b-btn>
@@ -185,7 +226,7 @@
           antHeredoFam: '',
           personalesPato: '',
           personalesNoPato: '',
-          genero:'',
+          genero: '',
           menarca: '',
           tensionMens: '',
           ritmo: '',

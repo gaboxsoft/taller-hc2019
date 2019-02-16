@@ -1,81 +1,75 @@
 
 <template>
-  <div class="main-container ">
-    <h1 class=" text-primary">{{tituloPagina}}</h1>
+  <div>
+    <!--<h1 class=" text-primary">{{tituloPagina}}</h1>-->
     <notifyCmp ref="notify" />
-    <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
-    <br />
-    <br />
+    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
+    <b-btn class="btn bg-warning btn-xs" v-on:click="imprimir(notaUrgencias._id)">
+      Ver
+    </b-btn>
     <form action="#">
-      <div class="row">
-        <div >
-          <!--<div class="row">
-            <div class="col-md-7 text-sm-left">{{notaUrgencias._id}}</div>
-          </div>-->
-          <div class="row">
-            <div class="col-md-3 text-right">fecha:</div>
-            <div class="col-md-5 text-left"><input class="input-text" type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></div>
-          </div>
-          <div class="row">
-            
-            <!--            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="paciente.ocupacion" name="ocupacion"></div>-->
-            <div>Ocupacion: {{paciente.ocupacion}}</div>
-          </div>
-          <div class="row">
-            <div class="col-md-3  text-right">Seguro:</div>
-            <div class="col-md-5  text-left"><input class="input-text" type="text" v-model="notaUrgencias.seguro" name="seguro"></div>
-          </div>
+      <table class="table table-sm table-info ">
+        <tbody>
+          <tr>
+            <td>Fecha:</td>
+            <td><input class="input-text" type="datetime-local" v-model="notaUrgencias.fechaNota" name="fechaNota"></td>
+          </tr>
+          <tr>
+            <td>Seguro:</td>
+            <td><input class="input-text" type="text" v-model="notaUrgencias.seguro" name="seguro"></td>
+          </tr>
+          <tr>
+            <td>Ocupacion:</td>
+            <td> {{paciente.ocupacion}}</td>
+          </tr>
+          <tr>
+            <td>Diagnóstico egreso:</td>
+            <td><textarea class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso" rows="5" cols="50"></textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              __FC:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FC" name="FC">
+              __FR:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FR" name="FR">
+              <br />
+              __TA:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.TA" name="TA">
+              ___T:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.T" name="T">
+              <br />
+              Peso:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.peso" name="peso">
 
-          <div class="row">
-            <div class="col-md-10  text-left">Diagnóstico egreso:</div>
-            <div class="col-md-5  text-left"><textarea class="input-text" type="text" v-model="notaUrgencias.diagnosticoEgreso" name="diagnosticoEgreso" rows="5" cols="50"></textarea></div>
-          </div>
+              Talla:
+              <input class="input-text col-md-3" type="text" v-model="notaUrgencias.talla" name="talla">
+            </td>
+          </tr>
 
-
-          <div class="row">
-            FC:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FC" name="FC">
-            FR:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.FR" name="FR">
-          </div>
-          <div class="row">
-            TA:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.TA" name="TA">
-            T:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.T" name="T">
-          </div>
-
-          <div class="row">
-            Peso:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.peso" name="peso">
-
-            Talla:
-            <input class="input-text col-md-3" type="text" v-model="notaUrgencias.talla" name="talla">
-          </div>
-          <div class="row">
-            <div class="col-md-10" >Antecedentes importantes:</div>
-            <div class="col-md-5  text-left">
+          <tr>
+            <td>Antecedentes importantes:</td>
+            <td>
               <textarea class="input-text" type="text" v-model="notaUrgencias.antecedentesImportancia" name="antecedentesImportancia" rows="3" cols="50"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10">R e s u m e n  c l í n i c o :</div>
-            <div class="col-md-5  text-left">
+            </td>
+          </tr>
+          <tr>
+            <td>Resumen clínico:</td>
+            <td>
               <textarea class="input-text" v-model="notaUrgencias.resumenClinico" name="resumenClinico" rows="3" cols="50"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10"> I n d i c a c i o n e s :</div>
-            <div class="col-md-5  text-left">
+            </td>
+          </tr>
+          <tr>
+            <td>Indicaciones:</td>
+            <td>
               <textarea class="input-text" v-model="notaUrgencias.indicaciones" name="indicaciones" rows="5" cols="50"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
     </form>
-    <b-btn class="bg-success" v-on:click="guardar">GUARDAR</b-btn>
-    <!--<b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>-->
+    <b-btn class="bg-success button-right" v-on:click="guardar">GUARDAR</b-btn>
   </div>
 </template>
 <script>
@@ -149,6 +143,7 @@
       }
     },
     created() {
+
       this.getCurrentPaciente(this.getToken);
       if (!this.getNotaUrgenciasId || this.getNotaUrgenciasId === 'NUEVO' || this.getNotaUrgenciasId === 'NONE') {
         console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...1');
@@ -163,10 +158,34 @@
     },
 
     methods: {
+      imprimir: function (notaUrgenciasId) {
+        if (notaUrgenciasId == '') {
+          return;
+        }
+        console.log('aquí en imprimir NU...', process.env.urlServer + '/msi12/' + this.$store.state.pacienteId);
+        console.log('------>>   aquí en imprimir NU->notaUrgenciasId: ', notaUrgenciasId);
+        //this.seleccionar(notaUrgenciasId);
+        axios.get(process.env.urlServer + '/msi12/' + this.$store.state.pacienteId, {
+          headers: {
+            token: this.getToken,
+            Accept: 'application/pdf',
+            responseType: 'blob',
+            notaUrgenciasId: notaUrgenciasId
+          }
+        })
+          .then((response) => {
+            //console.log('aaquí en imprimir NU axios y regresó: ', response);
+            console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
+            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile, true);
+          },
+            (error) => {
+              this.err = error.response.data.error;
+              //console.log('Error en imprimir Nota Urgencias: ', this.err);
+              this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO", 5);
+            });
+      },
 
       getNotaUrgencias: function () {
-
-
 
         console.log('--1.- en NotaUrgenciasCmp->urlNotaUrgencias->', this.urlGetNotaUrgencias);
         //console.log('--1.1.- en NotasUrgenciasCmp->Token->', this.getToken);
@@ -298,28 +317,7 @@
             });
         }
       },
-      imprimir: function () {
-
-        console.log('aquí en imprimir NU...', this.urlNotaUrgenciasPdf);
-
-        axios.get(this.urlNotaUrgenciasPdf, {
-          headers: {
-            token: this.getToken,
-            Accept: 'application/pdf',
-            responseType: 'blob'
-          }
-        })
-          .then((response) => {
-            console.log('aaquí en imprimir NU axios y regresó: ', response);
-            console.log('aaquí en imprimir NU axios y regresó: ', response.data.pdfFile);
-            this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile, true);
-          },
-            (error) => {
-              this.err = error.response.data.error;
-              console.log('Error en imprimir Nota Urgencias: ', this.err);
-              this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO", 5);
-            });
-      }
+     
     }
   };
 

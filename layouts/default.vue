@@ -18,8 +18,10 @@
 </script>
 <style>
   body {
-    padding: 0px,0px,0px,0px;
-    margin-top: 90px;
+    padding: 90px 20px 100px 30px;
+    /*margin-top: 90px;*/
+    overflow: auto;
+
     /*margin: 150px,0px,0px,0px;*/
     /*align-items: center;*/
   }
@@ -33,6 +35,24 @@
     text-transform: uppercase
   }
   .button-right {
+    float: right;
+  }
+  .btn-borrar {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 100%;
+    cursor: pointer;
+    float: right;
+  }
+  .btn-abrir {
+    background: #46ab1c;
+    color: #fff;
+    border: none;
+    padding: 3px 7px;
+    border-radius: 50%;
+    cursor: pointer;
     float: right;
   }
   /*.notify-container {
