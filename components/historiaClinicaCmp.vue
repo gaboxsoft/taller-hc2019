@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <h2 class=" text-primary">{{tituloPagina}}</h2>
+    <h2 class="text-center text-primary">{{tituloPagina}}</h2>
     <notifyCmp ref="notify" />
     <b-btn class="button-right bg-success" v-on:click="guardar">GUARDAR</b-btn>
     <b-btn class="button-right bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
@@ -9,30 +9,30 @@
     <br />
     <form action="#">
 
-      <table class="table table-sm table-hover table-info">
+      <table class="table-sm table-hover table-info">
         <tbody>
           <tr>
-            <td>Estado civíl: </td>
+            <td class="text-right" style="width:25%">Estado civíl: </td>
             <td><input class="input-text" type="text" v-model="paciente.edoCivil" name="edoCivil"></td>
           </tr>
           <tr>
-            <td>Lugar de Origen:</td>
+            <td class="text-right">Lugar de Origen:</td>
             <td><input class="input-text" type="text" v-model="paciente.lugarOrigen" name="lugarOrigen"></td>
           </tr>
           <tr>
-            <td>Antecedentes Heterodofamiliares:</td>
+            <td class="text-right">Antecedentes Heterodofamiliares:</td>
             <td><textarea class="input-text" v-model="paciente.antHeredoFam" name="antHeredoFam" rows="3" cols="50"></textarea></td>
           </tr>
           <tr>
-            <td>Personales patológicos:</td>
+            <td class="text-right">Personales patológicos:</td>
             <td><textarea class="input-text" v-model="paciente.personalesPato" name="personalesPato" rows="3" cols="50"></textarea></td>
           </tr>
           <tr>
-            <td>Personales NO patológicos:</td>
+            <td class="text-right">Personales NO patológicos:</td>
             <td><textarea class="input-text" v-model="paciente.personalesNoPato" name="personalesNoPato" rows="3" cols="50"></textarea></td>
           </tr>
           <tr>
-            <td>Género:</td>
+            <td class="text-right">Género:</td>
             <td>
               <input type="radio" id="hombre" value="H" v-model="paciente.genero">
               Masculino
@@ -40,161 +40,178 @@
               Femenino
             </td>
           </tr>
+
+
           <tr>
-            <td></td>
-            <td></td>
+            <td class="rounded" style="background-color:lightpink" v-show="paciente.genero==='M'" colspan="2">
+              <table class="table table-sm table-info">
+                <tbody>
+                  <tr>
+                    <td class="text-right" style="width:25%">Menarca:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.menarca" name="menarca"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Tensión menstrual:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.tensionMens" name="tensionMens"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Ritmo:</td>
+                    <td>
+                      <input type="radio" id="regular" value="REGULAR" v-model="paciente.ritmo">
+                      Regular
+                      <input type="radio" id="irregular" value="IRREGULAR" v-model="paciente.ritmo">
+                      Irregular
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Inicio vida sexual:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.inicioVidaSexual" name="inicioVidaSexual"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Gestados:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.gestados" name="gestados"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Partos:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.partos" name="partos"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Abortos:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.abortos" name="abortos"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Cesareas:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.cesareas" name="cesareas"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Fecha Ultimo Parto:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.fechaUltimpoParto" name="fechaUltimpoParto"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Fecha Ultimo Aborto:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.fechaUltimoAborto" name="fechaUltimoAborto"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Peso Productos:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.pesoProductos" name="pesoProductos"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Fecha Ultima Regla:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.fechaUltimaRegla" name="fechaUltimaRegla"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Fecha Ultima Citocervix:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.fechaUltimaCitoCervix" name="fechaUltimaCitoCervix"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Protección Menstrual:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.proteccionMenstrual" name="proteccionMenstrual"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Mamas:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.mamas" name="mamas"></td>
+                  </tr>
+                  <tr>
+                    <td class="text-right">Tacto Vaginal:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.tactoVaginal" name="tactoVaginal"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+            <td class="rounded" style="background-color:blue" v-show="paciente.genero==='H'" colspan="2">
+              <table class="table table-sm table-info">
+                <tbody>
+                  <tr>
+                    <td class="text-right" style="width:25%">Circuncisión:</td>
+                    <td><input class="input-text" type="text" v-model="paciente.circuncision" name="circuncision"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td class="text-right">Otros Historia clínica:</td>
+            <td><input class="input-text" type="text" v-model="paciente.otrosHistoriaClinica" name="otrosHistoriaClinica"></td>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td class="text-right">Padecimiento Actual:</td>
+            <td><input class="input-text" type="text" v-model="paciente.padecimientoActual" name="padecimientoActual"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Peso:</td>
+            <td><input class="input-text" type="text" v-model="paciente.peso" name="peso"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Talla:</td>
+            <td><input class="input-text" type="text" v-model="paciente.talla" name="talla"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Temperatura:</td>
+            <td><input class="input-text" type="text" v-model="paciente.temperatura" name="temperatura"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Tension Arterial:</td>
+            <td><input class="input-text" type="text" v-model="paciente.tensionArterial" name="tensionArterial"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Craneo:</td>
+            <td><input class="input-text" type="text" v-model="paciente.craneo" name="craneo"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Cara:</td>
+            <td><input class="input-text" type="text" v-model="paciente.cara" name="cara"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Fondo Ocular:</td>
+            <td><input class="input-text" type="text" v-model="paciente.fondoOcular" name="fondoOcular"></td>
+          </tr>
+          <tr>
+            <td class="text-right">cuello:</td>
+            <td><input class="input-text" type="text" v-model="paciente.cuello" name="cuello"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Cardio Pulmunar:</td>
+            <td><input class="input-text" type="text" v-model="paciente.cardioPulmunar" name="cardioPulmunar"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Abdomen:</td>
+            <td><input class="input-text" type="text" v-model="paciente.abdomen" name="abdomen"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Tacto Rectal:</td>
+            <td><input class="input-text" type="text" v-model="paciente.tactoRectal" name="tactoRectal"></td>
+          </tr>
+          <tr>
+            <td class="text-right">Miembros:</td>
+            <td><input class="input-text" type="text" v-model="paciente.miembros" name="miembros"></td>
+          </tr>
+          <tr>
+            <td class="text-right" style="width:25%">ID:</td>
+            <td><input class="input-text" type="text" v-model="paciente.ID" name="ID"></td>
+          </tr>
+          <tr>
+            <td class="text-right" style="width:25%">TX:</td>
+            <td><input class="input-text" type="text" v-model="paciente.TX" name="TX"></td>
+          </tr>
+          <tr>
+            <td class="text-right" style="width:25%">LAB:</td>
+            <td><input class="input-text" type="text" v-model="paciente.LAB" name="LAB"></td>
+          </tr>
+          <tr>
+            <td class="text-right" style="width:25%">USG:</td>
+            <td><input class="input-text" type="text" v-model="paciente.USG" name="USG"></td>
+          </tr>
+          <tr>
+            <td class="text-right" style="width:25%">RX:</td>
+            <td><input class="input-text" type="text" v-model="paciente.RX" name="RX"></td>
           </tr>
         </tbody>
       </table>
 
-      <div>Estado civíl: <input class="input-text" type="text" v-model="paciente.edoCivil" name="edoCivil"></div>
-      <div>Lugar de Origen: <input class="input-text" type="text" v-model="paciente.lugarOrigen" name="lugarOrigen"></div>
-
-      <label for="paciente.antHeredoFam">Antecedentes Heterodofamiliares:</label><br>
-      <textarea class="input-text" v-model="paciente.antHeredoFam" name="antHeredoFam" rows="3" cols="50"></textarea>
-      <br />
-      <label for="paciente.personalesPato">Personales patológicos:</label><br>
-      <textarea class="input-text" v-model="paciente.personalesPato" name="personalesPato" rows="3" cols="50">
-          </textarea>
-      <br />
-      <label for="paciente.personalesNoPato">Personales NO patológicos:</label><br>
-      <textarea class="input-text" v-model="paciente.personalesNoPato" name="personalesNoPato" rows="3" cols="50">
-          </textarea>
-      <br />
-
-      <div>
-        Género:
-        <input type="radio" id="hombre" value="H" v-model="paciente.genero">
-        Masculino
-        <input type="radio" id="mujer" value="M" v-model="paciente.genero">
-        Femenino
-      </div>
-
-      <div class="rounded" style="background-color:lightpink" v-show="paciente.genero==='M'">
-        <label for="paciente.menarca">Menarca:</label>
-        <input class="input-text" type="text" v-model="paciente.menarca" name="menarca">
-        <br />
-        <label for="paciente.tensionMens">Tensión menstrual:</label>
-        <input class="input-text" type="text" v-model="paciente.tensionMens" name="tensionMens">
-        <br />
-        <!--<label for="paciente.ritmo">Ritmo:</label>
-        <input class="input-text" type="text" v-model="paciente.ritmo" name="ritmo">-->
-        <!--  -->
-        <div>
-          Ritmo:
-          <input type="radio" id="regular" value="REGULAR" v-model="paciente.ritmo">
-          <label for="regular">Regular</label>
-          <input type="radio" id="irregular" value="IRREGULAR" v-model="paciente.ritmo">
-          <label for="irregular">Irregular</label>
-        </div>
-
-        <label for="paciente.inicioVidaSexual">Inicio de vida sexual activa:</label>
-        <input class="input-text" type="text" v-model="paciente.inicioVidaSexual" name="inicioVidaSexual">
-        <br />
-        <label for="paciente.gestados">Gestados:</label>
-
-        <input class="input-text" type="text" v-model="paciente.gestados" name="gestados">
-        <br />
-        <label for="paciente.partos">Partos:</label>
-        <input class="input-text" type="text" v-model="paciente.partos" name="partos">
-        <br />
-        <label for="paciente.abortos">Abortos:</label>
-        <input class="input-text" type="text" v-model="paciente.abortos" name="abortos">
-        <br />
-        <label for="paciente.cesareas">Cesareas:</label>
-        <input class="input-text" type="text" v-model="paciente.cesareas" name="cesareas">
-        <br />
-        <label for="paciente.fechaUltimpoParto">Fecha Ultimpo Parto:</label>
-        <input class="input-text" type="text" v-model="paciente.fechaUltimpoParto" name="fechaUltimpoParto">
-        <br />
-        <label for="paciente.fechaUltimoAborto">Fecha Ultimo Aborto:</label>
-        <input class="input-text" type="text" v-model="paciente.fechaUltimoAborto" name="fechaUltimoAborto">
-        <br />
-        <label for="paciente.pesoProductos">Peso Productos:</label>
-        <input class="input-text" type="text" v-model="paciente.pesoProductos" name="pesoProductos">
-        <br />
-        <label for="paciente.fechaUltimaRegla">Fecha Ultima Regla:</label>
-        <input class="input-text" type="text" v-model="paciente.fechaUltimaRegla" name="fechaUltimaRegla">
-        <br />
-        <label for="paciente.fechaUltimaCitoCervix">Fecha Ultima Citocervix:</label>
-        <input class="input-text" type="text" v-model="paciente.fechaUltimaCitoCervix" name="fechaUltimaCitoCervix">
-        <br />
-        <label for="paciente.proteccionMenstrual">Protección Menstrual:</label>
-        <input class="input-text" type="text" v-model="paciente.proteccionMenstrual" name="proteccionMenstrual">
-        <br />
-        <label for="paciente.mamas">Mamas:</label>
-        <input class="input-text" type="text" v-model="paciente.mamas" name="mamas">
-        <br />
-        <label for="paciente.tactoVaginal">Tacto Vaginal:</label>
-        <input class="input-text" type="text" v-model="paciente.tactoVaginal" name="tactoVaginal">
-        <br />
-
-      </div>
-      <div class="rounded" style="background-color:dodgerblue" v-show="paciente.genero==='H'">
-        <label for="paciente.circuncision">Circuncisión:</label>
-        <input class="input-text" type="text" v-model="paciente.circuncision" name="circuncision">
-        <br />
-      </div>
-      <label for="paciente.otrosHistoriaClinica">Otros:</label>
-      <input class="input-text" type="text" v-model="paciente.otrosHistoriaClinica" name="otrosHistoriaClinica">
-      <br />
-      <label for="paciente.padecimientoActual">Padecimiento Actual:</label>
-      <input class="input-text" type="text" v-model="paciente.padecimientoActual" name="padecimientoActual">
-      <br />
-      <label for="paciente.peso">Peso:</label>
-      <input class="input-text" type="text" v-model="paciente.peso" name="peso">
-      <br />
-      <label for="paciente.talla">Talla:</label>
-      <input class="input-text" type="text" v-model="paciente.talla" name="talla">
-      <br />
-      <label for="paciente.temperatura">Temperatura:</label>
-      <input class="input-text" type="text" v-model="paciente.temperatura" name="temperatura">
-      <br />
-      <label for="paciente.tensionArterial">Tension Arterial:</label>
-      <input class="input-text" type="text" v-model="paciente.tensionArterial" name="tensionArterial">
-      <br />
-      <label for="paciente.craneo">Craneo:</label>
-      <input class="input-text" type="text" v-model="paciente.craneo" name="craneo">
-      <br />
-      <label for="paciente.cara">Cara:</label>
-      <input class="input-text" type="text" v-model="paciente.cara" name="cara">
-      <br />
-      <label for="paciente.fondoOcular">Fondo Ocular:</label>
-      <input class="input-text" type="text" v-model="paciente.fondoOcular" name="fondoOcular">
-      <br />
-      <label for="paciente.cuello">cuello:</label>
-      <input class="input-text" type="text" v-model="paciente.cuello" name="cuello">
-      <br />
-      <label for="paciente.cardioPulmunar">Cardio Pulmunar:</label>
-      <input class="input-text" type="text" v-model="paciente.cardioPulmunar" name="cardioPulmunar">
-      <br />
-      <label for="paciente.abdomen">Abdomen:</label>
-      <input class="input-text" type="text" v-model="paciente.abdomen" name="abdomen">
-      <br />
-      <label for="paciente.tactoRectal">Tacto Rectal:</label>
-      <input class="input-text" type="text" v-model="paciente.tactoRectal" name="tactoRectal">
-      <br />
-      <label for="paciente.miembros">Miembros:</label>
-      <input class="input-text" type="text" v-model="paciente.miembros" name="miembros">
-      <br />
-      <label for="paciente.ID">ID:</label>
-      <input class="input-text" type="text" v-model="paciente.ID" name="ID">
-      <br />
-      <label for="paciente.TX">TX:</label>
-      <input class="input-text" type="text" v-model="paciente.TX" name="TX">
-      <br />
-      <label for="paciente.LAB">LAB:</label>
-      <input class="input-text" type="text" v-model="paciente.LAB" name="LAB">
-      <br />
-      <label for="paciente.USG">USG:</label>
-      <input class="input-text" type="text" v-model="paciente.USG" name="USG">
-      <br />
-      <label for="paciente.RX">RX:</label>
-      <input class="input-text" type="text" v-model="paciente.RX" name="RX">
+      
 
     </form>
     <b-btn class="button-right bg-success" v-on:click="guardar">GUARDAR</b-btn>
