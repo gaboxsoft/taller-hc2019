@@ -286,13 +286,16 @@
 
     computed: {
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/paciente/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlHistoriaClinica: function () {
-        return 'http://localhost:3000/HistoriaClinica/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/HistoriaClinica/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/HistoriaClinica/' + this.$store.state.pacienteId;
       },
       urlHistoriaClinicaPdf: function () {
-        return 'http://localhost:3000/msi11/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi11/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/msi11/' + this.$store.state.pacienteId;
       },
       getPaciente: function () {
         return this.$store.state.currentPaciente;

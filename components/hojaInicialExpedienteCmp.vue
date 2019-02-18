@@ -37,7 +37,8 @@
 </template>
 
 <script>
-const urlGetPacientes = 'http://localhost:3000/Pacientes?limite=5&desde=0';
+const urlGetPacientes = process.env.urlServer + '/Pacientes?limite=5&desde=0';
+//const urlGetPacientes = 'http://localhost:3000/Pacientes?limite=5&desde=0';
 const MAX_SIZE_NOMBRE = 50;
   import axios from 'axios';
   import pacienteTagCmp from '~/components/pacienteTagCmp';
@@ -79,17 +80,20 @@ const MAX_SIZE_NOMBRE = 50;
       urlGetPaciente: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
         //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/paciente/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlHojaInicialExpediente: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
         //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
-        return 'http://localhost:3000/HojaInicialExpediente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/HojaInicialExpediente/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/HojaInicialExpediente/' + this.$store.state.pacienteId;
       },
       urlHojaInicialExpedientePdf: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
         //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
-        return 'http://localhost:3000/msi10/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi10/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/msi10/' + this.$store.state.pacienteId;
       },
       getPaciente: function () {
         return this.$store.state.currentPaciente;
@@ -121,7 +125,7 @@ const MAX_SIZE_NOMBRE = 50;
       },
 
       getFechaHora: function () {
-        axios.get('/fechaHora', {headers: {token: this.getToken}})
+        axios.get(process.env.urlServer + '/fechaHora', {headers: {token: this.getToken}})
           .then((response) => {return response.data.fechaHora;},
             (error) => {this.err = error.response.data.error;return new Date();});
       },

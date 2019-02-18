@@ -51,7 +51,13 @@ pdfTools.mmToPt = (mm) => {
 };
 
 pdfTools.cmToPt = (cm) => {
-  return cm * 28.3465;
+
+  return cm?cm * 28.3465:undefined;
+};
+
+pdfTools.ptToCm = (pts) => {
+
+  return pts ? pts / 28.3465 : undefined;
 };
 
 pdfTools.inchToPt = (inch) => {

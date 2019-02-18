@@ -3,8 +3,6 @@
     <div id="notify" ref="Notify"
          class="alert alert-danger" role="alert"
          v-show="show">
-      <!--<h1 id="tag" ref="Tag" v-show="showTag">mensaje</h1>
-      <a id="link" ref="Link" v-show="showLink" href="#">link</a>-->
   </div>
 </template>
 
@@ -23,7 +21,7 @@
           showLink:false
         }
       },
-
+     
       methods: {
         showNotify: function (mensaje, tiempo, link, target) {
           var d = document.createElement('div');
@@ -36,12 +34,10 @@
             if (target) {
               e.target = "_blank"
             }
-            //this.showLink = true;
           }
           else {
             e = document.createElement('h5');
             e.innerText = mensaje;
-            //this.showTag = true;
           }
           d.appendChild(e);
           this.$refs.Notify.appendChild(d);
@@ -52,9 +48,7 @@
           },
             tiempo * 1000);
         }
-           
 
       }
-
   }
 </script>

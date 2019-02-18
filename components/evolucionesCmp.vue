@@ -11,11 +11,12 @@
       <!--<div class="col-md-12">-->
 
         <no-ssr>
-          <table class="table table-striped table-bordered table-hover table-info ">
+          <table   class="table table-sm  table-hover table-info ">
             <tr>
               <!--<td>ID</td>-->
-              <td>FECHA</td>
-              <td >
+              <td style="width:20%">FECHA</td>
+              <td style="width:5%">HORA</td>
+              <td>
                 EVOLUCIÓN
                 <b-btn class="bg-success" v-on:click="agregar">+</b-btn>
               </td>
@@ -23,20 +24,22 @@
                 <b-btn class="bg-success" v-on:click="imprimir">IMPRIMIR</b-btn>
               </td>
             </tr>
-            <tr v-model="evoluciones"
+            <tr :class="{'bg-warning':e._id===$store.state.evolucionId}"
+                v-model="evoluciones"
                 v-for="e in evoluciones">
-              <!--<td>{{nu._id}}</td>-->
-              <td>{{e.fecha}}</td>
+              <!--<td>{{e._id}}--{{$store.state.evolucionId}}</td>-->
+              <td>{{moment(e.fecha).format('DD-MMM-YYYY')}}</td>
+              <td>{{moment(e.fecha).format('HH:mm')}}</td>
               <td>{{e.descripcion}}</td>
 
               <td style="width:25px;">
                 <!--<b-btn btn-xs
-                     v-on:click="imprimir(e._id)">
-                Imp
-                 <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
-              </b-btn>-->
+           v-on:click="imprimir(e._id)">
+      Imp
+       <img src="../assets/iconos/boton-seleccionar-documento.png" style="width: 25px;">
+    </b-btn>-->
                 <!--</td>
-              <td style="width:25px;">-->
+    <td style="width:25px;">-->
                 <b-btn btn-xs
                        v-on:click="seleccionar(e._id)">
                   Sel
@@ -120,6 +123,9 @@
     },
 
     methods: {
+        moment: function (date) {
+          return moment(date);
+      },
       agregar: function () {
         console.log('aquí en agregar Evolucion');
         //this.$store.commit('setPacienteId', pacienteId)
@@ -193,13 +199,13 @@
           }
         })
           .then((response) => {
-            console.log('aaquí en imprimir HojaEvolucionPdf y regresó: ', response);
-            console.log('aaquí en imprimir HojaEvolucionPdf axios y regresó: ', response.data.pdfFile);
+            //console.log('aaquí en imprimir HojaEvolucionPdf y regresó: ', response);
+            //console.log('aaquí en imprimir HojaEvolucionPdf axios y regresó: ', response.data.pdfFile);
             this.$refs.notify.showNotify("CLICK AQUÍ PARA VER EL FORMATO", 4, response.data.pdfFile,true);
           },
             (error) => {
               this.err = error.response.data.error;
-              console.log('Error en imprimir HojaEvolucionPdf: ', this.err);
+              //console.log('Error en imprimir HojaEvolucionPdf: ', this.err);
               this.$refs.notify.showNotify("ERROR AL GENERAR EL FORMATO", 5);
             });
       }

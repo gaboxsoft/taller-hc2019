@@ -7,7 +7,7 @@
 
     <form action="#">
       <no-ssr>
-        <table class="table table-bordered table-info ">
+        <table class="table table-sm table-bordered table-info ">
           <tr>
             <td style="width:10%;">FECHA-HORA</td>
             <td>
@@ -57,7 +57,7 @@
 
     computed: {
       urlApiEvolucion: function () {
-        return process.env.urlServer + 'Evolucion';
+        return process.env.urlServer + '/Evolucion/';
         //return 'http://localhost:3000/Evolucion/';
       },
       urlGetPaciente: function () {

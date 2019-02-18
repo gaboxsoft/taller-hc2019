@@ -64,16 +64,20 @@
 
     computed: {
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/paciente/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlGetNotaUrgencias: function () {
-        return 'http://localhost:3000/NotaUrgencias/' + this.$store.state.notaUrgenciasId;
+        return process.env.urlServer + '/NotaUrgencias/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/NotaUrgencias/' + this.$store.state.notaUrgenciasId;
       },
       urlGetNotasUrgencias: function () {
-        return 'http://localhost:3000/NotasUrgencias/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/NotasUrgencias/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/NotasUrgencias/' + this.$store.state.pacienteId;
       },
       urlNotaUrgenciasPdf: function () {
-        return 'http://localhost:3000/msi12/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi12/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/msi12/' + this.$store.state.pacienteId;
       },
       getSocketNotasUrgencias: function () {
         return this.$store.state.socketNotasUrgencias;

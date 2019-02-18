@@ -1,6 +1,6 @@
 <template>
   <!--<div class="contanier fixed-top margin-bottom:10px">-->
-  <div>
+  <div ref="barraMensajes">
     <!--<p>id: -{{getPacienteId}}</p>-->
     <h5 class="bg-warning ">EXPEDIENTE: {{paciente?paciente.nombre:'N I N G U N O'}} <!----- {{paciente?paciente.diagnosticoIngreso:''}}--></h5>
   </div>
@@ -36,15 +36,21 @@
         getToken: function () {
           //console.log('1 getPaciente-->token: ', this.$store.state.token);
           return this.$store.state.token;
-        }
-      },
+        },
+        //getSocketNotify: function() {
+        //  return this.$store.state.socketNotify;
+        //}
+      }, 
       watch: {
         getPacienteId: function () {
           this.getPaciente();
         },
         getSocketDatosGenerales: function () {
           this.getPaciente();
-        }
+        },
+        //getSocketNotify: function() {
+        //  showNotify()
+        //}
       },
       created() {
 

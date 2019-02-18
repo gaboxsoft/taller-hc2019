@@ -108,16 +108,20 @@
 
     computed: {
       urlApiNotaUrgencias: function () {
-        return 'http://localhost:3000/NotaUrgencias/';
+        return process.env.urlServer + '/NotaUrgencias/';
+        //return 'http://localhost:3000/NotaUrgencias/';
       },
       urlGetPaciente: function () {
-        return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/paciente/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
       },
       urlGetNotaUrgencias: function () {
-        return 'http://localhost:3000/NotaUrgencias/' + this.$store.notaUrgenciasId;
+        return process.env.urlServer + '/NotaUrgencias/' + this.$store.state.notaUrgenciasId;
+        //return 'http://localhost:3000/NotaUrgencias/' + this.$store.notaUrgenciasId;
       },
       urlNotaUrgenciasPdf: function () {
-        return 'http://localhost:3000/msi12/' + this.$store.state.pacienteId;
+        return process.env.urlServer + '/msi12/' + this.$store.state.pacienteId;
+        //return 'http://localhost:3000/msi12/' + this.$store.state.pacienteId;
       },
       getNotaUrgenciasId: function () {
         return this.$store.state.notaUrgenciasId;
@@ -133,7 +137,7 @@
         this.getCurrentPaciente(this.getToken);
         if (!this.getNotaUrgenciasId || this.getNotaUrgenciasId === 'NUEVO' || this.getNotaUrgenciasId === 'NONE') {
           console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...2');
-          this.notaUrgencias = this.notaUrgenciasNuevo;
+          this.notaUrgencias = this.inicializaNotaUrgencias();
         }
         else {
           console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
@@ -148,7 +152,7 @@
       if (!this.getNotaUrgenciasId || this.getNotaUrgenciasId === 'NUEVO' || this.getNotaUrgenciasId === 'NONE') {
         console.log('AGREGANDO NUEVA NOTA DE URGENCIAS...1');
         this.$store.commit('setNotaUrgenciasId', 'NUEVO');
-        this.notaUrgencias = this.notaUrgenciasNuevo;
+        this.notaUrgencias = this.inicializaNotaUrgencias();
       }
       else {
         console.log('notasUrgenciasCmp->created()->getNotaUrgenciasId->', this.getNotaUrgenciasId)
@@ -158,6 +162,22 @@
     },
 
     methods: {
+      inicializaNotaUrgencias: function () {
+        return {
+          fechaNota: moment().format('YYYY-MM-DDTHH:mm'), //(new Date().toISOString()).split('.')[0],
+          seguro: '',
+          diagnosticoEgreso: '',
+          FC: '',
+          FR: '',
+          TA: '',
+          T: '',
+          peso: '',
+          talla: '',
+          antecedentes: '',
+          resumenClinico: '',
+          indicaciones: ''
+        };
+      },
       imprimir: function (notaUrgenciasId) {
         if (notaUrgenciasId == '') {
           return;
@@ -165,7 +185,7 @@
         console.log('aquí en imprimir NU...', process.env.urlServer + '/msi12/' + this.$store.state.pacienteId);
         console.log('------>>   aquí en imprimir NU->notaUrgenciasId: ', notaUrgenciasId);
         //this.seleccionar(notaUrgenciasId);
-        axios.get(process.env.urlServer + '/msi12/' + this.$store.state.pacienteId, {
+        axios.get(this.urlNotaUrgenciasPdf, {
           headers: {
             token: this.getToken,
             Accept: 'application/pdf',
@@ -238,6 +258,7 @@
 
 
         if (this.$store.state.notaUrgenciasId === 'NUEVO') {
+          console.log('agregando nueva nota urgencias...', this.notaUrgencias);
           const req = {
             method: 'post',
             url: this.urlApiNotaUrgencias + this.$store.state.pacienteId,
@@ -317,7 +338,7 @@
             });
         }
       },
-     
+
     }
   };
 
