@@ -40,11 +40,42 @@ function hojaEvolucionPdf() {
   const centroMedico = 'Médica San Isidro';
 
 
+  doc.y = 0;
+
+  console.log('inicial doc.y ', doc.y);
+  page = 1;
+  linesByPage = 3;
+  line = 0;
+  col = 50;
+  row = 200;
+  sep = 50;
+  ancho = 10;
+
+
+  let text = "ESTE ES UN TEXTO MUY PERO MUY LARGO, QUE TAL VEZ TE DE FLOJERA LEERLO. PERO TE ANIMO A QUE LO HAGAS YA QUE SI LO HACES ESTARAS AYUDANDOME A PROBAR QUE ESTO TIENE SENTIDO PAL MENOS PARA ALGUIEN.";
+  text += text;
+  text += text;
+  doc.moveDown()
+    .fontSize(10)
+    .text('PRIMERITO', col, row, {
+      align: 'justify',
+      ellipsis: true,
+      width: pdfTools.cmToPt(ancho)
+    });
+  doc.moveDown()
+    .fontSize(10)
+    .text('PRIMERITO TEXTO: ' + text, col + sep, row, {
+      align: 'justify',
+      ellipsis: true,
+      width: pdfTools.cmToPt(ancho)
+    });
+  row = doc.y + 10;
+
 
   //////////////
   // Registrar fuente de letra
   // Register a font
-  doc.registerFont('arialnarrow', 'fonts/arial-narrow.ttf');
+  doc.registerFont('arialnarrow', '~/library/msiReportes/fonts/arial-narrow.ttf');
   //////////////
   //for (var f = 1; f<=12; f++) {
   //  doc
@@ -57,23 +88,9 @@ function hojaEvolucionPdf() {
   console.log('page.PDFPage ', doc.page.height);
   console.log('===================================');
 
-
-  doc.y = 0;
-
-  console.log('inicial doc.y ',doc.y);
-  page = 1;
-  linesByPage = 3;
-  line = 0;
-  col = 50;
-  row = 200;
-  sep = 50;
-  ancho = 20;
-
-  let text = "ESTE ES UN TEXTO MUY PERO MUY LARGO, QUE TAL VEZ TE DE FLOJERA LEERLO. PERO TE ANIMO A QUE LO HAGAS YA QUE SI LO HACES ESTARAS AYUDANDOME A PROBAR QUE ESTO TIENE SENTIDO PAL MENOS PARA ALGUIEN.";
-  text += text;
-  text += text;
+  
   doc.moveDown()
-    .fontSize(8)
+    .fontSize(10)
     .text('PRIMERO', col, row, {
       align: 'justify',
       ellipsis: true,
@@ -94,7 +111,7 @@ function hojaEvolucionPdf() {
     .text('SEGUNDO', col, row, {
       align: 'justify',
       ellipsis: true,
-      width: pdfTools.cmToPt(ancho-5)
+      width: pdfTools.cmToPt(ancho)
     });
   
   doc.moveDown()
@@ -102,7 +119,7 @@ function hojaEvolucionPdf() {
     .text('SEGUNDO TEXTO: ' + text, col + sep, row,  {
       align: 'justify',
       ellipsis: true,
-      width: pdfTools.cmToPt(ancho-5)
+      width: pdfTools.cmToPt(ancho)
     });
 
   ////writeLine(doc, new Date().toISOString().replace(/T/, '   ').replace(/\..+/, '')

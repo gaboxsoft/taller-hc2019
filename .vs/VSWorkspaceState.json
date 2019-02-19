@@ -6,11 +6,11 @@
     "\\assets\\css",
     "\\components",
     "\\config",
-    "\\layouts",
-    "\\models",
-    "\\pages",
-    "\\store"
+    "\\library",
+    "\\library\\msiReportes",
+    "\\library\\msiReportes\\fonts",
+    "\\routes"
   ],
-  "SelectedNode": "\\pages\\RegistroPaciente.vue",
+  "SelectedNode": "\\routes\\usuario.js",
   "PreviewInSolutionExplorer": false
 }

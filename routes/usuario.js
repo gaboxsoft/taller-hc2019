@@ -10,6 +10,32 @@ const _ = require('underscore');
 
 let { verificaToken, verificaAdminRol, verificaPrimerUsuarioAdmin } = require('../middleware/autenticacion');
 
+app.get('/listausuarios', function (req, res) {
+
+  //res.json({ ok: true, mensaje: 'hola desde node Lista Usuarios' });
+  let limite = Number(req.query.limite || 0);
+  let desde = Number(req.query.desde || 0);
+
+  Usuario.find({ situacion: { $gt: 0 } }) // Mayor que cero no esta borrado
+    .limit(limite)
+    .skip(desde)
+    .exec((err, usuarios) => {
+      if (err) {
+        return res.status(400).
+          json({ ok: false, error: err });
+      };
+      Usuario.countDocuments({ situacion: { $gt: 0 } }, (err, conteo) => {
+        if (err) {
+          return res.status(400).
+            json({ ok: false, error: err });
+        }
+        res.json({ ok: true, conteo: conteo, usuarios, mensaje: 'hola' });
+      });
+    });
+});
+
+
+
 app.get('/usuarios', verificaToken, function(req, res) {
 
     let limite = Number(req.query.limite || 0);

@@ -115,14 +115,14 @@ function writeEvolucion(doc, paciente, evoluciones, pages, anchoHoja, altoHoja, 
 
     
 
-    console.log(`==== INICIA  ${n} =======`);
-    console.log(`${n} =>[${e.descripcion}]=`);
-    console.log(`${n} => alto Página = ${doc.page.height}`);
-    console.log(`${n} =>       doc.y = ${doc.y}`);
-    console.log(`${n} =>alto Parrafo = ${altoParrafo}`);
-    console.log(`${n} => ren llega a = ${doc.y + altoParrafo + interlineado}`);
-    console.log(`${n} =>    alcanza? = ${doc.page.height} - ${doc.y} - ${altoParrafo} - ${margenInf}=${doc.page.height - doc.y - altoParrafo -margenInf}`);
-    console.log(`${n} =>    row, col = ${row}, ${col}`);
+    //console.log(`==== INICIA  ${n} =======`);
+    //console.log(`${n} =>[${e.descripcion}]=`);
+    //console.log(`${n} => alto Página = ${doc.page.height}`);
+    //console.log(`${n} =>       doc.y = ${doc.y}`);
+    //console.log(`${n} =>alto Parrafo = ${altoParrafo}`);
+    //console.log(`${n} => ren llega a = ${doc.y + altoParrafo + interlineado}`);
+    //console.log(`${n} =>    alcanza? = ${doc.page.height} - ${doc.y} - ${altoParrafo} - ${margenInf}=${doc.page.height - doc.y - altoParrafo -margenInf}`);
+    //console.log(`${n} =>    row, col = ${row}, ${col}`);
 
    
 
@@ -157,7 +157,7 @@ function writeEvolucion(doc, paciente, evoluciones, pages, anchoHoja, altoHoja, 
     // Escribe encabezados
     if (doc.y == 0) {
       pages[0].forEach(function (field) {
-        writeLine(doc, eval(field.name), field.row, field.col, field.align, field.fontSize, field.color);
+        writeLine(doc, eval(field.name), field.row, field.col, field.align, field.fontSize, field.color, field.width);
       });
     };
     writeLine(doc, moment(e.fecha).format('YYYY-MM-DD HH:mm'), row, col, 'left', 8, 'black');
