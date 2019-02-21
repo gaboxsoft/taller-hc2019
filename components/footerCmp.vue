@@ -1,100 +1,128 @@
 <template>
-  <div class="container ">
-    <div class="fixed-bottom  bg-grey">
-      <no-ssr>
-        <table>
-          <tr>
-            <td>
-              <p class="bg-info">versión 1.0.2 (2019)</p>
-            </td>
-            <td>
-              <p class="bg-info"> -- </p>
-            </td>
-            <td>
-              <p class="bg-info">{{hoy}}</p>
-            </td>
 
-          </tr>
-        </table>
-      </no-ssr>
-    </div>
+  <div class="fixed-bottom footer">
+    <span class="bg-info">versión 1.0.2 (2019)</span>
+    <span>|</span>
+    <span class="bg-info">Tratante: {{drTratante.nombre}}</span>
+    <span>|</span>
+    <span class="bg-info">usuario: {{usuario.nombre}}</span>
   </div>
 </template>
 
-
 <script>
+  let axios = require('axios');
+  let date = require('date-and-time');
+  date.locale('es');
+  export default
+    {
+      name: 'footerCmp'
+      ,
+      data: () => {
+        return {
+          paciente: {},
+          usuario: {},
+          drTratante: {}
+        }
+      },
+      computed: {
 
-let date = require('date-and-time');
-date.locale('es');
-export default
-  {
-    name: 'footerCmp'
-    ,
+        hoy: () => {
+          return date.format(new Date(), 'YYYY/MM/DD HH:mm:ss');
+        },
+        getToken: function () {
+          return this.$store.state.token;
+        },
 
-    computed: {
-      hoy: () => {
-        return date.format(new Date(), 'YYYY/MM/DD HH:mm:ss');
+        getPacienteId: function () {
+          return this.$store.state.pacienteId
+        },
+        getUsuarioId: function () {
+          return this.$store.state.usuarioId;
+        }
+      },
+      watch: {
+        getUsuarioId() {
+          this.getUsuario();
+        }
+      },
+      created() {
+        this.getUsuario();
+      },
+      methods: {
+        getDrTratante: function () {
+          this.token = this.getToken;
+          console.log('\r\n\r\nDr. Tratante: ', this.paciente.usuarioSe);
+          axios.get(process.env.urlServer + '/usuario/' + this.paciente.usuarioSe, {
+            headers: {
+              token: this.getToken
+            }
+          })
+            .then((response) => {
+              this.drTratante = response.data.usuario;
+            },
+              (error) => {
+                this.err = error.response.data.error;
+                return { nombre: 'UPPS! no ubico el Médico.' };
+              });
+        },
+
+
+        getUsuario: function () {
+          this.token = this.getToken;
+          axios.get(process.env.urlServer + '/usuario/' + this.getUsuarioId, {
+            headers: {
+              token: this.getToken
+            }
+          })
+            .then((response) => {
+              this.usuario = response.data.usuario;
+              // Lee al paciente
+              axios.get(process.env.urlServer + '/paciente/' + this.$store.state.pacienteId, {
+                headers: {
+                  token: this.getToken
+                }
+              })
+                .then((response) => {
+                  this.paciente = response.data.paciente;
+                  // Lee a su médico tratante
+                  axios.get(process.env.urlServer + '/usuario/' + this.paciente.usuarioSe, {
+                    headers: {
+                      token: this.getToken
+                    }
+                  })
+                    .then((response) => {
+                      this.drTratante = response.data.usuario;
+                    },
+                      (error) => {
+                        this.err = error.response.data.error;
+                        return { nombre: 'UPPS! no ubico el Médico.' };
+                      });
+
+                },
+                  (error) => {
+                    this.err = error.response.data.error;
+                    return { nombre: 'Abra un expediente.' };
+                  });
+
+
+            },
+              (error) => {
+                this.err = error.response.data.error;
+                return { nombre: 'UPPS! no ubico el usuario.' };
+              });
+        },
       }
-    },
-    created() {
-      //console.log('Footer ---> HOY: ', this.hoy)
     }
-  }
 </script>
 
 <style scoped>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-.container {
-  /*min-height: 100vh;
-  display: flex;*/
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 5px, 5px, 5px, 0px;
-}
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+  }
 </style>

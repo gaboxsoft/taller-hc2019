@@ -2,15 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\api",
-    "\\assets",
-    "\\assets\\css",
     "\\components",
     "\\config",
-    "\\library",
-    "\\library\\msiReportes",
-    "\\library\\msiReportes\\fonts",
-    "\\routes"
+    "\\layouts",
+    "\\middleware",
+    "\\models",
+    "\\routes",
+    "\\store"
   ],
-  "SelectedNode": "\\routes\\usuario.js",
+  "SelectedNode": "\\node_modules",
   "PreviewInSolutionExplorer": false
 }

@@ -25,7 +25,8 @@
         urlGetPaciente: function () {
           //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
           //return this.$store.state.host + '/paciente/' + this.$store.state.pacienteId;
-          return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
+          return process.env.urlServer +'/paciente/'+ this.$store.state.pacienteId;
+          //return 'http://localhost:3000/paciente/' + this.$store.state.pacienteId;
         },
         getPacienteId: function () {
           return this.$store.state.pacienteId;

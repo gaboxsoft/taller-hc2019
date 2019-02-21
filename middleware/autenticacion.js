@@ -14,6 +14,9 @@ const bcrypt = require('bcryptjs');
 let verificaToken = (req, res, next) => {
     //let request = req;
   let token = req.get('token');
+  //if (token === 'NONE') {
+  //  console.log('El token es.......', token);
+  //};
   //console.log('0> En VerificaToken, req -->', req);
   //console.log('1> En VerificaToken, token -->', new Date(Date.now()), token);
   //console.log('1.1> En VerificaToken, req -->', req.get('token'));
@@ -51,7 +54,7 @@ let verificaToken = (req, res, next) => {
                 return res.status(400).
                 json({ ok: false, error: { mensaje: 'Token no válido.4' } });
             };
-
+          
 
         });
         next();
@@ -61,14 +64,20 @@ let verificaToken = (req, res, next) => {
 };
 
 let verificaAdminRol = (req, res, next) => {
+  const desde = req.get('desde');
 
+  console.log('verificaAdminRol, req.usuario', desde, req.usuario);
+  console.log('verificaAdminRol, req.usuario.rol!="ADMIN_ROL"?', req.usuario.rol != "ADMIN_ROL");
+  console.log('verificaAdminRol, req.usuario.rol!="DOCTOR_ROL"?', req.usuario.rol != "DOCTOR_ROL");
+  console.log('verificaAdminRol, req.usuario.rol!="ENFERMERIA_ROL"?', req.usuario.rol != "ENFERMERIA_ROL");
 
-    if (req.usuario.rol != "ADMIN_ROL") {
+  if (req.usuario.rol != "ADMIN_ROL"
+    && req.usuario.rol != "DOCTOR_ROL"
+    && req.usuario.rol != "ENFERMERIA_ROL") {
         return res.status(500).json({
             ok: false,
             error: { message: 'NO tienes permiso de ADMINISTRADOR.' }
         });
-
     }
 
     next();
@@ -145,7 +154,7 @@ let verificaPrimerUsuarioAdmin = (req, res, next) => {
         };
         console.log('se guardo OK el primer usuario', usuarioBD);
 
-        /// aquì genera un error al tratar de respunder status(200)!!??? sin resolver pero no es crìtico 
+        /// aquí genera un error al tratar de respunder status(200)!!??? sin resolver pero no es crìtico 
         return res.status(200).json({ ok: true, usuario: usuarioBD, mensaje:'Se creo el usuario ADMIN' });
       });
     };

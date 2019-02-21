@@ -42,6 +42,23 @@ let pacienteSchema = new Schema({
     type: Date,
     required: [true, 'La fecha de nacimiento del paciente es necesaria.']
   },
+
+  edad: {
+    type: Number
+  },
+  habitacion: {
+    type: Number
+  },
+  nombreResponsable: {
+    type: String,
+    uppercase: true,
+  },
+  telefonosResponsable: {
+    type: String,
+    uppercase: true
+  },
+
+
   //////////////////////////
   //// Domicilio
   calle: {

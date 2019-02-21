@@ -38,6 +38,12 @@ const hojaInicialExpedientePdf  = (paciente) => {
   const maxAlto = altoHoja - margenInf - margenSup;
   const sizePaperLetter = '210.02x297.01';
   const centroMedico = 'Médica San Isidro';
+
+  //////////////
+  // Registrar fuente de letra
+  // Register a font
+  doc.registerFont('arial-narrow', 'fonts/arial-narrow.ttf');
+
   //
   //console.log('paciente: ', paciente);
   console.log('Im in hojainicial: ');
@@ -51,7 +57,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // Nombre
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(paciente.nombre || vacio, pdfTools.cmToPt(3), pdfTools.cmToPt(5.2), {
       align: 'left',
       indent: 2,
@@ -61,12 +67,12 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // feecha nacimiento
   let nacimiento = paciente.fechaNacimiento || vacio;
   if (!(nacimiento == vacio)) {
-    nacimiento = moment(nacimiento).format('Do MMM YYYY');
+    nacimiento = moment(nacimiento).format('DD MMM YYYY');
     console.log('nacimiento: ', nacimiento)
   }
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(nacimiento, pdfTools.cmToPt(16.7), pdfTools.cmToPt(5.2), {
       align: 'left',
       indent: 2,
@@ -76,7 +82,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // Médico Tratante
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(paciente.nombreMT || vacio, pdfTools.cmToPt(4.5), pdfTools.cmToPt(6), {
       align: 'left',
       indent: 2,
@@ -86,13 +92,13 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // fecha ingreso
   let ingreso = paciente.fechaIngreso || vacio;
   if (!(ingreso == vacio)) {
-    ingreso = moment(ingreso).format('Do MMM YYYY, h:mm:ss a');
+    ingreso = moment(ingreso).format('DD MMM YYYY, h:mm:ss a');
     console.log('ingreso: ', ingreso, '--', moment(ingreso),'--',paciente.fechaIngreso);
   }
   
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(ingreso, pdfTools.cmToPt(16.7), pdfTools.cmToPt(6), {
       align: 'left',
       indent: 2,
@@ -103,7 +109,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // alergias
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(paciente.alergias || vacio, pdfTools.cmToPt(3.5), pdfTools.cmToPt(8.35), {
       align: 'left',
       indent: 2,
@@ -114,7 +120,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // diagnóstico de ingreso
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)
+    .fontSize(9)
     .text(paciente.diagnosticoIngreso || vacio, pdfTools.cmToPt(5.5), pdfTools.cmToPt(9), {
       align: 'left',
       indent: 2,
@@ -125,7 +131,7 @@ const hojaInicialExpedientePdf  = (paciente) => {
   // Municipio
   doc.moveDown()
     .fillColor('black')
-    .fontSize(10)  
+    .fontSize(9)  
     .text(paciente.otrosDiagnosticos || vacio, pdfTools.cmToPt(1.5), pdfTools.cmToPt(11.3), {
       align: 'left',
       indent: 2,

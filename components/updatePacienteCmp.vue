@@ -40,8 +40,24 @@
             <td><input type="date" class="input-text" v-model="paciente.fechaNacimiento" name="fechaNacimiento"></td>
           </tr>
           <tr>
+            <td>Edad:</td>
+            <td><input type="text" class="input-text" v-model="paciente.edad" name="edad"></td>
+          </tr>
+          <tr>
+            <td>Responsable:</td>
+            <td><input type="text" class="input-text" v-model="paciente.nombreResponsable" name="nombreResponsable"></td>
+          </tr>
+          <tr>
+            <td>Telefonos:</td>
+            <td><input type="text" class="input-text" v-model="paciente.telefonosResponsable" name="telefonosResponsable"></td>
+          </tr>
+          <tr>
             <td>Ocupación:</td>
             <td><input type="text" class="input-text" v-model="paciente.ocupacion" name="fechaNacimiento"></td>
+          </tr>
+          <tr>
+            <td>Habitación:</td>
+            <td><input type="text" class="input-text" v-model="paciente.habitacion" name="habitacion"></td>
           </tr>
           <tr>
             <td>Calle:</td>
@@ -182,6 +198,13 @@
             fechaNacimiento: this.paciente.fechaNacimiento,
             genero: this.paciente.genero,
             ocupacion: this.paciente.ocupacion,
+
+            edad: this.paciente.edad,
+            habitacion: this.paciente.habitacion,
+            nombreResponsable: this.paciente.nombreResponsable,
+            telefonosResponsable: this.paciente.telefonosResponsable,
+
+
             calle: this.paciente.calle,
             numInterior: this.paciente.numInterior,
             numExterior: this.paciente.numExterior,

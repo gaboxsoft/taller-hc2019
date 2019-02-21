@@ -102,6 +102,7 @@
             this.$store.commit('setToken', response.data.token);
             this.usuarioLogin = response.data.usuario;
             this.token = response.data.token;
+            this.$store.commit('setUsuarioId', response.data.usuario._id);
           },
           (error) => {
             this.err = error.response.data.error;
@@ -110,6 +111,7 @@
       logout() {
         this.$store.commit('setToken', 'NONE');
         this.$store.commit('setPacienteId', 'NONE');
+        this.$store.commit('setUsuarioId', 'NONE');
         this.token = 'NONE';
         this.usuarioLogin = usuarioVacio;
         alert('Sesión cerrrada!');

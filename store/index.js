@@ -2,6 +2,7 @@
 export const state = () => ({
   token: 'NONE',
   pacienteId: 'NONE',
+  usuarioId: 'NONE',
   notaUrgenciasId: 'NONE',
   evolucionId: 'NONE',
   socketNotasUrgencias: true,
@@ -25,6 +26,9 @@ export const getters = () => ({
   getPacienteId(state) {
     return state.notaUrgenciasId;
   },
+  getUsuarioId(state) {
+    return state.usuarioId;
+  },
   getSocketNotasUrgencias(state) {
     return state.socketNotasUrgencias;
   },
@@ -32,7 +36,7 @@ export const getters = () => ({
     return state.socketDatosGenerales;
   },
   getServer(state) {
-    return state.host+':'+state.port;
+    return state.host + ':' + state.port;
   }
 });
 
@@ -49,6 +53,9 @@ export const mutations = {
   setPacienteId(state, payload) {
     state.pacienteId = payload;
   },
+  setUsuarioId(state, payload) {
+    state.usuarioId = payload;
+  },
   setSocketNotasUrgencias(state) {
     state.socketNotasUrgencias = !state.socketNotasUrgencias;
   },
@@ -58,7 +65,7 @@ export const mutations = {
   setSocketEvolucion(state) {
     state.socketEvolucion = !state.socketEvolucion;
   },
-  setHost(state,payload) {
+  setHost(state, payload) {
     state.host = payload;
   },
   setPort(state, payload) {

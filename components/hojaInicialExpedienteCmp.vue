@@ -75,7 +75,7 @@ const MAX_SIZE_NOMBRE = 50;
 
     computed: {
       url_Server: function () {
-        return process.env.url_Server;
+        return process.env.urlServer;
       },
       urlGetPaciente: function () {
         //console.log('url--->', this.$store.state.host + '/paciente/' + this.$store.state.pacienteId);
@@ -126,17 +126,22 @@ const MAX_SIZE_NOMBRE = 50;
 
       getFechaHora: function () {
         axios.get(process.env.urlServer + '/fechaHora', {headers: {token: this.getToken}})
-          .then((response) => {return response.data.fechaHora;},
+          .then((response) => {
+            console.log('fechaHora:=> ', response.data.fechaHora)
+            return response.data.fechaHora;
+          },
             (error) => {this.err = error.response.data.error;return new Date();});
       },
 
       getCurrentPaciente: function (token) {
 
         //console.log('aquí en getCurrentPaciente y token:', token);
-        console.log('aquí en getCurrentPaciente y url:', this.urlGetPaciente);
-
-        axios.get(this.urlGetPaciente, {
-          token: token
+        console.log('1.- aquí en getCurrentPaciente y url:', this.urlGetPaciente);
+        console.log('2.- aquí en getCurrentPaciente y url:',
+          process.env.urlServer + '/paciente/' + this.$store.state.pacienteId);
+        axios.get(process.env.urlServer + '/paciente/' + this.$store.state.pacienteId, {
+          token: token,
+          desde:'HIE.getCurrentPaciente'
         })
           .then((response) => {
             //console.log('aaquí en getCurrentPaciente axios y regresó: ', response.data.paciente);
@@ -156,14 +161,15 @@ const MAX_SIZE_NOMBRE = 50;
       },
       guardarHojaInicialExpediente: function () {
 
-        //console.log('1 En guardar hie-- url---->>>  ', this.urlHojaInicialExpediente);
+        console.log('1 En guardar hie-- url---->>>  ', this.urlHojaInicialExpediente);
         this.token = this.getToken;
-        //console.log('2 En guardar hie-- token---->>>  ', this.token);
+        console.log('2 En guardar hie-- token---->>>  ', this.token);
         const req = {
           method: 'put',
           url: this.urlHojaInicialExpediente,
           headers: {
-            token: this.token
+            token: this.token,
+            desde:'**guardar hoja inicial**'
           },
           data: {
             fechaIngreso: this.paciente.fechaIngreso,
