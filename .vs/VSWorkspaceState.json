@@ -5,11 +5,12 @@
     "\\components",
     "\\config",
     "\\layouts",
-    "\\middleware",
-    "\\models",
+    "\\library",
+    "\\library\\msiReportes",
+    "\\library\\msiReportes\\fonts",
     "\\routes",
-    "\\store"
+    "\\server"
   ],
-  "SelectedNode": "\\node_modules",
+  "SelectedNode": "\\routes\\paciente.js",
   "PreviewInSolutionExplorer": false
 }

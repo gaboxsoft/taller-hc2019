@@ -23,7 +23,7 @@ let pacienteSchema = new Schema({
   folioCuenta: {
     type: Number,
     default: 0,
-    unique:true
+    unique: true
   },
   nombre: {
     type: String,
@@ -109,7 +109,13 @@ let pacienteSchema = new Schema({
   /////////////////////////
 
   /////////////////////////
-  // Médico tratante
+  // Médicos tratantes
+
+  medicos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Usuario'
+  }],
+
 
   ////medicoTratante: {
   ////  type: Schema.Types.ObjectId,
